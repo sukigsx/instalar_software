@@ -83,7 +83,7 @@ do
         fi
 done
     echo -e " [${verde}ok${borra_colores}] $paquete."
-    actualizado="si"
+    software="si"
 done
 
 if [ $conexion = "no" ]
