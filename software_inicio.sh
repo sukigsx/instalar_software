@@ -51,7 +51,7 @@ do
             sino=$? ##recojemos el 0 o 1 del resultado de which
         fi
 done
-    echo -e " [${verde}ok${borra_colores}] $paquete."
+    echo -e " [${verde}okkkkk${borra_colores}] $paquete."
     software="si"
 done
 
@@ -65,7 +65,7 @@ then
     ctrl_c
 else
     echo -e ""
-    echo -e "${verde} Conexion a internet${borra_colores} ok"
+    echo -e "${verde} Conexion a internet${borra_colores} si"
     conexion="si"
     sleep 2
 fi
