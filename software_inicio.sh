@@ -278,11 +278,23 @@ case $opcion in
         
     5) #Instalar software de repositorios
         wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
-        bash instalar_software_repositorios.sh;;
+        if [ -d /home/$(whoami)/scripts ]
+        then
+            bash /home/$(whoami)/scripts/instalar_software_repositorios.sh
+        else
+            bash instalar_software_repositorios.sh
+        fi
+        ;;
         
     6) #Instalar software de terceros
         wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
-        bash instalar_software_externo.sh;;
+        if [ -d /home/$(whoami)/scripts ]
+        then
+            bash /home/$(whoami)/scripts/instalar_software_externo.sh
+        else
+            bash instalar_software_externo.sh
+        fi
+        ;;
     
     7) #Buscar equipos en la red con nmap
         echo -e " Tu ip en la red es ${verde}$(hostname -I)${borra_colores}"
