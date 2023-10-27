@@ -111,11 +111,6 @@ wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
 exit
 }
 
-echo ""
-echo -e " ${verde}Todo el software correcto.${borra_colores}"
-sleep 3
-
-
 ###################################################################################################
 #funcion ayuda
 function ayuda(){
