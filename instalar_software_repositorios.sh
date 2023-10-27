@@ -183,7 +183,7 @@ echo -e " 32. ${azul}Handbrake.                                                 
 echo -e " 33. ${azul}Shotwell, programa de fotos.                                              ${borra_colores} 90- ${azul}Instalar el software seleccionado.${borra_colores}"
 echo -e " 34. ${azul}Nemo, explorador de ficheros.                                             ${borra_colores}"
 echo -e " 35. ${azul}opcion vacia.                                                             ${borra_colores} 99. ${azul}Atras / Salir.${borra_colores}"
-echo " "
+echo ""
 echo -n " Selecciona el numero del software deseado para instalar --->>> "
 read opcion
 case $opcion in
