@@ -140,7 +140,6 @@ wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 
 clear
 echo -e "${rosa}"; figlet -c Sukigsx; echo -e "${borra_colores}"
-echo ""
 echo -e "${verde}  Diseñado por sukigsx / Contacto:  sukigsx.mbsistemas@gmail.com${borra_colores}"
 echo -e "${verde}                                    https://mbsistemas.ddns.net${borra_colores}"
 echo ""
@@ -149,7 +148,6 @@ echo ""
 echo -e "${azul} Conexion a internet = ${borra_colores} $conexion ${azul}| Software necesario = ${borra_colores} $software ${azul}| Software actualizado = ${borra_colores} $actualizado ${borra_colores}"
 echo ""
 echo -e "  0.${azul} Actualiza este scripts.${borra_colores} >> ${turquesa}Actualizacion a la ultima version.${borra_colores}"
-echo ""
 echo -e "  1. ${azul}Unity-Tweak-Tool, Perfecta para dejar Unity niquelado.                    ${borra_colores} 36. ${azul}Systemback, Utilidades para gestionar el sistema.${borra_colores}"
 echo -e "  2. ${azul}Grub-customizer, modificar gestor de arranque.                            ${borra_colores} 37. ${azul}Nmap, escaner de red modo conosla.${borra_colores}"
 echo -e "  3. ${azul}Libre Office.                                                             ${borra_colores} 38. ${azul}Copia de seguridad deja-dup.${borra_colores}"
