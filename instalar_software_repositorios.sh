@@ -40,41 +40,12 @@ then
     rm -r /tmp/instalar_software.sh
     
 else
-    #continua por que el fichero esta borrado.
-    #crea el fichero instalar_software.sh en la carpeta /temporales
-    #inclullendo mis logos
-
-    #echo '#!/bin/bash' >> /tmp/instalar_software.sh
-    #echo 'rojo="\e[0;31m\033[1m"' >> /tmp/instalar_software.sh
-    #echo 'verde="\e[;32m\033[1m"' >> /tmp/instalar_software.sh
-    #echo 'azul="\e[0;34m\033[1m"' >> /tmp/instalar_software.sh
-    #echo 'amarillo="\e[0;33m\033[1m"' >> /tmp/instalar_software.sh
-    #echo 'rosa="\e[0;35m\033[1m"' >> /tmp/instalar_software.sh
-    #echo 'turquesa="\e[0;36m\033[1m"' >> /tmp/instalar_software.sh
-    #echo 'borra_colores="\033[0m\e[0m"' >> /tmp/instalar_software.sh
-
-    #echo "clear" >> /tmp/instalar_software.sh
-    #echo 'echo -e "${rosa}"; figlet -c sukigsx; echo -e "${borra_colores}"' >> /tmp/instalar_software.sh
-    #echo 'echo ""' >> /tmp/instalar_software.sh
-    #echo 'echo -e "${verde}  Diseñado por sukigsx / Contacto:  sukigsx.mbsistemas@gmail.com${borra_colores}"' >> /tmp/instalar_software.sh
-    #echo 'echo -e "${verde}                                    https://mbsistemas.ddns.net${borra_colores}"' >> /tmp/instalar_software.sh
-    #echo 'echo ""' >> /tmp/instalar_software.sh
-    #echo 'echo -e "${verde} Nombre del script.${borra_colores}                < instalar_software_incluido_en_los_repositorios.sukigsx.sh >"' >> /tmp/instalar_software.sh
-    #echo 'echo -e "${verde} Funcionamiento.${borra_colores}                   < Se procede a la instalacion de software seleccionado. >"' >> /tmp/instalar_software.sh
-    #echo 'echo ""' >> /tmp/instalar_software.sh
-    #echo 'sleep 3' >> /tmp/instalar_software.sh
-    #
     echo ""
 fi
 
 clear
-echo ""
-echo -e "${amarillo} Comprobando software necesario.${borra_colores}"
-echo ""
-
-clear
 echo -e ""
-echo -e "${verde} Verificando software necesario.${borra_colores}"
+echo -e "${verde} Comprobando software necesario para ejecutar el script.${borra_colores}"
 echo -e ""
 ## Vericica conexion a internet
     if ping -c1 google.com &>/dev/null;
@@ -86,7 +57,7 @@ echo -e ""
         conexion="no" #sabemos si tenemos conexion a internet o no
     fi
     
-for paquete in wmctrl figlet diff curl #ponemos el fostware a instalar separado por espacios
+for paquete in wmctrl figlet diff curl git diff xdotool #ponemos el fostware a instalar separado por espacios
 do
     which $paquete 2>/dev/null 1>/dev/null 0>/dev/null #comprueba si esta el programa llamado programa
     sino=$? #recojemos el 0 o 1 del resultado de which
@@ -112,48 +83,52 @@ do
         fi
 done
     echo -e " [${verde}ok${borra_colores}] $paquete."
-
+    actualizado="si"
 done
+
 if [ $conexion = "no" ]
 then
     echo -e ""
     echo -e "${rojo} Este script no se puede ejecutar correctamente."
-    echo -e " Si NO dispone de conexion a internet.${borra_colores}"
-    echo -e ""
-    exit
+    echo -e " Si NO dispone de conexion a internet y no se puede instalar software.${borra_colores}"
+    echo ""
+    echo -e "${amarillo} Pulsa una tecla para continuar.${borra_colores}"; read p
+    ctrl_c
 else
     echo -e ""
-    echo -e "${verde} Continuamos...${borra_colores}"
+    echo -e "${verde} Conexion a internet${borra_colores} si"
+    conexion="si"
     sleep 2
 fi
 
 
 #comprueba aztualiczacion del script
-if [ -e /usr/bin/inicio.sukigsx.sh ] #comprueba si se ha instalado el script con el deb, comprobando el fichero /usr/bin/inicio.sukigsx.sh
+archivo_local="instalar_software_repositorios.sh" # Nombre del archivo local
+ruta_repositorio="https://github.com/sukigsx/instalar_software.git" #ruta del repositorio para actualizar y clonar con git clone
+
+# Obtener la ruta del script
+descarga=$(dirname "$(readlink -f "$0")")
+git clone $ruta_repositorio /tmp/comprobar >/dev/null 2>&1
+
+diff $descarga/$archivo_local /tmp/comprobar/$archivo_local >/dev/null 2>&1
+
+
+if [ $? = 0 ]
 then
-    ruta="/usr/bin"
-    mkdir /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
-    git clone https://github.com/sukigsx/Instalacion-software.git /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
-    diff /tmp/com_update/codigo/instalar_software_incluido_en_los_repositorios.sukigsx.sh $ruta/instalar_software_incluido_en_los_repositorios.sukigsx.sh 2>/dev/null 1>/dev/null 0>/dev/null
-    if [ $? = "0" ] 2>/dev/null 1>/dev/null 0>/dev/null
-    then
-        echo -e " [${verde}ok${borra_colores}] script, esta actualizado."
-    else
-        echo -e " [${rojo}X${borra_colores}] ${amarillo}script NO actualizado, puedes actualizarlo en la opcion ( 0 ).${borra_colores}";sleep 2
-    fi
-    sudo rm -r /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
+    #esta actualizado, solo lo comprueba
+    echo ""
+    echo -e "${verde} El script${borra_colores} $0 ${verde}esta actualizado.${borra_colores}"
+    echo ""
+    chmod -R +w /tmp/comprobar
+    rm -R /tmp/comprobar
+    actualizado="si"
 else
-    ruta=$(pwd)
-    mkdir /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
-    git clone https://github.com/sukigsx/Instalacion-software.git /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
-    diff /tmp/com_update/codigo/instalar_software_incluido_en_los_repositorios.sukigsx.sh $ruta/instalar_software_incluido_en_los_repositorios.sukigsx.sh 2>/dev/null 1>/dev/null 0>/dev/null
-    if [ $? = "0" ] 2>/dev/null 1>/dev/null 0>/dev/null
-    then
-        echo -e "- [${verde}ok${borra_colores}] script, esta actualizado."
-    else
-        echo -e "- [${rojo}XX${borra_colores}] ${amarillo}script NO actualizado, puedes actualizarlo en la opcion ( 0 ).${borra_colores}";sleep 3
-    fi
-    sudo rm -r /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
+    #hay que actualizar, comprueba y actualiza
+    echo ""
+    echo -e "${amarillo} EL script${borra_colores} $0 ${amarillo}NO esta actualizado.${borra_colores}"
+    echo -e "${verde} Selecciona opcion ( 0 ) del menu para actualizar.${borra_colores}"
+    actualizado="no"
+    sleep 3
 fi
 
 echo ""
@@ -174,6 +149,9 @@ echo -e "-${verde}                                    https://mbsistemas.ddns.ne
 echo ""
 echo -e "-${verde} Nombre del script.${borra_colores}                < instalar_software_incluido_en_los_repositorios.sukigsx.sh >"
 echo -e "-${verde} Funcionamiento.${borra_colores}                   Seleccion de software para instalar en tu sistema."
+echo ""
+echo ""
+echo -e "${azul} Conexion a internet = ${borra_colores} $conexion ${azul}| Software necesario = ${borra_colores} $software ${azul}| Software actualizado = ${borra_colores} $actualizado ${borra_colores}"
 echo ""
 echo -e "  0.${azul} Actualiza este scripts.${borra_colores} >> ${turquesa}Actualizacion a la ultima version.${borra_colores}"
 echo ""
@@ -223,38 +201,39 @@ echo -n " Selecciona el numero del software deseado para instalar --->>> "
 read opcion
 case $opcion in
     0)  #actualiza el script
-        if [ -e /usr/bin/inicio.sukigsx.sh ] #comprueba si se ha instalado el script con el deb, comprobando el fichero /usr/bin/inicio.sukigsx.sh
+        archivo_local="instalar_software_repositorios.sh" # Nombre del archivo local
+        ruta_repositorio="https://github.com/sukigsx/instalar_software.git" #ruta del repositorio para actualizar y clonar con git clone
+
+        # Obtener la ruta del script
+        descarga=$(dirname "$(readlink -f "$0")")
+        git clone $ruta_repositorio /tmp/comprobar >/dev/null 2>&1
+
+        diff $descarga/$archivo_local /tmp/comprobar/$archivo_local >/dev/null 2>&1
+
+        if [ $? = 0 ]
         then
-            ruta="/usr/bin"
-            cd /tmp
-            mkdir temporal_update
-            git clone https://github.com/sukigsx/Instalacion-software.git /tmp/temporal_update
-            cd /tmp/temporal_update/codigo/
-            sudo chmod +x $ruta/*.sukigsx.sh
-            sudo cp -r /tmp/temporal_update/codigo/* $ruta
-            sudo rm -r /tmp/temporal_update
-            clear
-            echo "";
-            echo -e "${verde} Script actualizado. Tienes que reiniciar el script para ver los cambios.${borra_colores}";
-            echo "";
-            read -p " Pulsa una tecla para continuar." pause;
-            ctrl_c;
+            #esta actualizado, solo lo comprueba
+            echo ""
+            echo -e "${verde} El script${borra_colores} $0 ${verde}esta actualizado.${borra_colores}"
+            echo ""
+            chmod -R +w /tmp/comprobar
+            rm -R /tmp/comprobar
         else
-            ruta=$(pwd)
-            cd /tmp
-            mkdir temporal_update
-            git clone https://github.com/sukigsx/Instalacion-software.git /tmp/temporal_update
-            cd /tmp/temporal_update/codigo/
-            sudo chmod +x $ruta/*.sukigsx.sh
-            sudo cp -r /tmp/temporal_update/codigo/* $ruta
-            sudo rm -r /tmp/temporal_update
-            clear
-            echo "";
-            echo -e "${verde} Script actualizado. Tienes que reiniciar el script para ver los cambios.${borra_colores}";
-            echo "";
-            read -p " Pulsa una tecla para continuar." pause
-            ctrl_c;
-        fi;; 
+            #hay que actualizar, comprueba y actualiza
+            echo ""
+            echo -e "${amarillo} EL script${borra_colores} $0 ${amarillo}NO esta actualizado.${borra_colores}"
+            echo -e "${verde} Se procede a su actualizacion automatica.${borra_colores}"
+            sleep 3
+            mv /tmp/comprobar/$archivo_local $descarga
+            chmod -R +w /tmp/comprobar
+            rm -R /tmp/comprobar
+            echo ""
+            echo -e "${verde} El script se ha actualizado, es necesario cargarlo de nuevo.${borra_colores}"
+            echo -e "${amarillo} Se cerrara el terminal en 5 segundos.${borra_colores}"
+            sleep 5
+            xdotool windowkill `xdotool getactivewindow`
+        fi
+        ;;
 
     1)  #Unity-Tweak-Tool, Perfecta para dejar Unity niquelado.
         #Actualizar completo solo kde con pkcon update
