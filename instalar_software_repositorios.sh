@@ -139,12 +139,12 @@ do
 wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 
 clear
-echo -e "${rosa}"; figlet -c sukigsx; echo -e "${borra_colores}"
+echo -e "${rosa}"; figlet -c Software-repositorios-sukigsx; echo -e "${borra_colores}"
 echo ""
-echo -e "-${verde}  Diseñado por sukigsx / Contacto:  sukigsx.mbsistemas@gmail.com${borra_colores}"
-echo -e "-${verde}                                    https://mbsistemas.ddns.net${borra_colores}"
+echo -e "${verde}  Diseñado por sukigsx / Contacto:  sukigsx.mbsistemas@gmail.com${borra_colores}"
+echo -e "${verde}                                    https://mbsistemas.ddns.net${borra_colores}"
 echo ""
-echo -e "-${verde} Nombre del script.${borra_colores} < $0 >${verde} Funcionamiento.${borra_colores}(Seleccion de software para instalar en tu sistema.)${borra_colores}"
+echo -e "${verde} Nombre del script.${borra_colores} < $0 >${verde} Funcionamiento.${borra_colores}(Seleccion de software para instalar en tu sistema.)${borra_colores}"
 echo ""
 echo -e "${azul} Conexion a internet = ${borra_colores} $conexion ${azul}| Software necesario = ${borra_colores} $software ${azul}| Software actualizado = ${borra_colores} $actualizado ${borra_colores}"
 echo ""
