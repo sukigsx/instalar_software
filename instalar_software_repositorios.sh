@@ -139,7 +139,7 @@ do
 wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 
 clear
-echo -e "${rosa}"; figlet -c Software-repositorios-sukigsx; echo -e "${borra_colores}"
+echo -e "${rosa}"; figlet -c Sukigsx; echo -e "${borra_colores}"
 echo ""
 echo -e "${verde}  Diseñado por sukigsx / Contacto:  sukigsx.mbsistemas@gmail.com${borra_colores}"
 echo -e "${verde}                                    https://mbsistemas.ddns.net${borra_colores}"
@@ -180,22 +180,18 @@ echo -e " 27. ${azul}Snap, instalador de paquetes.                              
 echo -e " 28. ${azul}Ocamlfuse, sincronizar google drive.                                      ${borra_colores}"
 echo -e " 29. ${azul}Terminal de gnome.                                                        ${borra_colores}"
 echo -e " 30. ${azul}Simple scan.                                                              ${borra_colores}"
-echo -e " 31. ${azul}Net-tools para tener comandos de red en terminal.                         ${borra_colores}"
-echo -e " 32. ${azul}Handbrake.                                                                ${borra_colores}"
-echo -e " 33. ${azul}Shotwell, programa de fotos.                                              ${borra_colores}"
+echo -e " 31. ${azul}Net-tools para tener comandos de red en terminal.                         ${borra_colores} 70. ${azul}Listar el software seleccionado para instalar.${borra_colores}"
+echo -e " 32. ${azul}Handbrake.                                                                ${borra_colores} 80. ${azul}BORRAR el software seleccionado para listalar.${borra_colores}"
+echo -e " 33. ${azul}Shotwell, programa de fotos.                                              ${borra_colores} 90- ${azul}Instalar el software seleccionado.${borra_colores}"
 echo -e " 34. ${azul}Nemo, explorador de ficheros.                                             ${borra_colores}"
-echo -e " 35. ${amarillo}opcion vacia.                                                         ${borra_colores}"
-echo ""
-echo -e " 70. ${azul}Listar el software seleccionado para instalar.${borra_colores}"
-echo -e " 80. ${azul}BORRAR el software seleccionado para listalar.${borra_colores}"
-echo -e " 90- ${azul}Instalar el software seleccionado.${borra_colores}"
-echo ""
-echo -e " 99. ${azul}Atras / Salir.${borra_colores}"
+echo -e " 35. ${amarillo}opcion vacia.                                                         ${borra_colores} 99. ${azul}Atras / Salir.${borra_colores}"
 echo ""
 echo -n " Selecciona el numero del software deseado para instalar --->>> "
 read opcion
 case $opcion in
     0)  #actualiza el script
+        clear
+        echo ""
         archivo_local="instalar_software_repositorios.sh" # Nombre del archivo local
         ruta_repositorio="https://github.com/sukigsx/instalar_software.git" #ruta del repositorio para actualizar y clonar con git clone
 
