@@ -131,9 +131,6 @@ else
     sleep 3
 fi
 
-echo ""
-echo -e " ${verde}Todo el software correcto.${borra_colores}"
-sleep 3
 #maximiza la terminal.
 wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 while :
