@@ -54,7 +54,7 @@ echo -e ""
         conexion="si" #sabemos si tenemos conexion a internet o no
     else
         echo -e " [${rojo}XX${borra_colores}] Conexion a internet."
-        conexion="no" #sabemos si tenemos conexion a internet o no
+        conexion=$(echo -e "${rojo}no${borra_colores}") #sabemos si tenemos conexion a internet o no
     fi
     
 for paquete in wmctrl figlet diff curl git diff xdotool #ponemos el fostware a instalar separado por espacios
@@ -83,7 +83,7 @@ do
         fi
 done
     echo -e " [${verde}ok${borra_colores}] $paquete."
-    software=$(echo -e "${verde}si${borra_colores}")
+    software="si"
 done
 
 if [ $conexion = "no" ]
@@ -127,7 +127,7 @@ else
     echo ""
     echo -e "${amarillo} EL script${borra_colores} $0 ${amarillo}NO esta actualizado.${borra_colores}"
     echo -e "${verde} Selecciona opcion ( 0 ) del menu para actualizar.${borra_colores}"
-    actualizado="no"
+    actualizado=$(echo -e "${rojo}no${borra_colores}")
     sleep 3
 fi
 
