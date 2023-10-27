@@ -51,7 +51,7 @@ do
             sino=$? ##recojemos el 0 o 1 del resultado de which
         fi
 done
-    echo -e " [${verde}okkkkk${borra_colores}] $paquete."
+    echo -e " [${verde}ok${borra_colores}] $paquete."
     software="si"
 done
 
