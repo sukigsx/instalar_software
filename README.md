@@ -1,5 +1,5 @@
 ---------
-## Instalacion_software
+# Instalacion_software
 * Script desarrollado en bash
 *********************************************
 * Diseñado por SUKIGSX
@@ -18,32 +18,72 @@ Este script esta pensado para la instalacion de software de forma automatizada.
 - Ejecuta una terminal de comandos.
 - Instalacion en equipos remotos.
 
-### INSTALACION.
+El script consta de tres ficheros que son: software_inicio.sh, instalar_software_repositorios.sh y instalar_software_externo.sh. que paso a explicar cada uno de ellos.
 
-#### Descargar e instalar el paquete DEB.
-- [Descargar el paque DEB](https://github.com/sukigsx/Instalacion-software/raw/main/instalacion-software.deb). Y lo puedes instalar con tu forma habitual.
+##instalar_inicio.sh
+Este script de Bash realiza varias tareas relacionadas con la gestión del sistema y la instalación de software en sistemas Linux. A continuación, se describe el funcionamiento del script:
 
-- Instalar paquete DEB desde linea de comando en la terminal, lo descarga, lo instala y despues borra el paquete DEB.
+- Definición de colores: Se definen variables que contienen códigos de color ANSI para su uso en la terminal.
 
-      wget https://github.com/sukigsx/Instalacion-software/raw/main/instalacion-software.deb; sudo dpkg -i instalacion-software.deb; rm instalacion-software.deb
-  
- - Clonar el repositorio, desde la terminal. Dar permisos de ejecucion a todos los ficheros.
+- Verificación de conexión: El script verifica si hay conexión a Internet haciendo ping a google.com. Dependiendo del resultado, se establece la variable conexion a "si" o "no".
 
-       git clone https://github.com/sukigsx/Instalacion-software.git
+- Verificación de software necesario: El script verifica la presencia de varios paquetes necesarios en el sistema. Si alguno de ellos falta, intenta instalarlo usando sudo apt install.
 
-**Nota**. Aconsejo instalar el paquete deb, porque así podrás tener en tu menú de aplicaciones el script con su icono y lo podrás lanzar de forma gráfica sin necesidad de abrir el terminal, además crea una función en el bashrc que al abrir el terminal y escribiendo (scripts), te lista todos mis scripts que tengas instalados en tu sistema que hayas instalado con el paquete deb. Cuando lo desístalas, te pregunta si lo quieres eliminar.
+- Actualización del script desde GitHub: El script comprueba si hay una versión más reciente en un repositorio de GitHub. Si hay una actualización, el script se actualiza automáticamente.
 
-#### Desistalar el paquete deb, desde el terminal.
-     sudo dpkg -r instalacion-software
+- Menú principal: Muestra un menú interactivo con opciones numeradas que incluyen la actualización del sistema, la instalación de software, la búsqueda de dispositivos en la red, la conexión SSH a otros   dispositivos, entre otras opciones.
 
-### Forma de ejecucion.
-- Si has clonado el repositorio y con permisos de ejecucion posicionandote dentro de la carpeta codigo.
+- Funciones auxiliares: El script incluye una función ayuda que muestra información sobre las opciones del menú y una función ctrl_c que se activa cuando se presiona Ctrl + C, mostrando un mensaje de despedida y cerrando la terminal.
 
-      ./inicio.sukigsx.sh
+- Bucle principal: El script entra en un bucle infinito (while :) que muestra el menú y espera la entrada del usuario para ejecutar las opciones seleccionadas.
 
-- Si has instalado el paquete deb. Lo encontraras en el lanzador, menu utilidades y tambien en sistema.
-  
+Algunos aspectos notables del script:
 
-### NOTA.
-Le voy poniendo cada poco tiempo nuevas funcionalidades y nuevo software que me parece acto 
-para nuestras distribuciones de linux y que considero de utilidad.
+- Control de versiones: Permite actualizar el script automáticamente desde GitHub.
+- Interacción con el usuario: Proporciona un menú interactivo con descripciones claras de las opciones disponibles.
+- Gestión de conexiones de red: Permite buscar dispositivos en la red y conectarse a ellos mediante SSH.
+- Manejo de errores: Notifica al usuario si no hay conexión a Internet o si no se pueden instalar ciertos paquetes.
+
+## instalar_software_externo.sh
+Este script en bash es un programa de instalación que permite al usuario seleccionar y descargar varios programas externos. Aquí hay una descripción del funcionamiento del script:
+
+### Primera parte del script:
+
+- La primera parte del script muestra un menú para seleccionar un navegador web (Google Chrome, Firefox o Chromium).
+- Si elige actualizar el script (opción 0), el script se compara con una versión en un repositorio de GitHub. Si hay una actualización, se descarga y reemplaza el script actual.
+- Si selecciona un navegador que no está instalado, el script intenta instalarlo.
+- Si selecciona salir (opción 99), el script se cierra.
+
+### La segunda parte:
+
+- Muestra un menú con varias opciones para descargar software externo.
+- Puedes seleccionar diferentes opciones para descargar software como VirtualBox, Franz, TeamViewer, etc.
+- También puedes ver la lista de software descargado (opción 70), borrar los archivos descargados (opción 80) e instalar el software descargado (opción 90).
+- Si seleccionas salir (opción 99), el script se cierra.
+
+## instalar_software_repositorios.sh
+
+Este script en Bash es un programa de instalación automatizada para software en sistemas Linux. Te proporcionaré una descripción paso a paso para entender mejor el funcionamiento del script:
+
+
+- Comprobación de software necesario: El script verifica la presencia de varios programas (wmctrl, figlet, diff, curl, git, xdotool, nmap, ssh, ping, which) que son esenciales para su funcionamiento. Si alguno de estos programas no está instalado, el script intenta instalarlo automáticamente utilizando el comando apt install. Si después de 3 intentos no puede instalar un programa o si no hay conexión a Internet, el script muestra un mensaje de error y termina.
+
+- Comprobación de la conexión a Internet: El script verifica si hay una conexión a Internet usando el comando ping. Si la conexión está disponible, la variable conexion se establece en "si"; de lo contrario, se establece en "no".
+
+- Comprobación de actualizaciones del script: El script compara su versión local con la versión en un repositorio de GitHub. Si hay una diferencia, el usuario tiene la opción de actualizar el script automáticamente.
+
+- Menú de selección de software: Después de todas las comprobaciones, se muestra un menú interactivo que enumera varios programas y herramientas. El usuario puede seleccionar un número para elegir el software que desea instalar o realizar otras acciones, como actualizar el script, listar el software seleccionado para instalar, borrar la lista de software seleccionado o instalar el software seleccionado.
+
+- Actualización automática del script: Si el usuario elige actualizar el script, el script descarga la última versión del repositorio de GitHub y reemplaza el script local.
+
+- Funcionalidades adicionales: El script también incluye funcionalidades para maximizar la ventana de la terminal y proporciona información sobre el estado de la conexión a Internet y la disponibilidad del software necesario.
+
+# Instalacion
+
+Clonar el repositorio
+
+git clone https://github.com/sukigsx/instalar_software.git
+
+# ESPERO OS GUSTE...
+
+
