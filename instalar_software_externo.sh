@@ -121,9 +121,6 @@ else
     sleep 3
 fi
 
-echo ""
-echo -e " ${verde}Todo el software correcto.${borra_colores}"
-sleep 3
 
 #seleccion de navegador
 while :
