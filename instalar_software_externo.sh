@@ -78,7 +78,7 @@ do
         fi
 done
     echo -e " [${verde}ok${borra_colores}] $paquete."
-    software=$(echo -e " [${verde}ok${borra_colores}] $paquete.")
+    software="si"
 
 done
 if [ $conexion = "no" ]
@@ -117,7 +117,7 @@ else
     echo ""
     echo -e "${amarillo} EL script${borra_colores} $0 ${amarillo}NO esta actualizado.${borra_colores}"
     echo -e "${verde} Selecciona opcion ( 0 ) del menu para actualizar.${borra_colores}"
-    actualizado=$(echo -e " [${rojo}no${borra_colores}] $paquete.")
+    actualizado="no"
     sleep 3
 fi
 
