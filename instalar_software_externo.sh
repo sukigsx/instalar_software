@@ -111,7 +111,7 @@ then
     echo ""
     chmod -R +w /tmp/comprobar
     rm -R /tmp/comprobar
-    actualizado=$(echo -e " [${verde}si${borra_colores}] $paquete.")
+    actualizado="si"
 else
     #hay que actualizar, comprueba y actualiza
     echo ""
