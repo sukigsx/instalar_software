@@ -162,38 +162,39 @@ read navegador
 case $navegador in
     
     0) #actualiza el script
-    if [ -e /usr/bin/inicio.sukigsx.sh ] #comprueba si se ha instalado el script con el deb, comprobando el fichero /usr/bin/inicio.sukigsx.sh
-        then
-            ruta="/usr/bin"
-            cd /tmp
-            mkdir temporal_update
-            git clone https://github.com/sukigsx/Instalacion-software.git /tmp/temporal_update
-            cd /tmp/temporal_update/codigo/
-            sudo chmod +x $ruta/*.sukigsx.sh
-            sudo cp -r /tmp/temporal_update/codigo/* $ruta
-            sudo rm -r /tmp/temporal_update
-            clear
-            echo "";
-            echo -e "${verde} Script actualizado. Tienes que reiniciar el script para ver los cambios.${borra_colores}";
-            echo "";
-            read -p " Pulsa una tecla para continuar." pause
-            ctrl_c;
-        else
-            ruta=$(pwd)
-            cd /tmp
-            mkdir temporal_update
-            git clone https://github.com/sukigsx/Instalacion-software.git /tmp/temporal_update
-            cd /tmp/temporal_update/codigo/
-            sudo chmod +x $ruta/*.sukigsx.sh
-            sudo cp -r /tmp/temporal_update/codigo/* $ruta
-            sudo rm -r /tmp/temporal_update
-            clear
-            echo "";
-            echo -e "${verde} Script actualizado. Tienes que reiniciar el script para ver los cambios.${borra_colores}";
-            echo "";
-            read -p " Pulsa una tecla para continuar." pause
-            ctrl_c;
-        fi;; 
+    archivo_local="instalar_software_externo.sh" # Nombre del archivo local
+    ruta_repositorio="https://github.com/sukigsx/instalar_software.git" #ruta del repositorio para actualizar y clonar con git clone
+
+    # Obtener la ruta del script
+    descarga=$(dirname "$(readlink -f "$0")")
+    git clone $ruta_repositorio /tmp/comprobar >/dev/null 2>&1
+
+    diff $descarga/$archivo_local /tmp/comprobar/$archivo_local >/dev/null 2>&1
+
+    if [ $? = 0 ]
+    then
+        #esta actualizado, solo lo comprueba
+        echo ""
+        echo -e "${verde} El script${borra_colores} $0 ${verde}esta actualizado.${borra_colores}"
+        echo ""
+        chmod -R +w /tmp/comprobar
+        rm -R /tmp/comprobar
+    else
+        #hay que actualizar, comprueba y actualiza
+        echo ""
+        echo -e "${amarillo} EL script${borra_colores} $0 ${amarillo}NO esta actualizado.${borra_colores}"
+        echo -e "${verde} Se procede a su actualizacion automatica.${borra_colores}"
+        sleep 3
+        mv /tmp/comprobar/$archivo_local $descarga
+        chmod -R +w /tmp/comprobar
+        rm -R /tmp/comprobar
+        echo ""
+        echo -e "${verde} El script se ha actualizado, es necesario cargarlo de nuevo.${borra_colores}"
+        echo -e "${amarillo} Se cerrara el terminal en 5 segundos.${borra_colores}"
+        sleep 5
+        xdotool windowkill `xdotool getactivewindow`
+    fi
+    ;;
     
     1)  which google-chrome 2>/dev/null 1>/dev/null 0>/dev/null
         google=$?
