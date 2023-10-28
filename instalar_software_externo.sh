@@ -67,8 +67,8 @@ do
             echo -e " ${rojo}-- sudo apt install $paquete --${borra_colores}"
             echo -e ""
             echo -e " ${rojo}No se puede ejecutar el script.${borra_colores}"
-            echo ""
-            exit
+            read p
+            ctrl_c
         else #intenta instalar
             echo " Instalando $paquete. Intento $contador/3."
             sudo apt install $paquete -y 2>/dev/null 1>/dev/null 0>/dev/null
@@ -78,6 +78,7 @@ do
         fi
 done
     echo -e " [${verde}ok${borra_colores}] $paquete."
+    software=$(echo -e " [${verde}ok${borra_colores}] $paquete.")
 
 done
 if [ $conexion = "no" ]
@@ -85,41 +86,39 @@ then
     echo -e ""
     echo -e "${rojo} Este script no se puede ejecutar correctamente."
     echo -e " Si NO dispone de conexion a internet.${borra_colores}"
-    echo -e ""
-    exit
+    echo -e "${amarillo} Pulsa una tecla para continuar.${borra_colores}"; read p
 else
     echo -e ""
-    echo -e "${verde} Continuamos...${borra_colores}"
-    sleep 2
 fi
 
 
-#comprueba aztualiczacion del script
-if [ -e /usr/bin/inicio.sukigsx.sh ] #comprueba si se ha instalado el script con el deb, comprobando el fichero /usr/bin/inicio.sukigsx.sh
+#comprueba actualiczacion del script
+archivo_local="instalar_software_externo.sh" # Nombre del archivo local
+ruta_repositorio="https://github.com/sukigsx/instalar_software.git" #ruta del repositorio para actualizar y clonar con git clone
+
+# Obtener la ruta del script
+descarga=$(dirname "$(readlink -f "$0")")
+git clone $ruta_repositorio /tmp/comprobar >/dev/null 2>&1
+
+diff $descarga/$archivo_local /tmp/comprobar/$archivo_local >/dev/null 2>&1
+
+
+if [ $? = 0 ]
 then
-    ruta="/usr/bin"
-    mkdir /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
-    git clone https://github.com/sukigsx/Instalacion-software.git /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
-    diff /tmp/com_update/codigo/instalar_software_no_incluido_en_los_repositorios.sukigsx.sh $ruta/instalar_software_no_incluido_en_los_repositorios.sukigsx.sh 2>/dev/null 1>/dev/null 0>/dev/null
-    if [ $? = "0" ] 2>/dev/null 1>/dev/null 0>/dev/null
-    then
-        echo -e " [${verde}ok${borra_colores}] script, esta actualizado."
-    else
-        echo -e " [${rojo}X${borra_colores}] ${amarillo}script NO actualizado, puedes actualizarlo en la opcion ( 0 ).${borra_colores}";sleep 2
-    fi
-    sudo rm -r /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
+    #esta actualizado, solo lo comprueba
+    echo ""
+    echo -e "${verde} El script${borra_colores} $0 ${verde}esta actualizado.${borra_colores}"
+    echo ""
+    chmod -R +w /tmp/comprobar
+    rm -R /tmp/comprobar
+    actualizado=$(echo -e " [${verde}si${borra_colores}] $paquete.")
 else
-    ruta=$(pwd)
-    mkdir /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
-    git clone https://github.com/sukigsx/Instalacion-software.git /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
-    diff /tmp/com_update/codigo/instalar_software_no_incluido_en_los_repositorios.sukigsx.sh $ruta/instalar_software_no_incluido_en_los_repositorios.sukigsx.sh 2>/dev/null 1>/dev/null 0>/dev/null
-    if [ $? = "0" ] 2>/dev/null 1>/dev/null 0>/dev/null
-    then
-        echo -e " [${verde}ok${borra_colores}] script, esta actualizado."
-    else
-        echo -e " [${rojo}XX${borra_colores}] ${amarillo}script NO actualizado, puedes actualizarlo en la opcion ( 0 ).${borra_colores}";sleep 3
-    fi
-    sudo rm -r /tmp/com_update 2>/dev/null 1>/dev/null 0>/dev/null
+    #hay que actualizar, comprueba y actualiza
+    echo ""
+    echo -e "${amarillo} EL script${borra_colores} $0 ${amarillo}NO esta actualizado.${borra_colores}"
+    echo -e "${verde} Selecciona opcion ( 0 ) del menu para actualizar.${borra_colores}"
+    actualizado=$(echo -e " [${rojo}no${borra_colores}] $paquete.")
+    sleep 3
 fi
 
 echo ""
@@ -143,6 +142,10 @@ echo -e "${verde} Funcionamiento.${borra_colores} = Seleccionar software externo
 echo ""
 echo -e "${rojo}NOTA.${amarillo} Si estas conectado de forma remota, NO funcionara, tienes que estar en${borra_colores}"
 echo -e "${amarillo}      una termnal en local.${borra_colores}"
+echo ""
+echo -e "${azul} Conexion a internet  = ${borra_colores} $conexion"
+echo -e "${azul} Software necesario   = ${borra_colores} $software"
+echo -e "${azul} Software actualizado = ${borra_colores} $actualizado"
 echo ""
 echo -e " Seleccion de navegador para la descarga de software:"
 echo -e ""
