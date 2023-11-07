@@ -130,8 +130,8 @@ wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 clear
 echo -e "${rosa}"; figlet -c sukigsx; echo -e "${borra_colores}"
 echo ""
-echo -e "${azul}  Diseñado por sukigsx / Contacto: sukisx.mbsistemas@gmail.com${borra_colores}"
-echo -e "${azul}                                   https://mbsistemas.ddns.net${borra_colores}"
+echo -e "${azul}  Diseñado por sukigsx / Contacto: scripts@mbbsistemas.es${borra_colores}"
+echo -e "${azul}                                   https://repositorio.mbbsistemas.es/${borra_colores}"
 echo ""
 echo -e "${azul} Nombre del script.< instalar_software_no_incluido_en_repositorios.sukigsx.sh >${borra_colores}"
 echo ""

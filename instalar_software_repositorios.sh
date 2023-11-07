@@ -140,8 +140,8 @@ wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 
 clear
 echo -e "${rosa}"; figlet -c Sukigsx; echo -e "${borra_colores}"
-echo -e "${verde}  Diseñado por sukigsx / Contacto:  sukigsx.mbsistemas@gmail.com${borra_colores}"
-echo -e "${verde}                                    https://mbsistemas.ddns.net${borra_colores}"
+echo -e "${verde}  Diseñado por sukigsx / Contacto:  scripts@mbbsistemas.es${borra_colores}"
+echo -e "${verde}                                    https://repositorio.mbbsistemas.es/${borra_colores}"
 echo ""
 echo -e "${verde} Nombre del script.${borra_colores} $0 ${verde}Funcionamiento.${borra_colores} Seleccion de software para instalar en tu sistema.${borra_colores}"
 echo ""
