@@ -26,7 +26,7 @@ echo -e ""
         conexion="no" #sabemos si tenemos conexion a internet o no
     fi
     
-for paquete in git wmctrl figlet diff curl git xdotool nmap ssh ping which #ponemos el fostware a instalar separado por espacios
+for paquete in git figlet diff curl git nmap ssh ping which #ponemos el fostware a instalar separado por espacios
 do
     which $paquete 2>/dev/null 1>/dev/null 0>/dev/null #comprueba si esta el programa llamado programa
     sino=$? #recojemos el 0 o 1 del resultado de which
@@ -107,7 +107,7 @@ clear
 figlet -c Gracias por 
 figlet -c utilizar mi
 figlet -c script
-wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+#wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
 exit
 }
 
@@ -145,13 +145,13 @@ echo -n " Pulsa ENTER para continuar "; read pause
 # Aqui empieza el tema
 
 #maximiza la terminal.
-wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+#wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 
 while :
 do
 clear
 #maximiza la terminal.
-wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+#wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 echo -e "${rosa}"; figlet -c sukigsx; echo -e "${borra_colores}"
 echo ""
 echo -e "${verde} Diseñado por sukigsx / Contacto:   scripts@mbbsistemas.es${borra_colores}"
@@ -216,7 +216,7 @@ case $opcion in
         echo -e "${verde} El script se ha actualizado, es necesario cargarlo de nuevo.${borra_colores}"
         echo -e "${amarillo} Se cerrara el terminal en 5 segundos.${borra_colores}"
         sleep 5
-        xdotool windowkill `xdotool getactivewindow`
+        #xdotool windowkill `xdotool getactivewindow`
     fi
     ;;
     
@@ -277,7 +277,7 @@ case $opcion in
     
         
     5) #Instalar software de repositorios
-        wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+        #wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
         if [ -d /home/$(whoami)/scripts ]
         then
             bash /home/$(whoami)/scripts/instalar_software_repositorios.sh
@@ -287,7 +287,7 @@ case $opcion in
         ;;
         
     6) #Instalar software de terceros
-        wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+        #wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
         if [ -d /home/$(whoami)/scripts ]
         then
             bash /home/$(whoami)/scripts/instalar_software_externo.sh
@@ -339,7 +339,7 @@ case $opcion in
                 fi;;
 
     40) #instalar scripts de sukigsx
-        wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+        #wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
         bash instalar_software_no_incluido_en_los_repositorios.sukigsx.sh;;
         
     

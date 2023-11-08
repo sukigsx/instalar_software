@@ -26,14 +26,14 @@ then
     figlet -c Gracias por 
     figlet -c utilizar mi
     figlet -c script
-    wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+    #wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
     exit
 else
     clear
     figlet -c Gracias por 
     figlet -c utilizar mi
     figlet -c script
-    wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+    #wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
     exit
 fi
 }
@@ -52,7 +52,7 @@ echo -e ""
         conexion="no" #sabemos si tenemos conexion a internet o no
     fi
     
-for paquete in wmctrl figlet diff curl git xdotool nmap ssh ping which #ponemos el fostware a instalar separado por espacios
+for paquete in figlet diff curl git nmap ssh ping which #ponemos el fostware a instalar separado por espacios
 do
     which $paquete 2>/dev/null 1>/dev/null 0>/dev/null #comprueba si esta el programa llamado programa
     sino=$? #recojemos el 0 o 1 del resultado de which
@@ -126,7 +126,7 @@ fi
 while :
 do
 #maximiza la terminal.
-wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+#wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 clear
 echo -e "${rosa}"; figlet -c sukigsx; echo -e "${borra_colores}"
 echo ""
@@ -189,7 +189,7 @@ case $navegador in
         echo -e "${verde} El script se ha actualizado, es necesario cargarlo de nuevo.${borra_colores}"
         echo -e "${amarillo} Se cerrara el terminal en 5 segundos.${borra_colores}"
         sleep 5
-        xdotool windowkill `xdotool getactivewindow`
+        #xdotool windowkill `xdotool getactivewindow`
     fi
     ;;
     
@@ -292,7 +292,7 @@ while :
 do
 clear
 #maximiza la terminal.
-wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+#wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 figlet -c sukigsx
 echo -e "${verde} Diseñado por sukigsx / Contacto: | sukisx.mbsistemas@gmail.com${borra_colores}"
 echo -e "${verde}                                  | https://mbsistemas.ddns.net${borra_colores}"
