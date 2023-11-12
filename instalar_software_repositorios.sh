@@ -155,7 +155,7 @@ echo -e "  4. ${azul}Gnome, entorno grafico.                                    
 echo -e "  5. ${azul}Gparted, poder partinionar los discos y unidades.                         ${borra_colores} 40. ${azul}Apache2 servidor apache.${borra_colores}"
 echo -e "  6. ${azul}Vlc, reporoductor.                                                        ${borra_colores} 41. ${azul}FTP servidor ftp.${borra_colores}"
 echo -e "  7. ${azul}Cairo-Dock, como su nombre indica en un dock.                             ${borra_colores} 42. ${azul}cifs-utils, para poder montar unidades con script monta.sh.${borra_colores}"
-echo -e "  8. ${azul}Opcion vacia.                                                             ${borra_colores} 43. ${azul}Keepass2, Gestion de contraseñas.${borra_colores}"
+echo -e "  8. ${azul}sshpass. para poder incluir el password en ssh                            ${borra_colores} 43. ${azul}Keepass2, Gestion de contraseñas.${borra_colores}"
 echo -e "  9. ${azul}Gufw, control de cortafuegos en modo grafico.                             ${borra_colores} 44. ${azul}Openvpn, conexion a una vpn y paquetes para entorno grafico.${borra_colores}"
 echo -e " 10. ${azul}Gdebi, instalador de paquetes en modo grafico.                            ${borra_colores} 45. ${azul}Authy, sistemas de proteccion de cuentas.${borra_colores}"
 echo -e " 11. ${azul}Synaptic, que decir, muy bueno.                                           ${borra_colores} 46. ${azul}sshpass, poder pasar la clave al ssh.${borra_colores}"
@@ -330,19 +330,12 @@ case $opcion in
         
     8)  #virtualbox
         clear;
-        #echo "wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -" >> /tmp/instalar_software.sh;
-        #echo "wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -" >> /tmp/instalar_software.sh;
-        #echo "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee -a /etc/apt/sources.list >> /tmp/instalar_software.sh;
-        #echo "virtualbox" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-        #echo "sudo apt update" >> /tmp/instalar_software.sh;
-        #echo "sudo apt install -y virtualbox " >> /tmp/instalar_software.sh;
-        #echo "sudo apt install -y virtualbox-ext-pack" >> /tmp/instalar_software.sh;
-        #echo "sudo apt install -y virtualbox-guest-additions-iso" >> /tmp/instalar_software.sh;
-        #echo "" >> /tmp/instalar_software.sh;
-        #echo "";
-        #echo -e "${verde} Software añadido.${borra_colores}";
-        #echo "";
-        echo "esta opcion NO tiene nada"
+        echo "sshpass" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+        echo "sudo apt install -y sshpass" >> /tmp/instalar_software.sh;
+        echo "" >> /tmp/instalar_software.sh;
+        echo "";
+        echo -e "${verde} Software añadido.${borra_colores}";
+        echo "";
         sleep 1;;
         
     9)  #gufw
