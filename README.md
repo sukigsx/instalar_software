@@ -1,11 +1,11 @@
 # instalar_software
 Script en bash, para la instalacion de software de forma interactiva.
 
-   SUKIGSX
+ Por SUKIGSX
 
  Contacto: (Correo scripts@mbbsistemas.com) (Web https://repositorio.mbbsistemas.es)
 
-             INSTALACION DE SOFTWARE
+ ### INSTALACION DE SOFTWARE
 
  Este script es un instalador de software interactivo.
  El script presenta al usuario una lista de categorías de software para elegir y luego ejecuta scripts específicos de cada categoría según la elección del usuario.
@@ -56,7 +56,7 @@ Script en bash, para la instalacion de software de forma interactiva.
  Es útil para simplificar el proceso de instalación de software para usuarios que prefieren una interfaz en lugar de trabajar en la línea de comandos.
 
 
-              INSTALACION PAQUETES INDEPENDIENTES
+ ### INSTALACION PAQUETES INDEPENDIENTES
 
  Este script maneja la instalación de paquetes .deb de forma interactiva y ofrece opciones para descargar, instalar y administrar dichos paquetes.
  Para ello primero, el script selecciona una navegador compatible que tengas en tu sistema, para poder cargar pas paquigas web de descarga.
@@ -99,3 +99,10 @@ Script en bash, para la instalacion de software de forma interactiva.
  En esos casos el script decidira la forma de instalacion del mismo.
  En el menu de Paquetes independientes en la descripcion Se informa de ello, como es el ejemplo de:
   Genymotion Emulador de Android en la nube y para PC con integraciones para marcos de prueba. (al dar a Descargar se instala solo)
+
+### Instalacion
+
+Se puede instalar de la forma traducional, clonando el repositorio.
+                     
+                     git clone https://github.com/sukigsx/instalar_software.git
+ 
