@@ -1,0 +1,270 @@
+#!/bin/bash
+ruta_ejecucion=$(dirname "$(readlink -f "$0")")
+
+#colores
+rojo="\e[0;31m\033[1m" #rojo
+verde="\e[;32m\033[1m"
+azul="\e[0;34m\033[1m"
+amarillo="\e[0;33m\033[1m"
+rosa="\e[0;35m\033[1m"
+turquesa="\e[0;36m\033[1m"
+borra_colores="\033[0m\e[0m" #borra colores
+
+#toma el control al pulsar control + c
+trap ctrl_c INT
+function ctrl_c()
+{
+clear
+figlet -c Gracias por
+figlet -c utilizar mi
+figlet -c script
+#wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+exit
+}
+
+menu_info(){
+#muestra el menu de sukigsx
+echo ""
+echo -e "${rosa}            _    _                  ${azul}   Nombre del script${borra_colores} (Instalacion de software)"
+echo -e "${rosa}  ___ _   _| | _(_) __ _ _____  __  ${azul}   Descripcion${borra_colores} (Software de instalacion basado en Debian)"
+echo -e "${rosa} / __| | | | |/ / |/ _\ / __\ \/ /  ${azul}   Version            =${borra_colores} $version"
+echo -e "${rosa} \__ \ |_| |   <| | (_| \__ \>  <   ${azul}   Conexion Internet  =${borra_colores} $conexion"
+echo -e "${rosa} |___/\__,_|_|\_\_|\__, |___/_/\_\  ${azul}   Software necesario =${borra_colores} $software"
+echo -e "${rosa}                  |___/             ${azul}   Actualizado        =${borra_colores} $actualizado"
+echo -e ""
+echo -e "${azul} Contacto:${borra_colores} (Correo scripts@mbbsistemas.com) (Web https://repositorio.mbbsistemas.es)${borra_colores}"
+echo ""
+echo -e " ${verde} - INSTALACION PAQUETES DE UTILIDADES -${borra_colores}"
+echo ""
+}
+
+
+while :
+do
+    clear
+    menu_info
+    echo -e " Navegadores disponibles       Descripcion."
+    echo -e ""
+    echo -e "${azul}  1)${borra_colores} Grub-customizer           Modifica el gestor de arranque."
+    echo -e "${azul}  2)${borra_colores} Cairo-Dock                Crear paneles y lanzadores, muy personalizados."
+    echo -e "${azul}  3)${borra_colores} Latte-dock                Crear lanzadores, muy personalizados."
+    echo -e "${azul}  4)${borra_colores} Tellico                   Crea tu base de datos de cd dvd libros etc."
+    echo -e "${azul}  5)${borra_colores} KDE Connect               Sincroniza tu movil con el pc."
+    echo -e "${azul}  6)${borra_colores} Usuarios y Grupos         Gestiona Usuarios y Grupos de modo grafico."
+    echo -e "${azul}  7)${borra_colores} Gnome-online-accouns      Para poder sincronizar cuentas de google (drive)."
+    echo -e "${azul}  8)${borra_colores} Kio gdrive                Para poder sincronizar cuentas de google (drive) solo entornos KDE Plasma."
+    echo -e "${azul}  9)${borra_colores} Ocamlfuse                 Otro para poder sincronizar cuentas de google (drive)."
+    echo -e "${azul} 10)${borra_colores} Nemo                      Explorador de ficheos."
+    echo -e "${azul} 11)${borra_colores} Systemback                Utilidades para gestionar el sistema."
+    echo -e "${azul} 12)${borra_colores} Deja-dup                  Copoa de seguridad de tus ficheros o sistema."
+    echo -e "${azul} 13)${borra_colores} Transmision               Gestor de descargas torrent."
+    echo -e "${azul} 14)${borra_colores} Software-propietario      Gestionar ppa y drives en modo grafico"
+    echo -e "${azul} 15)${borra_colores} Joplin                    Software multiplataforma para tomar notas."
+    echo -e "${azul} 16)${borra_colores} Keepass2                  Gestor de contraseñas."
+    echo ""
+    echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
+    echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
+    echo -e ""
+    read -p " Selcciona numero de categoria de software -> " opcion
+
+
+    case $opcion in
+            "1")#Grub-customizer
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#grub-customizer" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo add-apt-repository -y deb http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse" >> /tmp/software
+                echo "sudo apt install grub-customizer -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "grub-customizer" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "2")#Cairo-Dock
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Cairo-dock" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install cairo-dock -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "cairo-dock" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "3")#Latte-dock
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Latte-dock" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install latte-dock -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "latte-dock" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "4")#Tellico
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Tellico" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install tellico -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "tellico" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "5")#KDE Connect
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#KDE Connect" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install kdeconnect -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "kdeconnect-cli" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "6")#Usuarios y Grupos
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Usuarios y grupos" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y gnome-system-tools" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "users-admin" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "7")#Gnome-online-accouns
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Gnome-online-accouns" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y gnome-online-accounts" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "gnome-control-center" >> /tmp/ComprobarSoftwareecho ""
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "8")#Kio gdrive
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Kio gdrive" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install kio-gdrive kaccounts-providers -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "kioclient5" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "9")#Ocamlfuse
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Ocamlfuse" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo add-apt-repository -y ppa:alessandro-strada/ppa" >> /tmp/software
+                echo "sudo apt update" >> /tmp/software
+                echo "sudo apt install -y google-drive-ocamlfuse" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "google-drive-ocamlfuse" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "10")#Nemo
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Nemo" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y nemo" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "nemo" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "11")#Systemback
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Systemback" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 382003C2C8B7B4AB813E915B14E4942973C62A1B" >> /tmp/software
+                echo "sudo add-apt-repository -y deb http://ppa.launchpad.net/nemh/systemback/ubuntu xenial main" >> /tmp/software
+                echo "sudo apt update" >> /tmp/software
+                echo "sudo apt install -y systemback" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "systemback" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "12")#Deja-dup
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Deja-dup" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y deja-dup" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "deja-dup" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "13")#Transmision
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Transmission" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install transmission -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "transmission-gtk" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "14")#Software-propietario
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Software-propietario" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y software-properties-gtk software-properties-qt" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "software-properties-kde" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "15")#Joplin
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Joplin" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "/home/$(whoami)/.joplin/Joplin.AppImage" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "16")#Keepass2
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Keepass2" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y keepass2" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "keepass2" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "90") #Ayuda
+                clear
+                cat $ruta_ejecucion/AyudaInstalacionSoftware
+                read pause
+                ;;
+
+            "99") #Salir
+                ctrl_c
+                ;;
+
+            *) #seleccion invalida
+                echo -e ""
+                echo -e "${amarillo} No has seleccionado una opcion valida del menu.${borra_colores}"
+                sleep 3
+                ;;
+        esac
+    done

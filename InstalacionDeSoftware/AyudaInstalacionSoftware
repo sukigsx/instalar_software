@@ -1,7 +1,9 @@
-# instalar_software
-Script en bash, para la instalacion de software de forma interactiva.
-
-   SUKIGSX
+            _    _
+  ___ _   _| | _(_) __ _ _____  __
+ / __| | | | |/ / |/ _\ / __\ \/ /
+ \__ \ |_| |   <| | (_| \__ \>  <
+ |___/\__,_|_|\_\_|\__, |___/_/\_\
+                  |___/
 
  Contacto: (Correo scripts@mbbsistemas.com) (Web https://repositorio.mbbsistemas.es)
 
@@ -54,48 +56,3 @@ Script en bash, para la instalacion de software de forma interactiva.
 
  En resumen, este script proporciona una interfaz de usuario para instalar y verificar software en un sistema Linux.
  Es útil para simplificar el proceso de instalación de software para usuarios que prefieren una interfaz en lugar de trabajar en la línea de comandos.
-
-
-              INSTALACION PAQUETES INDEPENDIENTES
-
- Este script maneja la instalación de paquetes .deb de forma interactiva y ofrece opciones para descargar, instalar y administrar dichos paquetes.
- Para ello primero, el script selecciona una navegador compatible que tengas en tu sistema, para poder cargar pas paquigas web de descarga.
-
- Aquí está el resumen de las opciones en el menú:
-
-   1) Busqueda Libre           Se abre el navegador en www.google.es para que busuqes manualmente tus paquetes deb.
-   2) Franz                    Control de varias cuentas a la vez como google, telegram,etc.
-   3) Debreate                 Construccion de paquetes deb.
-   4) Genymotion               Emulador de Android en la nube y para PC con integraciones para marcos de prueba. (al seleccionar se instala automatico)
-   5) VirtualBox               Sostware gratuito para crear maquinas virtuales.
-   6) Script de Sukigsx        Instalador de scripts de Sukigsx. (al seleccionar se instala automatico)
-   7) TeamViewer               Control remoto de pc's, tablets y moviles.
-
-  60) Borrar los paquetes descargados.
-  70) Instalar los paquetes descargados.
-
-  90) Ayuda                    Carga la ayuda.
-  99) Atras                    Salir (ctrl-c)
-
- - Busqueda libre. Carga google.es en el navegador para que busques tu mismo el paquete *.deb.
-
- - Las siguientes opciones, ya estan configuradas, para abrir directamente las paginas en donde se encuentran los paquetes *.deb.
-     En alguna ocasion las instalaciones NO van con un paque deb, asi que se automatiza el proceso dependiendo de su instalacion.
-
- - Borrar los paquetes descargador. El script comprobara si tienes paquetes deb descagados, si es asi los borrara todos.
-
- - Instalar los paquetes descargados. El script comprobara que tengas paquetes deb para su instalacion, realizara un sudo apt update
-     y seguido comenzara la instalacion de todos los paquetes deb que dispongas en la carpeta descargas, una vez instalados
-     borrara los ficheros *.deb de descargas para no ocupar espacio de disco.
-
- - Ayuda. Muestra información de ayuda relacionada con la instalación de paquetes independientes (Esta ventana).
-
- - Atras. Si marcas 99 que es la opcion Atras, el script regresa al menu anterior, si pulsas ctrl-c el script termina y se cierra.
-
-
- RESUMEN. este script facilita la descarga, instalación y gestión de paquetes .deb en sistemas Linux utilizando una interfaz interactiva.
-
- Tambien hay que tener en cuenta que no todo el software se instala desde un .deb, en ocasiones hay que ejecutar un binario de instalacion o cosas similares.
- En esos casos el script decidira la forma de instalacion del mismo.
- En el menu de Paquetes independientes en la descripcion Se informa de ello, como es el ejemplo de:
-  Genymotion Emulador de Android en la nube y para PC con integraciones para marcos de prueba. (al dar a Descargar se instala solo)

@@ -1,0 +1,149 @@
+#!/bin/bash
+ruta_ejecucion=$(dirname "$(readlink -f "$0")")
+
+#colores
+rojo="\e[0;31m\033[1m" #rojo
+verde="\e[;32m\033[1m"
+azul="\e[0;34m\033[1m"
+amarillo="\e[0;33m\033[1m"
+rosa="\e[0;35m\033[1m"
+turquesa="\e[0;36m\033[1m"
+borra_colores="\033[0m\e[0m" #borra colores
+
+#toma el control al pulsar control + c
+trap ctrl_c INT
+function ctrl_c()
+{
+clear
+figlet -c Gracias por
+figlet -c utilizar mi
+figlet -c script
+#wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+exit
+}
+
+menu_info(){
+#muestra el menu de sukigsx
+echo ""
+echo -e "${rosa}            _    _                  ${azul}   Nombre del script${borra_colores} (Instalacion de software)"
+echo -e "${rosa}  ___ _   _| | _(_) __ _ _____  __  ${azul}   Descripcion${borra_colores} (Software de instalacion basado en Debian)"
+echo -e "${rosa} / __| | | | |/ / |/ _\ / __\ \/ /  ${azul}   Version            =${borra_colores} $version"
+echo -e "${rosa} \__ \ |_| |   <| | (_| \__ \>  <   ${azul}   Conexion Internet  =${borra_colores} $conexion"
+echo -e "${rosa} |___/\__,_|_|\_\_|\__, |___/_/\_\  ${azul}   Software necesario =${borra_colores} $software"
+echo -e "${rosa}                  |___/             ${azul}   Actualizado        =${borra_colores} $actualizado"
+echo -e ""
+echo -e "${azul} Contacto:${borra_colores} (Correo scripts@mbbsistemas.com) (Web https://repositorio.mbbsistemas.es)${borra_colores}"
+echo ""
+echo ""
+echo -e " ${verde} - INSTALACION DE ENTORNOS GRAFICOS -${borra_colores}"
+echo ""
+}
+
+
+
+while :
+do
+    clear
+    menu_info
+    echo -e " Navegadores disponibles       Descripcion."
+    echo -e ""
+    echo -e "${azul}  1)${borra_colores} Gnome                    Entorno grafico de Gnome."
+    echo -e "${azul}  2)${borra_colores} Plasma                   Entorno grafico Plasma."
+    echo -e "${azul}  3)${borra_colores} Cinnamon                 Entorno grafico Cinnamon."
+    echo -e "${azul}  4)${borra_colores} Xfce4                    Entorno grafico Xfce."
+    echo -e "${azul}  5)${borra_colores} Mate                     Entorno grafico Mate."
+    echo -e "${azul}  6)${borra_colores} Lxde                     Entorno grafico Lxde."
+    echo ""
+    echo -e "${azul} 90)${borra_colores} Ayuda                    Carga la ayuda"
+    echo -e "${azul} 99)${borra_colores} Atras                    Salir (ctrl-c)"
+    echo -e ""
+    read -p " Selcciona numero de categoria de software -> " opcion
+
+        case $opcion in
+            "1")#gnome
+                #sudo DEBIAN_FRONTEND=noninteractive apt-get -y install msmtp 2>/dev/null 1>/dev/null 0>/dev/null
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Gnome" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo DEBIAN_FRONTEND=noninteractive apt install ubuntu-gnome-desktop -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "gnome-shell" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "2")#plasma
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Plasma" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo add-apt-repository ppa:kubuntu-ci/stable -y" >> /tmp/software
+                echo "sudo add-apt-repository -r ppa:kubuntu-ppa/backports -y" >> /tmp/software
+                echo "sudo apt-get install plasma-desktop -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "plasmashell" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "3")#Cinnamon
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Cinnamon" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install Cinnamon -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "Cinnamon" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "4")#xfce4
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#simple-scan" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install xfce4 -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "xfce4-about" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "5")#mate
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#mate" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install mate -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "mate-about" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "6")#lxde
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Lxde" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo DEBIAN_FRONTEND=noninteractive apt install lxde -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "lxde-logout" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "90") #Ayuda
+                clear
+                cat $ruta_ejecucion/AyudaInstalacionSoftware
+                read pause
+                ;;
+
+            "99") #Salir
+                ctrl_c
+                ;;
+
+
+            *) #seleccion invalida
+                echo -e ""
+                echo -e "${amarillo} No has seleccionado una opcion valida del menu.${borra_colores}"
+                sleep 3
+                ;;
+        esac
+    done

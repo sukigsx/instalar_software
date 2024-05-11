@@ -1,0 +1,221 @@
+#!/bin/bash
+ruta_descargas=$(xdg-user-dir DOWNLOAD)
+ruta_ejecucion=$(dirname "$(readlink -f "$0")")
+
+#colores
+rojo="\e[0;31m\033[1m" #rojo
+verde="\e[;32m\033[1m"
+azul="\e[0;34m\033[1m"
+amarillo="\e[0;33m\033[1m"
+rosa="\e[0;35m\033[1m"
+turquesa="\e[0;36m\033[1m"
+borra_colores="\033[0m\e[0m" #borra colores
+
+#toma el control al pulsar control + c
+trap ctrl_c INT
+function ctrl_c()
+{
+clear
+figlet -c Gracias por
+figlet -c utilizar mi
+figlet -c script
+#wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+exit
+}
+
+menu_info(){
+#muestra el menu de sukigsx
+echo ""
+echo -e "${rosa}            _    _                  ${azul}   Nombre del script${borra_colores} (Instalacion de software)"
+echo -e "${rosa}  ___ _   _| | _(_) __ _ _____  __  ${azul}   Descripcion${borra_colores} (Software de instalacion basado en Debian)"
+echo -e "${rosa} / __| | | | |/ / |/ _\ / __\ \/ /  ${azul}   Version            =${borra_colores} $version"
+echo -e "${rosa} \__ \ |_| |   <| | (_| \__ \>  <   ${azul}   Conexion Internet  =${borra_colores} $conexion"
+echo -e "${rosa} |___/\__,_|_|\_\_|\__, |___/_/\_\  ${azul}   Software necesario =${borra_colores} $software"
+echo -e "${rosa}                  |___/             ${azul}   Actualizado        =${borra_colores} $actualizado"
+echo -e ""
+echo -e "${azul} Contacto:${borra_colores} (Correo scripts@mbbsistemas.com) (Web https://repositorio.mbbsistemas.es)${borra_colores}"
+echo ""
+echo -e " ${verde} - INSTALACION PAQUETES INDEPENDIENTES -${borra_colores}"
+echo ""
+}
+
+listado_paquetes_descargados(){
+if [ "$(ls -A $ruta_descargas/*.deb 2>/dev/null)" ]; then
+    listado_paquetes=$(ls -1 /home/sukigsx/Descargas/*.deb | xargs -n1 basename | sed 's/^/ - /')
+    existen_deb="si"
+else
+    listado_paquetes=" No tienes paquetes para instalar."
+    existen_deb="no"
+fi
+}
+
+# Lista de navegadores a comprobar
+navegadores_comprobar=("firefox" "google-chrome-stable" "chromium" "opera" "vivaldi" "brave")
+
+# Bucle for para comprobar cada navegador
+for navegador in "${navegadores_comprobar[@]}"; do
+    # Verificar si el navegador está instalado
+    if which "$navegador" >/dev/null 2>&1; then
+        echo -e "\n ${verde}Navegador${borra_colores} $navegador${verde}, seleccionado${borra_colores}"; sleep 1
+        navegador_no_instalado="si"
+        break
+    else
+        # Si ninguno de los navegadores está instalado
+        echo -e "\n ${amarillo}Navegador${borra_colores} $navegador ${amarillo}No disponible.${borra_colores}"; sleep 1
+        navegador_no_instalado="no"
+    fi
+done
+
+if [ "$navegador_no_instalado" = "no" ]; then
+    echo -e "\n ${rojo}Imposible continuar sin un navegador compatible.${borra_colores}"
+    echo -e "${amarillo} Puedes instalar uno desde la seccion Navegadores del menu.${borra_colores}\n"
+    read -p " Pulsa una tecla para continuar"
+    exit
+fi
+
+while :
+do
+    # Mostrar el menú de selección utilizando Zenity
+    clear
+    menu_info
+    listado_paquetes_descargados
+    echo -e " Forma de instalacion de los paquetes independientes.\n"
+    echo -e "${amarillo} Selecciona el software que te interese."
+    echo -e " Se abrira el navegador en la pagina para descargar el paquete deb."
+    echo -e " Descargalo en la carpeta DESCARGAS (Si no esta en esa ruta, NO lo encontrara para su instalacion)."
+    echo -e " Selecciona Instalar los paquetes del menu y empezara el proceso de instalacion de los paquetes deb descargados."
+    echo -e " Cuando termine se borraran todos los paquetes deb de la carpeta descargas."
+    echo -e "${borra_colores}"
+    echo -e ""
+    echo -e " Eston son tus paquetes descargados:\n"
+    echo -e "${azul}$listado_paquetes ${borra_colores}\n"
+    echo -e " Paquetes independientes      Descripcion."
+    echo ""
+    echo -e "${azul}  1)${borra_colores} Busqueda Libre           Se abre el navegador en www.google.es para que busuqes manualmente tus paquetes deb."
+    echo -e "${azul}  2)${borra_colores} Franz                    Control de varias cuentas a la vez como google, telegram,etc."
+    echo -e "${azul}  3)${borra_colores} Debreate                 Construccion de paquetes deb."
+    echo -e "${azul}  4)${borra_colores} Genymotion               Emulador de Android en la nube y para PC con integraciones para marcos de prueba. (al seleccionar se instala automatico)"
+    echo -e "${azul}  5)${borra_colores} VirtualBox               Sostware gratuito para crear maquinas virtuales."
+    echo -e "${azul}  6)${borra_colores} Script de Sukigsx        Instalador de scripts de Sukigsx. (al seleccionar se instala automatico)"
+    echo -e "${azul}  7)${borra_colores} TeamViewer               Control remoto de pc's, tablets y moviles."
+    echo -e ""
+    echo -e "${azul} 60)${borra_colores} Borrar los paquetes descargados."
+    echo -e "${azul} 70)${borra_colores} Instalar los paquetes descargados."
+    echo -e ""
+    echo -e "${azul} 90)${borra_colores} Ayuda                    Carga la ayuda."
+    echo -e "${azul} 99)${borra_colores} Atras                    Salir (ctrl-c)"
+    echo -e ""
+    read -p " Selcciona numero de categoria de software -> " opcion
+    case $opcion in
+        "1")#Busqueda Libre
+            $navegador www.google.es &>/dev/null
+            ;;
+
+        "2")#Franz
+            $navegador https://meetfranz.com/ &>/dev/null
+            ;;
+
+        "3")#Debreate
+            $navegador https://antumdeluge.github.io/debreate-web/ &>/dev/null
+            ;;
+
+        "4")#Genymotion
+            #borramos el geny por si hay alguna descarga anterior
+            rm $ruta_descargas/geny* >/dev/null 2>&1
+
+            $navegador https://www.genymotion.com/download/ &>/dev/null
+
+            #crea el fichero de instalacion geny
+            rm /tmp/geny >/dev/null 2>&1
+            echo 'echo ""' >> /tmp/geny
+            echo 'echo "Instalacion automatica de GenyMotion"' >> /tmp/geny
+            echo 'echo ""' >> /tmp/geny
+            echo "sudo chmod 777 $ruta_descargas/genymotion*.bin" >> /tmp/geny
+            echo "sudo $ruta_descargas/genymotion*.bin -y" >> /tmp/geny
+            echo "rm $ruta_descargas/geny*.bin" >> /tmp/geny
+            echo 'echo ""' >> /tmp/geny
+            echo 'echo "Instalacion de GenyMotion = ok"' >> /tmp/geny
+            echo 'echo ""' >> /tmp/geny
+            echo 'echo "Pulsa en continuar"' >> /tmp/geny
+            echo "read pause" >> /tmp/geny
+
+            konsole -geometry 800x500+0+0 -e bash /tmp/geny
+
+            rm /tmp/geny >/dev/null 2>&1
+            ;;
+
+        "5")#VirtualBox
+            $navegador https://www.virtualbox.org/wiki/Linux_Downloads &>/dev/null
+            ;;
+
+        "6")#Script de Sukigsx
+            git clone https://github.com/sukigsx/ejecutar_scripts.git /tmp/ejecutar_scripts/ >/dev/null 2>&1
+            cd /tmp/ejecutar_scripts
+            bash instalar.sh
+            cd ..
+            sudo rm -r ejecutar_scripts
+
+            echo -e "${verde}\n Script de sukigsx, Instalado correctamente.\n\n Forma de jecucion::\n Abre una terminal y escribe (scripts)${borra_colores}"; sleep 2
+            ;;
+
+        "7")#TeamViewer
+            $navegador https://www.teamviewer.com/es/download/linux/ &>/dev/null
+            ;;
+
+        "60")#borrar paquetes descargados
+            if [ $existen_deb = "si" ]; then
+                echo -e ""
+                rm $ruta_descargas/*.deb
+                echo -e "${verde} Paquetes borrados.${borra_colores}"; sleep 1
+            else
+                echo -e ""
+                echo -e "${amarillo} No existen paquetes *.deb para borrar.${borra_colores}"; sleep 1
+            fi
+            ;;
+
+        "70")#Instalar paquetes deb
+            # Verificar si existen archivos *.deb en la carpeta Descargas
+            if [ $existen_deb = "si" ]; then
+                #borra por si hay restos de InstalarPaquetesDeb
+                rm $ruta_descargas/InstalarPaquetesDeb > /dev/null 2>&1
+
+                #crea el fichero InstalarPaquetesDeb
+                echo 'echo "- Empezando la instalacion de paquetes descargados -"' >> $ruta_descargas/InstalarPaquetesDeb
+                echo 'echo ""' >> $ruta_descargas/InstalarPaquetesDeb
+                echo "sudo dpkg -i $ruta_descargas/*.deb" >> $ruta_descargas/InstalarPaquetesDeb
+                echo "sudo apt -f -y install" >> $ruta_descargas/InstalarPaquetesDeb
+                echo "sudo rm $ruta_descargas/*.deb" >> $ruta_descargas/InstalarPaquetesDeb
+                echo 'echo ""' >> $ruta_descargas/InstalarPaquetesDeb
+                echo 'echo "- TERMINADA LA INSTALACION DE PAQUETES -"' >> $ruta_descargas/InstalarPaquetesDeb
+                echo 'echo ""' >> $ruta_descargas/InstalarPaquetesDeb
+                echo 'read -p " Pulsa una tecla para continuar"; exit' >> $ruta_descargas/InstalarPaquetesDeb
+
+                #cargamos en segundo plano la ejecucion de instalacion de software.
+                konsole -geometry 500x400+900+0 --noclose -e bash $ruta_descargas/InstalarPaquetesDeb
+
+            else
+                echo -e "\n${amarillo} No existen paquetes *.deb para su instalacion.\n${borra_colores}"; sleep 2
+            fi
+
+            ;;
+
+        "90") #Ayuda
+                clear
+                cat $ruta_ejecucion/AyudaPaquetesIndependientes
+                echo ""
+                echo -e "${verde}"; read -p " Pulsa una tecla para continuar" pause; echo -e "${borra_colores}"
+                ;;
+
+        "99") #Salir
+            ctrl_c
+            ;;
+
+        *) #seleccion invalida
+            echo -e ""
+            echo -e "${amarillo} No has seleccionado una opcion valida del menu.${borra_colores}"
+            sleep 3
+            ;;
+    esac
+done
+#borramos el fichero de InstalarPaquetesDeb
+rm $ruta_descargas/InstalarPaquetesDeb > /dev/null 2>&1

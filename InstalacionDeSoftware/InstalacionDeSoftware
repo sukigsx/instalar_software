@@ -1,0 +1,308 @@
+#!/bin/bash
+ruta_ejecucion=$(dirname "$(readlink -f "$0")")
+ruta_escritorio=$(xdg-user-dir DESKTOP)
+
+#colores
+rojo="\e[0;31m\033[1m" #rojo
+verde="\e[;32m\033[1m"
+azul="\e[0;34m\033[1m"
+amarillo="\e[0;33m\033[1m"
+rosa="\e[0;35m\033[1m"
+turquesa="\e[0;36m\033[1m"
+borra_colores="\033[0m\e[0m" #borra colores
+
+#toma el control al pulsar control + c
+trap ctrl_c INT
+function ctrl_c()
+{
+clear
+figlet -c Gracias por
+figlet -c utilizar mi
+figlet -c script
+#wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+exit
+}
+
+menu_info(){
+#muestra el menu de sukigsx
+echo ""
+echo -e "${rosa}            _    _                  ${azul}   Nombre del script${borra_colores} (Instalacion de software)"
+echo -e "${rosa}  ___ _   _| | _(_) __ _ _____  __  ${azul}   Descripcion${borra_colores} (Software de instalacion basado en Debian)"
+echo -e "${rosa} / __| | | | |/ / |/ _\ / __\ \/ /  ${azul}   Version            =${borra_colores} $version"
+echo -e "${rosa} \__ \ |_| |   <| | (_| \__ \>  <   ${azul}   Conexion Internet  =${borra_colores} $conexion"
+echo -e "${rosa} |___/\__,_|_|\_\_|\__, |___/_/\_\  ${azul}   Software necesario =${borra_colores} $software"
+echo -e "${rosa}                  |___/             ${azul}   Actualizado        =${borra_colores} $actualizado"
+echo -e ""
+echo -e "${azul} Contacto:${borra_colores} (Correo scripts@mbbsistemas.com) (Web https://repositorio.mbbsistemas.es)${borra_colores}"
+echo ""
+echo -e " ${verde} - INSTALACION DE SOFTWARE -${borra_colores}"
+echo ""
+}
+
+
+CrearInstalarSoftware(){
+#pregunta si quiero guardar la instalacion
+if zenity --question --title="Instalacion de software - MegaTools -" --text="¿Quieres guardar un script de instalacion del software seleccionado?\n\nSe guardara en tu escritorio." --cancel-label="No" --ok-label="Si"
+then
+    #entra si la respuesta es si
+    if [ -d /home/$(whoami)/Escritorio ]
+    then
+        #rm /tmp/software /home/$(whoami)/Escritorio/InstalarSosftware.sh 2>/dev/null
+        cp /tmp/software /home/$(whoami)/Escritorio/InstalarSosftware.sh
+    else
+        #rm /tmp/software /home/$(whoami)/Desktop/InstalarSoftware.sh 2>/dev/null
+        cp /tmp/software /home/$(whoami)/Desktop/InstalarSoftware.sh
+    fi
+else
+    echo ""
+fi
+}
+
+
+#Elimina el fichero /tmp/software donde mete la informacion de los paquetes a instalar.
+rm /tmp/software 2>/dev/null
+rm /tmp/ComprobarSoftware 2>/dev/null
+rm /tmp/comprobacion 2>/dev/null
+
+crear_ficheros_instalacion(){
+#crea el fichero de instalacion de software
+echo 'echo -e "\n - ACTUALIZANDO REPOSITORIOS - \n"' >> /tmp/software
+echo 'sudo apt update' >> /tmp/software
+echo 'echo -e "\n - ACTUALIZACION DE REPOSITORIOS FINALIZADA -\n"' >> /tmp/software
+echo 'sleep 3; clear' >> /tmp/software
+
+echo 'echo -e "- COMENZANDO LA INSTALACION DE SOFTWARE -"' >> /tmp/software
+echo 'echo -e "- Se paciente.. El tiempo depende de tu conexion. -\n"; sleep 2' >> /tmp/software
+
+#crea el fichero para comprobar la instalacion
+echo 'echo -e "\n -Comprobacion de software instalado -\n"; sleep 2' >> /tmp/comprobacion
+echo 'for programa in $(cat /tmp/ComprobarSoftware); do' >> /tmp/comprobacion
+echo '    if which "$programa" &>/dev/null; then' >> /tmp/comprobacion
+echo '        echo "$programa [ OK ]."' >> /tmp/comprobacion
+echo '    else' >> /tmp/comprobacion
+echo '        echo "$programa [ NO INSTALADO ]."' >> /tmp/comprobacion
+echo '    fi' >> /tmp/comprobacion
+echo 'done' >> /tmp/comprobacion
+echo 'echo ""' >> /tmp/comprobacion
+echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
+}
+
+crear_ficheros_instalacion
+while :
+do
+    clear
+    menu_info
+    echo -e " Categorias principales         Descripcion."
+    echo -e ""
+    echo -e "${azul}  1)${borra_colores} NAVEGADORES                Los principales navegadores para internet."
+    echo -e "${azul}  2)${borra_colores} AUDIO - VIDEO              Software relacionado el el Audio y el Video."
+    echo -e "${azul}  3)${borra_colores} ENTORNOS GRAFICOS LINUX    Los principales entornos graficos para linux basados en debian."
+    echo -e "${azul}  4)${borra_colores} UTILIDADES                 Cantidad de utilidades"
+    echo -e "${azul}  5)${borra_colores} OFIMATICA                  Software dedicado a la ofimatica"
+    echo -e "${azul}  6)${borra_colores} SERVIDORES                 Servidores para tu sistema, (ssh, ftp, smb, etc)"
+    echo -e "${azul}  7)${borra_colores} GESTOR DE PAQUETES         Software para el control de paquetes. (snap apt etc)."
+    echo -e "${azul}  8)${borra_colores} PARA TU TERMINAL           Software pensado para la terminal linux."
+    echo -e "${azul}  9)${borra_colores} DISCOS                     Software de control de discos duros y unidades en general."
+    echo -e "${azul} 10)${borra_colores} JUEGOS                     Pues ya lo dice todo, juegos."
+    echo -e "${azul} 11)${borra_colores} SEGURIDAD                  Software destinado a la seguridad de tu equipo."
+    echo -e "${azul} 12)${borra_colores} MENSAJERIA                 Software de mensajeria en red."
+    echo -e "${azul} 13)${borra_colores} PAQUETES INDEPENDIENTES    Descarga e instala paquetes deb manualmente."
+    echo ""
+    echo -e "${azul} 60)${borra_colores} Ver el software marcado para instalar."
+    echo -e "${azul} 70)${borra_colores} Instalar el software seleccionado"
+    echo -e "${azul} 80)${borra_colores} Borrar el software para instalar"
+    echo -e ""
+    echo -e "${azul} 90)${borra_colores} Ayuda                      Carga la ayuda"
+    echo -e "${azul} 99)${borra_colores} Salir                      Salir (ctrl-c)"
+    echo -e ""
+    read -p " Selcciona numero de categoria de software -> " opcion
+
+    # Manejar la opción seleccionada
+    case $opcion in
+
+        "1") #navegadores
+            bash $ruta_ejecucion/Navegadores
+            ;;
+
+        "2") #audio -video
+            bash $ruta_ejecucion/AudioVideo
+            ;;
+
+        "3") #Entorno graficos linux
+            bash $ruta_ejecucion/EntornosGraficosLinux
+            ;;
+
+        "4") #Utilidades
+            bash $ruta_ejecucion/Utilidades
+            ;;
+
+        "5") #Ofimatica
+            bash $ruta_ejecucion/Ofimatica
+            ;;
+
+        "6") # Servidores
+            bash $ruta_ejecucion/Servidores
+            ;;
+
+        "7") # Gestor de paquetes
+            bash $ruta_ejecucion/GestorDePaquetes
+            ;;
+
+        "8") # Para tu terminal
+            bash $ruta_ejecucion/Terminal
+            ;;
+
+        "9") # Discos
+            bash $ruta_ejecucion/Discos
+            ;;
+
+        "10") # Seguridad
+            bash $ruta_ejecucion/Juegos
+            ;;
+
+        "11") #seguridad
+            bash $ruta_ejecucion/Seguridad
+            ;;
+
+        "12") #Mensajeria
+            bash $ruta_ejecucion/Mensajeria
+            ;;
+
+        "13") #Paquetes independientes
+            bash $ruta_ejecucion/PaquetesIndependientes
+            ;;
+
+        "60") #ver el software para instalar
+            clear
+            menu_info
+
+            if [ -e "/tmp/ComprobarSoftware" ] && [ ! -s "/tmp/ComprobarSoftware" ]; then
+                #El archivo existe pero está vacío.
+                echo ""
+                echo -e "${azul} Este es el software que tienes para instalar.${borra_colores}"
+                echo ""
+                echo -e "${amarillo} No hay ningun software para instalar.${borra_colores}"
+                echo ""
+                echo -e "${azul} Fin del listado.${borra_colores}"
+                echo -e "${verde}"; read -p " Pulsa una tecla para continuar" pause; echo -e "${borra_colores}"
+            elif [ -e "/tmp/ComprobarSoftware" ]; then
+                #El archivo existe y no está vacío.
+                #borra las lineas repetidas por si el usuario mete varias veces el mismo sofware
+                awk '!seen[$0]++' "/tmp/software" > "/tmp/software.tmp" 2>/dev/null
+                mv "/tmp/software.tmp" "/tmp/software" 2>/dev/null
+                awk '!seen[$0]++' "/tmp/ComprobarSoftware" > "/tmp/ComprobarSoftware.tmp" 2>/dev/null
+                mv "/tmp/ComprobarSoftware.tmp" "/tmp/ComprobarSoftware" 2>/dev/null
+
+                echo ""
+                echo -e "${azul} Este es el software que tienes para instalar.${borra_colores}"
+                echo ""
+                cat /tmp/ComprobarSoftware
+                echo ""
+                echo -e "${azul} Fin del listado.${borra_colores}"
+                echo -e "${azul}"; read -p " Pulsa una tecla para continuar" pause; echo -e "${borra_colores}"
+            else
+                #"El archivo no existe.
+               echo ""
+                echo -e "${azul} Este es el software que tienes para instalar.${borra_colores}"
+                echo ""
+                echo -e "${amarillo} No hay ningun software para instalar.${borra_colores}"
+                echo ""
+                echo -e "${azul} Fin del listado.${borra_colores}"
+                echo -e "${azul}"; read -p " Pulsa una tecla para continuar" pause; echo -e "${borra_colores}"
+            fi
+            ;;
+
+        "70") #Instalar el software seleccionado
+            clear
+            menu_info
+            echo ""
+
+            if [ -e "/tmp/ComprobarSoftware" ] && [ ! -s "/tmp/ComprobarSoftware" ]; then
+                #El archivo existe pero está vacío.
+                echo ""
+                echo -e "${azul} Este es el software que tienes para instalar.${borra_colores}"
+                echo ""
+                echo -e "${amarillo} No hay ningun software para instalar.${borra_colores}"
+                echo ""
+                echo -e "${azul} Fin del listado.${borra_colores}"
+                echo -e "${azul}"; read -p " Pulsa una tecla para continuar" pause; echo -e "${borra_colores}"
+            elif [ -e "/tmp/ComprobarSoftware" ]; then
+                #El archivo existe y no está vacío.
+                #borra las lineas repetidas por si el usuario mete varias veces el mismo sofware
+                #borra las lineas repetidas por si el usuario mete varias veces el mismo sofware
+                awk '!seen[$0]++' "/tmp/software" > "/tmp/software.tmp"
+                mv "/tmp/software.tmp" "/tmp/software"
+                awk '!seen[$0]++' "/tmp/ComprobarSoftware" > "/tmp/ComprobarSoftware.tmp"
+                mv "/tmp/ComprobarSoftware.tmp" "/tmp/ComprobarSoftware"
+
+                #ejecuta para instalar
+                echo ""
+                echo -e "${verde} INSTALANDO.....${borra_colores}"
+                echo ""
+                konsole --geometry 800x600+1000+0 -e bash /tmp/software
+                konsole --geometry 800x600+1000+0 -e bash /tmp/comprobacion
+
+                read -p " Deseas terner una copia del fichero del software que has instalado ? (s/n) -> " sn
+                if [ $sn = "s" ] || [ $sn = "S" ] 2>/dev/null; then
+                    cp /tmp/software $ruta_escritorio/software_para_instalar.sh
+                    echo -e "${verde} fichero creado en: ${borra_colores}$ruta_escritorio"
+                    sleep 2
+                fi
+
+                #termina la instalacion y borra lo anterioir
+                rm /tmp/software 2>/dev/null
+                rm /tmp/ComprobarSoftware 2>/dev/null
+                rm /tmp/comprobacion 2>/dev/null
+                crear_ficheros_instalacion
+            else
+                #"El archivo no existe.
+               echo ""
+                echo -e "${azul} Este es el software que tienes para instalar.${borra_colores}"
+                echo ""
+                echo -e "${amarillo} No hay ningun software para instalar.${borra_colores}"
+                echo ""
+                echo -e "${azul} Fin del listado.${borra_colores}"
+                echo -e "${azul}"; read -p " Pulsa una tecla para continuar" pause; echo -e "${borra_colores}"
+            fi
+            ;;
+
+        "80") #Borrar el software para instalar
+            clear
+            menu_info
+            echo ""
+            rm /tmp/software 2>/dev/null
+            rm /tmp/ComprobarSoftware 2>/dev/null
+            rm /tmp/comprobacion 2>/dev/null
+            crear_ficheros_instalacion
+            echo -e " Borrado${verde} OK${borra_colores}"
+            sleep 2
+            ;;
+
+
+        "90") #ayuda
+            clear
+            cat $ruta_ejecucion/AyudaInstalacionSoftware
+            echo ""
+            echo -e "${verde}"; read -p " Pulsa una tecla para continuar" pause; echo -e "${borra_colores}"
+            ;;
+
+        "99") #salir
+            #Elimina el fichero /tmp/software donde mete la informacion de los paquetes a instalar.
+            rm /tmp/software 2>/dev/null
+            rm /tmp/ComprobarSoftware 2>/dev/null
+            rm /tmp/comprobacion 2>/dev/null
+            ctrl_c
+            ;;
+
+        *) #fallo de seleccion en menu
+            echo -e ""
+            echo -e "${amarillo} No has seleccionado una opcion valida del menu.${borra_colores}"
+            sleep 3
+            ;;
+    esac
+done
+
+#Elimina el fichero /tmp/software donde mete la informacion de los paquetes a instalar.
+rm /tmp/software 2>/dev/null
+rm /tmp/ComprobarSoftware 2>/dev/null
+rm /tmp/comprobacion 2>/dev/null
