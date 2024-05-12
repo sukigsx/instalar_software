@@ -104,5 +104,9 @@ Script en bash, para la instalacion de software de forma interactiva.
 
 Se puede instalar de la forma traducional, clonando el repositorio.
                      
-                     git clone https://github.com/sukigsx/instalar_software.git
+    git clone https://github.com/sukigsx/instalar_software.git
  
+Tambien puedes utilizar mi script (ejecutar_escripts), en el cual puedes instalar todos mis script del repositorio.
+
+    git clone https://github.com/sukigsx/ejecutar_scripts.git
+# Espero od guste !!!!!!
