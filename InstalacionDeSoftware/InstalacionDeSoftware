@@ -239,8 +239,8 @@ do
                 echo ""
                 echo -e "${verde} INSTALANDO.....${borra_colores}"
                 echo ""
-                konsole --geometry 800x600+1000+0 -e bash /tmp/software
-                konsole --geometry 800x600+1000+0 -e bash /tmp/comprobacion
+                konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/software
+                konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/comprobacion
 
                 read -p " Deseas terner una copia del fichero del software que has instalado ? (s/n) -> " sn
                 if [ $sn = "s" ] || [ $sn = "S" ] 2>/dev/null; then
