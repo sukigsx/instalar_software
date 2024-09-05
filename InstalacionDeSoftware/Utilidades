@@ -61,6 +61,7 @@ do
     echo -e "${azul} 14)${borra_colores} Software-propietario      Gestionar ppa y drives en modo grafico"
     echo -e "${azul} 15)${borra_colores} Joplin                    Software multiplataforma para tomar notas."
     echo -e "${azul} 16)${borra_colores} Keepass2                  Gestor de contraseñas."
+    echo -e "${azul} 17)${borra_colores} Github Desktop            Gestor grafico de Github."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -248,6 +249,20 @@ do
 
                 #linea con el nombre del programa instalado para la comprobacion
                 echo "keepass2" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "17")#GithubDesktop
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#github-desktop" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "wget -qO - https://mirror.mwt.me/shiftkey-desktop/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/mwt-desktop.gpg > /dev/null" >> /tmp/software
+                echo "sudo sh -c 'echo \"deb [arch=amd64 signed-by=/usr/share/keyrings/mwt-desktop.gpg] https://mirror.mwt.me/shiftkey-desktop/deb/ any main\" > /etc/apt/sources.list.d/mwt-desktop.list'" >> /tmp/software
+                echo "sudo apt update" >> /tmp/software
+                echo "sudo apt install -y sudo apt install github-desktop" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "github-desktop" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
