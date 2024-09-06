@@ -191,7 +191,7 @@ do
                 echo 'read -p " Pulsa una tecla para continuar"; exit' >> $ruta_descargas/InstalarPaquetesDeb
 
                 #cargamos en segundo plano la ejecucion de instalacion de software.
-                konsole --qwindowgeometry 800x600+1000+0 2>/dev/null e bash $ruta_descargas/InstalarPaquetesDeb
+                konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash $ruta_descargas/InstalarPaquetesDeb
 
             else
                 echo -e "\n${amarillo} No existen paquetes *.deb para su instalacion.\n${borra_colores}"; sleep 2
