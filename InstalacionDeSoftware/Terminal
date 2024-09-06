@@ -90,7 +90,7 @@ do
             "3")#Neofetch
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#digikam" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install neofetch" >> /tmp/software
+                echo "sudo apt install -y neofetch" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
