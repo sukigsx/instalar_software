@@ -81,7 +81,7 @@ do
             "3")#Wireguird
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#Wireguir" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "wget -p /tmp/ wget https://github.com/UnnoTed/wireguird/releases/download/v1.1.0/wireguird_amd64.deb" >> /tmp/software
+                echo "wget -P /tmp/ wget https://github.com/UnnoTed/wireguird/releases/download/v1.1.0/wireguird_amd64.deb" >> /tmp/software
                 echo "sudo gdebi -n /tmp/wireguird_amd64.deb" >> /tmp/software
                 echo "rm /tmp/wireguird_amd64.deb" >> /tmp/software
                 echo "" >> /tmp/software
