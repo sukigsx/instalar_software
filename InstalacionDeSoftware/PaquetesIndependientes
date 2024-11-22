@@ -98,6 +98,7 @@ do
     echo -e "${azul}  5)${borra_colores} VirtualBox               Sostware gratuito para crear maquinas virtuales."
     echo -e "${azul}  6)${borra_colores} Script de Sukigsx        Instalador de scripts de Sukigsx. (al seleccionar se instala automatico)"
     echo -e "${azul}  7)${borra_colores} TeamViewer               Control remoto de pc's, tablets y moviles."
+    echo -e "${azul}  8)${borra_colores} Wireguird                Un cliente de interfaz gráfica de usuario GTK de Linux para Wireguard."
     echo -e ""
     echo -e "${azul} 60)${borra_colores} Borrar los paquetes descargados."
     echo -e "${azul} 70)${borra_colores} Instalar los paquetes descargados."
@@ -160,6 +161,10 @@ do
 
         "7")#TeamViewer
             $navegador https://www.teamviewer.com/es/download/linux/ &>/dev/null
+            ;;
+
+        "8")#TeamViewer
+            $navegador https://github.com/UnnoTed/wireguird &>/dev/null
             ;;
 
         "60")#borrar paquetes descargados
