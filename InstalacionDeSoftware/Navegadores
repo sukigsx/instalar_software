@@ -109,12 +109,13 @@ do
             "5") #brave
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#brave" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y snapd" >> /tmp/software
-                echo "sudo snap install brave" >> /tmp/software
+                echo 'sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg' >> /tmp/software
+                echo 'sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources' >> /tmp/software
+                echo "sudo apt update; sudo apt install -y brave-browser" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "brave" >> /tmp/ComprobarSoftware
+                echo "brave-browser" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
