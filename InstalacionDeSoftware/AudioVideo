@@ -74,7 +74,10 @@ do
             "2")#spotify
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#spotify" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y snapd; sudo snap install spotify" >> /tmp/software
+                echo 'curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg' >> /tmp/software
+                echo 'echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list' >> /tmp/software
+                echo "sudo apt update" >> /tmp/software
+                echo "sudo apt install -y spotify-client" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
