@@ -46,22 +46,22 @@ do
     echo -e " Navegadores disponibles       Descripcion."
     echo -e ""
     echo -e "${azul}  1)${borra_colores} Grub-customizer           Modifica el gestor de arranque."
-    echo -e "${azul}  2)${borra_colores} Cairo-Dock                Crear paneles y lanzadores, muy personalizados."
-    echo -e "${azul}  3)${borra_colores} Latte-dock                Crear lanzadores, muy personalizados."
-    echo -e "${azul}  4)${borra_colores} Tellico                   Crea tu base de datos de cd dvd libros etc."
-    echo -e "${azul}  5)${borra_colores} KDE Connect               Sincroniza tu movil con el pc."
-    echo -e "${azul}  6)${borra_colores} Usuarios y Grupos         Gestiona Usuarios y Grupos de modo grafico."
-    echo -e "${azul}  7)${borra_colores} Gnome-online-accouns      Para poder sincronizar cuentas de google (drive)."
-    echo -e "${azul}  8)${borra_colores} Kio gdrive                Para poder sincronizar cuentas de google (drive) solo entornos KDE Plasma."
-    echo -e "${azul}  9)${borra_colores} Ocamlfuse                 Otro para poder sincronizar cuentas de google (drive)."
-    echo -e "${azul} 10)${borra_colores} Nemo                      Explorador de ficheos."
-    echo -e "${azul} 11)${borra_colores} Systemback                Utilidades para gestionar el sistema."
-    echo -e "${azul} 12)${borra_colores} Deja-dup                  Copoa de seguridad de tus ficheros o sistema."
-    echo -e "${azul} 13)${borra_colores} Transmision               Gestor de descargas torrent."
-    echo -e "${azul} 14)${borra_colores} Software-propietario      Gestionar ppa y drives en modo grafico"
-    echo -e "${azul} 15)${borra_colores} Joplin                    Software multiplataforma para tomar notas."
-    echo -e "${azul} 16)${borra_colores} Keepass2                  Gestor de contraseñas."
-    echo -e "${azul} 17)${borra_colores} Github Desktop            Gestor grafico de Github."
+    echo -e "${azul}  2)${borra_colores} Cairo-Dock                        Crear paneles y lanzadores, muy personalizados."
+    echo -e "${azul}  3)${borra_colores} Opcion vacia              "
+    echo -e "${azul}  4)${borra_colores} Tellico                           Crea tu base de datos de cd dvd libros etc."
+    echo -e "${azul}  5)${borra_colores} KDE Connect                       Sincroniza tu movil con el pc."
+    echo -e "${azul}  6)${borra_colores} Usuarios y Grupos                 Gestiona Usuarios y Grupos de modo grafico."
+    echo -e "${azul}  7)${borra_colores} Gnome-online-accouns              Para poder sincronizar cuentas de google (drive)."
+    echo -e "${azul}  8)${borra_colores} Kio gdrive                        Para poder sincronizar cuentas de google (drive) solo entornos KDE Plasma."
+    echo -e "${azul}  9)${borra_colores} Ocamlfuse (<debian13)             Otro para poder sincronizar cuentas de google (drive)."
+    echo -e "${azul} 10)${borra_colores} Nemo                              Explorador de ficheos."
+    echo -e "${azul} 11)${borra_colores} Systemback (<debian13)            Utilidades para gestionar el sistema."
+    echo -e "${azul} 12)${borra_colores} Deja-dup                          Copia de seguridad de tus ficheros o sistema."
+    echo -e "${azul} 13)${borra_colores} Transmision                       Gestor de descargas torrent."
+    echo -e "${azul} 14)${borra_colores} Software-propietario (<debian13)  Gestionar ppa y drives en modo grafico"
+    echo -e "${azul} 15)${borra_colores} Joplin                            Software multiplataforma para tomar notas."
+    echo -e "${azul} 16)${borra_colores} Keepass2                          Gestor de contraseñas."
+    echo -e "${azul} 17)${borra_colores} Github Desktop                    Gestor grafico de Github."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -93,15 +93,7 @@ do
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
-            "3")#Latte-dock
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Latte-dock" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install latte-dock -y" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "latte-dock" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+            "3")#opcion vacia
                 ;;
 
             "4")#Tellico
