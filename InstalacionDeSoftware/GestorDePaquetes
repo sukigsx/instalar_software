@@ -76,7 +76,7 @@ do
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "synaptic" >> /tmp/ComprobarSoftware
+                echo "synaptic-pkexec" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 

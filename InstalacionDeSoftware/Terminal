@@ -46,7 +46,7 @@ do
     echo -e " Navegadores disponibles       Descripcion."
     echo -e ""
     echo -e "${azul}  1)${borra_colores} sshpass                   Para poder incluir el password en conexiones ssh."
-    echo -e "${azul}  2)${borra_colores} Screenfetch               Informacion del sistema."
+    echo -e "${azul}  2)${borra_colores} Fastfetch                 Informacion del sistema."
     echo -e "${azul}  3)${borra_colores} Neofetch                  Informacion del sistema."
     echo -e "${azul}  4)${borra_colores} Net-tools                 Herramientas de red."
     echo -e "${azul}  5)${borra_colores} Nmap                      Herramienta de scaneo."
@@ -78,12 +78,12 @@ do
 
             "2")#Screenfetch
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#Screenfetch" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y screenfetch" >> /tmp/software
+                echo "#Fastfetch" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y fastfetch" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "screenfetch" >> /tmp/ComprobarSoftware
+                echo "fastfetch" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
