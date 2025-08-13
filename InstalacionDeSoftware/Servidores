@@ -64,7 +64,7 @@ do
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "sshd" >> /tmp/ComprobarSoftware
+                echo "sshd.service" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
@@ -75,7 +75,7 @@ do
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "apache2" >> /tmp/ComprobarSoftware
+                echo "apache2.service" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
@@ -86,7 +86,7 @@ do
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "vsftpd" >> /tmp/ComprobarSoftware
+                echo "vsftpd.service" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
@@ -97,7 +97,7 @@ do
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "openvpn" >> /tmp/ComprobarSoftware
+                echo "openvpn.service" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 

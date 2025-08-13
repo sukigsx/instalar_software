@@ -75,7 +75,7 @@ do
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "calligra" >> /tmp/ComprobarSoftware
+                echo "calligralauncher" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
