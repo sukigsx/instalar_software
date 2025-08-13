@@ -96,8 +96,9 @@ do
             "4") #opera
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#opera" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y snapd" >> /tmp/software
-                echo "sudo snap install opera" >> /tmp/software
+                echo 'wget -qO- https://deb.opera.com/archive.key | sudo gpg --dearmor -o /usr/share/keyrings/opera.gpg' >> /tmp/software
+                echo 'echo "deb [signed-by=/usr/share/keyrings/opera.gpg] https://deb.opera.com/opera-stable/ stable non-free" | sudo tee /etc/apt/sources.list.d/opera-stable.list' >> /tmp/software
+                echo "sudo apt update; sudo DEBIAN_FRONTEND=noninteractive apt install -y opera-stable"
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
