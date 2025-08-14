@@ -47,8 +47,8 @@ do
     echo -e ""
     echo -e "${azul}  1)${borra_colores} sshpass                   Para poder incluir el password en conexiones ssh."
     echo -e "${azul}  2)${borra_colores} Fastfetch                 Informacion del sistema."
-    echo -e "${azul}  3)${borra_colores} Neofetch                  Informacion del sistema."
-    echo -e "${azul}  4)${borra_colores} Net-tools                 Herramientas de red."
+    echo -e "${azul}  3)${borra_colores} Screenfetch               Informacion del sistema."
+    echo -e "${azul}  4)${borra_colores} Net-tools (<debian13)     Herramientas de red."
     echo -e "${azul}  5)${borra_colores} Nmap                      Herramienta de scaneo."
     echo -e "${azul}  6)${borra_colores} Cifs-utils                Nos servirán para montar en nuestro sistema de archivos Linux local (samba)."
     echo -e "${azul}  7)${borra_colores} Fping                     Nos permite enviar mensajes ICMP."
@@ -76,7 +76,7 @@ do
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
-            "2")#Screenfetch
+            "2")#
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#Fastfetch" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                 echo "sudo apt install -y fastfetch" >> /tmp/software
@@ -87,14 +87,14 @@ do
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
-            "3")#Neofetch
+            "3")#Screenfetch
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#digikam" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y neofetch" >> /tmp/software
+                echo "sudo apt install -f screenfetch" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "neofetch" >> /tmp/ComprobarSoftware
+                echo "screenfetch" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
