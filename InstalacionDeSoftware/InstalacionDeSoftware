@@ -75,22 +75,53 @@ echo 'echo -e "- COMENZANDO LA INSTALACION DE SOFTWARE -"' >> /tmp/software
 echo 'echo -e "- Se paciente.. El tiempo depende de tu conexion. -\n"; sleep 2' >> /tmp/software
 
 #crea el fichero para comprobar la instalacion
-echo 'echo -e "\n -Comprobacion de software instalado -\n"; sleep 2' >> /tmp/comprobacion
-echo 'for programa in $(cat /tmp/ComprobarSoftware); do' >> /tmp/comprobacion
-echo '    if which "$programa" &>/dev/null; then' >> /tmp/comprobacion
-echo '        echo "$programa [ OK ]."' >> /tmp/comprobacion
-echo '    elif systemctl list-units --type=service | grep -q "$programa"; then' >> /tmp/comprobacion
-echo '        echo "$programa (Servicio) [ OK ]."' >> /tmp/comprobacion
-echo '    elif flatpak list --columns=application | grep -qx "$programa"; then' >> /tmp/comprobacion
-echo '        echo "$programa (Flatpak) [ OK ]."' >> /tmp/comprobacion
-echo '    elif snap list | awk "{print \$1}" | grep -qx "$programa"; then' >> /tmp/comprobacion
-echo '        echo "$programa (Snap) [ OK ]."' >> /tmp/comprobacion
-echo '    else' >> /tmp/comprobacion
-echo '        echo "$programa [ NO INSTALADO ]."' >> /tmp/comprobacion
-echo '    fi' >> /tmp/comprobacion
-echo 'done' >> /tmp/comprobacion
-echo 'echo ""' >> /tmp/comprobacion
-echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
+
+
+#echo 'echo -e "\n -Comprobacion de software instalado -\n"; sleep 2' >> /tmp/comprobacion
+#!/bin/bash
+
+echo -e "\n - Comprobación de software instalado -\n"
+sleep 1
+
+while read -r programa; do
+    if snap list 2>/dev/null | awk '{print $1}' | grep -qx "$programa"; then
+        echo "$programa (Snap) [ OK ]"
+    elif flatpak list --columns=application 2>/dev/null | grep -qx "$programa"; then
+        echo "$programa (Flatpak) [ OK ]"
+    elif command -v "$programa" &>/dev/null; then
+        echo "$programa (Repositorios) [ OK ]"
+    elif systemctl list-units --type=service --all 2>/dev/null | grep -q "$programa"; then
+        echo "$programa (Servicio del sistema) [ OK ]"
+    else
+        echo "$programa [ NO INSTALADO ]"
+    fi
+done < /tmp/ComprobarSoftware
+
+echo ""
+read -n 1 -s -r -p "Pulsa una tecla para continuar..."
+echo
+
+
+
+
+
+
+
+#echo 'for programa in $(cat /tmp/ComprobarSoftware); do' >> /tmp/comprobacion
+#echo '    if which "$programa" &>/dev/null; then' >> /tmp/comprobacion
+#echo '        echo "$programa [ OK ]."' >> /tmp/comprobacion
+#echo '    elif systemctl list-units --type=service | grep -q "$programa"; then' >> /tmp/comprobacion
+#echo '        echo "$programa (Servicio) [ OK ]."' >> /tmp/comprobacion
+#echo '    elif flatpak list --columns=application | grep -qx "$programa"; then' >> /tmp/comprobacion
+#echo '        echo "$programa (Flatpak) [ OK ]."' >> /tmp/comprobacion
+#echo '    elif snap list | awk "{print \$1}" | grep -qx "$programa"; then' >> /tmp/comprobacion
+#echo '        echo "$programa (Snap) [ OK ]."' >> /tmp/comprobacion
+#echo '    else' >> /tmp/comprobacion
+#echo '        echo "$programa [ NO INSTALADO ]."' >> /tmp/comprobacion
+#echo '    fi' >> /tmp/comprobacion
+#echo 'done' >> /tmp/comprobacion
+#echo 'echo ""' >> /tmp/comprobacion
+#echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
 
 
 
