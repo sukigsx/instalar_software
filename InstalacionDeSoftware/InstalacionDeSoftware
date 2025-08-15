@@ -89,21 +89,26 @@ echo 'echo -e "\n -Comprobacion de software instalado -\n"; sleep 2' >> /tmp/com
 echo 'for programa in $(cat /tmp/ComprobarSoftware); do' >> /tmp/comprobacion
 echo '    if command -v snap >/dev/null 2>&1 && snap list 2>/dev/null | awk "{print \$1}" | grep -qx "$programa"; then' >> /tmp/comprobacion
 #echo '        echo -e "$programa ${azul}(Instalado por Snap)${verde} [ OK ]${borra_colores}."' >> /tmp/comprobacion
-echo '        printf "%-30s %-30s %s\n" "$programa" "${amarillo}(Instalado por Flatpak)${borra_colores}" "${verde}[ OK ]${borra_colores}"' >> /tmp/comprobacion
+echo '        printf "%-15s %-15b %-10b\n" "$programa" "${azul}(Instalado por Snap)${borra_colores}" "${verde}[OK]${borra_colores}"' >> /tmp/comprobacion
 echo '    elif command -v flatpak >/dev/null 2>&1 && flatpak list --columns=application 2>/dev/null | grep -qx "$programa"; then' >> /tmp/comprobacion
 #echo '        echo -e "$programa ${amarillo}(Instalado por Flatpak)${verde} [ OK ]${borra_colores}."' >> /tmp/comprobacion
-echo '        printf "%-30s %-30s %s\n" "$programa" "${amarillo}(Instalado por Flatpak)${borra_colores}" "${verde}[ OK ]${borra_colores}"' >> /tmp/comprobacion
+echo '        printf "%-15s %-15b %-10b\n" "$programa" "${amarillo}(Instalado por Flatpak)${borra_colores}" "${verde}[OK]${borra_colores}"' >> tmp/comprobacion
+
 echo '    elif command -v dpkg >/dev/null 2>&1 && dpkg -l 2>/dev/null | awk "{print \$2}" | grep -qx "$programa"; then' >> /tmp/comprobacion
-#echo '        echo -e "$programa ${rosa}(Instalado por Repositorio) ${verde}[ OK ]${borra_colores}."' >> /tmp/comprobacion
-echo '        printf "%-30s %-30s %s\n" "$programa" "${amarillo}(Instalado por Flatpak)${borra_colores}" "${verde}[ OK ]${borra_colores}"' >> /tmp/comprobacion
+#echo '        echo -e "$programa ${rosa}(Instalado por Repositorio) ${verde}[ OK ]${borra_colores}."' >> /tmp/comprobacion$
+echo '        printf "%-15s %-15b %-10b\n" "$programa" "${rosa}(Instalado por repositorio)${borra_colores}" "${verde}[OK]${borra_colores}"' >> /tmp/comprobacion
+
 echo '    elif systemctl list-units --type=service 2>/dev/null | grep -q "$programa"; then' >> /tmp/comprobacion
 #echo '        echo -e "$programa ${turquesa}(Servicio)${verde} [ OK ]${borra_colores}."' >> /tmp/comprobacion
-echo '        printf "%-30s %-30s %s\n" "$programa" "${amarillo}(Instalado por Flatpak)${borra_colores}" "${verde}[ OK ]${borra_colores}"' >> /tmp/comprobacion
+echo '        printf "%-15s %-15b %-10b\n" "$programa" "${turquesa}(Servicio)${borra_colores}" "${verde}[OK]${borra_colores}"' >> /tmp/comprobacion
 echo '    elif command -v "$programa" >/dev/null 2>&1; then' >> /tmp/comprobacion
 #echo '        echo -e "$programa ${naranja}(Instalado por Repositorio añadido)${verde} [ OK ]${borra_colores}."' >> /tmp/comprobacion
-echo '        printf "%-30s %-30s %s\n" "$programa" "${amarillo}(Instalado por Flatpak)${borra_colores}" "${verde}[ OK ]${borra_colores}"' >> /tmp/comprobacion
+echo '        printf "%-20s %-10b %-10b\n" "$programa" "${naranja}(Instalado por repositorio añadido)${borra_colores}" "${verde}[OK]${borra_colores}"' >> /tmp/comprobacion
+
 echo '    else' >> /tmp/comprobacion
-echo '        echo -e "$programa ${rojo}[ NO INSTALADO ]${borra_colores}."' >> /tmp/comprobacion
+#echo '        echo -e "$programa ${rojo}[ NO INSTALADO ]${borra_colores}."' >> /tmp/comprobacion
+echo '        printf "%-25s %-10b\n" "$programa" "${rojo}[No instalado]${borra_colores}"' >> /tmp/comprobacion
+
 echo '    fi' >> /tmp/comprobacion
 echo 'done' >> /tmp/comprobacion
 echo 'echo ""' >> /tmp/comprobacion
