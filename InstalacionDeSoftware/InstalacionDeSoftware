@@ -66,17 +66,9 @@ rm /tmp/comprobacion 2>/dev/null
 
 crear_ficheros_instalacion(){
 #crea el fichero de instalacion de software
-#!/bin/bash
-# Generador de /tmp/comprobar
 
 # Limpiamos el fichero antes de empezar
-> /tmp/comprobar
-
-#!/bin/bash
-# Generador de /tmp/comprobar
-
-# Limpiamos el fichero antes de empezar
-> /tmp/comprobar
+> /tmp/comprobacion
 
 echo 'rojo="\e[0;31m\033[1m"' >> /tmp/comprobacion
 echo 'verde="\e[0;32m\033[1m"' >> /tmp/comprobacion
