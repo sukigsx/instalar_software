@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ruta_ejecucion=$(dirname "$(readlink -f "$0")")
-export version="1.s añadido navegadoress"
+export version="1.ws añadido navegadoress"
 conexion="Sin comprobar"
 software="Sin comprobar"
 actualizado="No se ha podido comprobar la actualizacion del script"
