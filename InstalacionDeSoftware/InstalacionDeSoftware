@@ -72,68 +72,21 @@ crear_ficheros_instalacion(){
 # Limpiamos el fichero antes de empezar
 > /tmp/comprobar
 
-echo '#!/bin/bash' >> /tmp/comprobar
-echo 'clear' >> /tmp/comprobar
-echo '' >> /tmp/comprobar
-echo 'rojo="\e[0;31m\033[1m"' >> /tmp/comprobar
-echo 'verde="\e[0;32m\033[1m"' >> /tmp/comprobar
-echo 'azul="\e[0;34m\033[1m"' >> /tmp/comprobar
-echo 'amarillo="\e[0;33m\033[1m"' >> /tmp/comprobar
-echo 'rosa="\e[0;35m\033[1m"' >> /tmp/comprobar
-echo 'turquesa="\e[0;36m\033[1m"' >> /tmp/comprobar
-echo 'naranja="\e[0;33m\033[1m"' >> /tmp/comprobar
-echo 'borra_colores="\033[0m\e[0m"' >> /tmp/comprobar
-echo '' >> /tmp/comprobar
-echo 'echo -e "\n -Comprobacion de software instalado -\n"; sleep 2' >> /tmp/comprobar
-echo '' >> /tmp/comprobar
-echo 'echo -e "${azul}EXPLICACION:${borra_colores}"' >> /tmp/comprobar
-echo 'echo -e "${verde}SNAP${borra_colores} = Instalacion por paqueteria de Snap."' >> /tmp/comprobar
-echo 'echo -e "${verde}FLATPAK${borra_colores} = Instalacion por paqueteria de Flatpak."' >> /tmp/comprobar
-echo 'echo -e "${verde}REPOSITORIO${borra_colores} = Repositorios oficiales de tu distribucion."' >> /tmp/comprobar
-echo 'echo -e "${verde}SERVICIO${borra_colores} = Son servicios, como apache, ftp, openvpn, ssh, etc."' >> /tmp/comprobar
-echo 'echo -e "${verde}REPOSITORIO AÑADIDO${borra_colores} = Instalacion por repositorios del software."' >> /tmp/comprobar
-echo 'echo ""' >> /tmp/comprobar
-echo '{' >> /tmp/comprobar
-echo '    # Cabecera de la tabla' >> /tmp/comprobar
-echo '    echo -e "${azul}SOFTWARE\tMODO DE INSTALACION\tINSTALADO${borra_colores}"' >> /tmp/comprobar
-echo '    echo -e "--------\t-------------------\t-----------"' >> /tmp/comprobar
-echo '    # Bucle que genera el contenido' >> /tmp/comprobar
-echo '    for programa in $(cat /tmp/ComprobarSoftware); do' >> /tmp/comprobar
-echo '        if command -v snap >/dev/null 2>&1 && snap list 2>/dev/null | awk '"'"'{print $1}'"'"' | grep -qx "$programa"; then' >> /tmp/comprobar
-echo '            echo -e "$programa\t${azul}(Por Snap)${borra_colores}\t${verde}[OK]${borra_colores}"' >> /tmp/comprobar
-echo '        elif command -v flatpak >/dev/null 2>&1 && flatpak list --columns=application 2>/dev/null | grep -qx "$programa"; then' >> /tmp/comprobar
-echo '            echo -e "$programa\t${amarillo}(Por Flatpak)${borra_colores}\t${verde}[OK]${borra_colores}"' >> /tmp/comprobar
-echo '        elif command -v dpkg >/dev/null 2>&1 && dpkg -l 2>/dev/null | awk '"'"'{print $2}'"'"' | grep -qx "$programa"; then' >> /tmp/comprobar
-echo '            echo -e "$programa\t${rosa}(Por repositorio)${borra_colores}\t${verde}[OK]${borra_colores}"' >> /tmp/comprobar
-echo '        elif systemctl list-units --type=service 2>/dev/null | grep -q "$programa"; then' >> /tmp/comprobar
-echo '            echo -e "$programa\t${turquesa}(Servicio)${borra_colores}\t${verde}[OK]${borra_colores}"' >> /tmp/comprobar
-echo '        elif command -v "$programa" >/dev/null 2>&1; then' >> /tmp/comprobar
-echo '            echo -e "$programa\t${naranja}(Por repositorio añadido)${borra_colores}\t${verde}[OK]${borra_colores}"' >> /tmp/comprobar
-echo '        else' >> /tmp/comprobar
-echo '            echo -e "$programa\t${rojo}[No instalado]${borra_colores}\t${rojo}[FALLO]${borra_colores}"' >> /tmp/comprobar
-echo '        fi' >> /tmp/comprobar
-echo '    done' >> /tmp/comprobar
-echo '} | column -t -s $'\''\t'\''' >> /tmp/comprobar
-echo '' >> /tmp/comprobar
-echo 'echo ""' >> /tmp/comprobar
-echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobar
-
-
-#echo 'for programa in $(cat /tmp/ComprobarSoftware); do' >> /tmp/comprobacion
-#echo '    if which "$programa" &>/dev/null; then' >> /tmp/comprobacion
-#echo '        echo "$programa [ OK ]."' >> /tmp/comprobacion
-#echo '    elif systemctl list-units --type=service | grep -q "$programa"; then' >> /tmp/comprobacion
-#echo '        echo "$programa (Servicio) [ OK ]."' >> /tmp/comprobacion
-#echo '    elif flatpak list --columns=application | grep -qx "$programa"; then' >> /tmp/comprobacion
-#echo '        echo "$programa (Flatpak) [ OK ]."' >> /tmp/comprobacion
-#echo '    elif snap list | awk "{print \$1}" | grep -qx "$programa"; then' >> /tmp/comprobacion
-#echo '        echo "$programa (Snap) [ OK ]."' >> /tmp/comprobacion
-#echo '    else' >> /tmp/comprobacion
-#echo '        echo "$programa [ NO INSTALADO ]."' >> /tmp/comprobacion
-#echo '    fi' >> /tmp/comprobacion
-#echo 'done' >> /tmp/comprobacion
-#echo 'echo ""' >> /tmp/comprobacion
-#echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
+echo 'for programa in $(cat /tmp/ComprobarSoftware); do' >> /tmp/comprobacion
+echo '    if which "$programa" &>/dev/null; then' >> /tmp/comprobacion
+echo '        echo "$programa [ OK ]."' >> /tmp/comprobacion
+echo '    elif systemctl list-units --type=service | grep -q "$programa"; then' >> /tmp/comprobacion
+echo '        echo "$programa (Servicio) [ OK ]."' >> /tmp/comprobacion
+echo '    elif flatpak list --columns=application | grep -qx "$programa"; then' >> /tmp/comprobacion
+echo '        echo "$programa (Flatpak) [ OK ]."' >> /tmp/comprobacion
+echo '    elif snap list | awk "{print \$1}" | grep -qx "$programa"; then' >> /tmp/comprobacion
+echo '        echo "$programa (Snap) [ OK ]."' >> /tmp/comprobacion
+echo '    else' >> /tmp/comprobacion
+echo '        echo "$programa [ NO INSTALADO ]."' >> /tmp/comprobacion
+echo '    fi' >> /tmp/comprobacion
+echo 'done' >> /tmp/comprobacion
+echo 'echo ""' >> /tmp/comprobacion
+echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
 
 
 
