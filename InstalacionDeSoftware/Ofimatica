@@ -94,9 +94,10 @@ do
             "4")#Typora
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#Typora" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "wget -qO - https://typora.io/linux/public-key.asc | sudo tee /etc/apt/trusted.gpg.d/typora.asc" >> /tmp/software
-                echo "sudo add-apt-repository 'deb https://typora.io/linux ./' -y" >> /tmp/software
-                echo "sudo apt install -y typora" >> /tmp/software
+                echo "sudo mkdir -p /etc/apt/keyrings" >> /tmp/software
+                echo 'curl -fsSL https://downloads.typora.io/typora.gpg | sudo tee /etc/apt/keyrings/typora.gpg > /dev/null' >> /tmp/software
+                echo 'echo "deb [signed-by=/etc/apt/keyrings/typora.gpg] https://downloads.typora.io/linux ./" | sudo tee /etc/apt/sources.list.d/typora.list' >> /tmp/software
+                echo "sudo apt update; sudo apt install -y typora" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
