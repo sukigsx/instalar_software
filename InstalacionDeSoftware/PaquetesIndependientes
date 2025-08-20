@@ -131,9 +131,9 @@ do
             echo 'echo ""' >> /tmp/geny
             echo 'echo "Instalacion automatica de GenyMotion"' >> /tmp/geny
             echo 'echo ""' >> /tmp/geny
-            echo "sudo chmod 777 $ruta_descargas/genymotion*.bin" >> /tmp/geny
-            echo "sudo $ruta_descargas/genymotion*.bin -y" >> /tmp/geny
-            echo "rm $ruta_descargas/geny*.bin" >> /tmp/geny
+            echo "sudo chmod 777 $ruta_descargas/genymotion*.run" >> /tmp/geny
+            echo "sudo ./$ruta_descargas/genymotion*.run -y" >> /tmp/geny
+            echo "rm $ruta_descargas/geny*.run" >> /tmp/geny
             echo 'echo ""' >> /tmp/geny
             echo 'echo "Instalacion de GenyMotion = ok"' >> /tmp/geny
             echo 'echo ""' >> /tmp/geny
@@ -201,7 +201,7 @@ do
             else
                 echo -e "\n${amarillo} No existen paquetes *.deb para su instalacion.\n${borra_colores}"; sleep 2
             fi
-
+            rm $ruta_descargas/InstalarPaquetesDeb
             ;;
 
         "90") #Ayuda
