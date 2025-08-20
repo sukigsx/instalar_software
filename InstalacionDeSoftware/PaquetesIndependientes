@@ -140,8 +140,8 @@ do
             echo 'echo "Pulsa en continuar"' >> /tmp/geny
             echo "read pause" >> /tmp/geny
 
-            konsole -geometry 800x500+0+0 -e bash /tmp/geny
-
+            #konsole -geometry 800x500+0+0 -e bash /tmp/geny
+            konsole -e bash /tmp/geny
             rm /tmp/geny >/dev/null 2>&1
             ;;
 
