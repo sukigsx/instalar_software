@@ -89,7 +89,7 @@ do
 
             "3")#Screenfetch
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#digikam" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "#screenfetch" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                 echo "sudo apt install -f screenfetch" >> /tmp/software
                 echo "" >> /tmp/software
 
@@ -124,7 +124,7 @@ do
 
             "6")#Cifs-utils
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#shotwell" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "#Cifs-utils" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                 echo "sudo apt install -y cifs-utils" >> /tmp/software
                 echo "" >> /tmp/software
 
