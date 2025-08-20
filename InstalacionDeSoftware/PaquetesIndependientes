@@ -132,7 +132,7 @@ do
             echo 'echo "Instalacion automatica de GenyMotion"' >> /tmp/geny
             echo 'echo ""' >> /tmp/geny
             echo "sudo chmod 777 $ruta_descargas/genymotion*.run" >> /tmp/geny
-            echo "sudo .$ruta_descargas/genymotion*.run -y" >> /tmp/geny
+            echo "sudo $ruta_descargas/genymotion*.run -y" >> /tmp/geny
             echo "rm $ruta_descargas/geny*.run" >> /tmp/geny
             echo 'echo ""' >> /tmp/geny
             echo 'echo "Instalacion de GenyMotion = ok"' >> /tmp/geny
