@@ -47,7 +47,7 @@ do
     echo -e " Navegadores disponibles       Descripcion."
     echo -e ""
     echo -e "${azul}  1)${borra_colores} Telegram                  Mensajeria instantanea."
-    echo -e "${azul}  2)${borra_colores} Skype                     Video conferencia."
+    echo -e "${azul}  2)${borra_colores} libre                     espacio libre para futuras."
     echo -e "${azul}  3)${borra_colores} Whatsapp                  Mensajeria instantanea"
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
@@ -59,6 +59,11 @@ do
             "1")#Telegram
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#Telegram" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+
+                echo "sudo apt install flatpak -y" >> /tmp/software
+                echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
+                echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
+                echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
                 echo "flatpak install flathub org.telegram.desktop -y" >> /tmp/software
                 echo "" >> /tmp/software
 
@@ -69,13 +74,13 @@ do
 
             "2")#Skype
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#Skype" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo snap install skype --classic" >> /tmp/software
-                echo "" >> /tmp/software
+                #echo "#Skype" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                #echo "sudo snap install skype --classic" >> /tmp/software
+                #echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "skype" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                #echo "skype" >> /tmp/ComprobarSoftware
+                #echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
             "3")#Whatsapp
