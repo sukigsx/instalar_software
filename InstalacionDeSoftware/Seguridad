@@ -48,7 +48,8 @@ do
     echo -e ""
     echo -e "${azul}  1)${borra_colores} Gufw                      Cortafuefos para linux."
     echo -e "${azul}  2)${borra_colores} ClamTK                    Sostware gratuito de antivirus con una interfaz gráfica de usuario (GUI)."
-    echo -e "${azul}  3)${borra_colores} Wireguird                 Un cliente de interfaz gráfica de usuario GTK de Linux para Wireguard."
+    echo -e "${azul}  3)${borra_colores} Wireguird                 Un cliente de interfaz gráfica de usuario GTK de Linux para Wireguard vpn."
+    echo -e "${azul}  4)${borra_colores} Tailscale                 Un cliente para configurar la conexion a vpn por tailscale."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -88,6 +89,17 @@ do
 
                 #linea con el nombre del programa instalado para la comprobacion
                 echo "wireguird" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "4")#Wireguird
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Tailscale" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "curl -fsSL https://tailscale.com/install.sh | sh" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "tailscale" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
