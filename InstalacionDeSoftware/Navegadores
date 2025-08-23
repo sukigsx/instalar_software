@@ -61,7 +61,7 @@ do
             "1") #google-chrome
                 #codigo para la instalacion se mete a /tmp/software
                 if extrepo search google_chrome; then
-                    sudo extrepo enable google_chrome
+                    sudo extrepo enable google_chrome >/dev/null 2>&1
                     echo "#google-chrome" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                     echo "sudo apt update; sudo apt install -y google-chrome-stable" >> /tmp/software
                     echo "" >> /tmp/software
@@ -70,23 +70,8 @@ do
                     echo "google-chrome" >> /tmp/ComprobarSoftware
                     echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 else
-                    echo "❌ No se encontró el repositorio para google_chrome."; sleep 2
+                    echo "❌ No se encontró el repositorio para google_chrome."; read p
                 fi
-
-
-
-
-
-
-                #echo "#google-chrome" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                #echo "rm /tmp/google* >/dev/null 2>&1" >> /tmp/software
-                #echo "cd /tmp" >> /tmp/software
-                #echo 'wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb' >> /tmp/software
-                #echo 'sudo gdebi /tmp/google-chrome-stable_current_amd64.deb -n' >> /tmp/software
-                #echo "rm /tmp/google-chrome-stable_current_amd64.deb" >> /tmp/software
-                #echo "" >> /tmp/software
-                #echo "google-chrome-stable" >> /tmp/ComprobarSoftware
-                #echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
             "2") #chromium
@@ -114,28 +99,34 @@ do
 
             "4") #opera
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#opera" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo 'wget -qO- https://deb.opera.com/archive.key | sudo gpg --dearmor --yes -o /usr/share/keyrings/opera.gpg' >> /tmp/software
-                echo 'echo "deb [signed-by=/usr/share/keyrings/opera.gpg] https://deb.opera.com/opera-stable/ stable non-free" | sudo tee /etc/apt/sources.list.d/opera-stable.list' >> /tmp/software
-                echo "sudo apt update; sudo DEBIAN_FRONTEND=noninteractive apt install -y opera-stable"  >> /tmp/software
-                echo "" >> /tmp/software
+                if extrepo search opera; then
+                    sudo extrepo enable opera_stable >/dev/null 2>&1
+                    echo "#opera" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "sudo apt update; sudo apt install -y opera-stable" >> /tmp/software
+                    echo "" >> /tmp/software
 
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "opera" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "opera" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo "❌ No se encontró el repositorio para opera."; read p
+                fi
                 ;;
 
             "5") #brave
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#brave" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo 'sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg' >> /tmp/software
-                echo 'sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources' >> /tmp/software
-                echo "sudo apt update; sudo apt install -y brave-browser" >> /tmp/software
-                echo "" >> /tmp/software
+                if extrepo search brave_release; then
+                    sudo extrepo enable brave_release >/dev/null 2>&1
+                    echo "#brave-browser" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "sudo apt update; sudo apt install -y brave-browser" >> /tmp/software
+                    echo "" >> /tmp/software
 
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "brave-browser" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "brave-browser" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo "❌ No se encontró el repositorio para brave."; read p
+                fi
                 ;;
 
             "6") #vivaldi
