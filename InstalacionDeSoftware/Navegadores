@@ -60,7 +60,7 @@ do
         case $opcion in
             "1") #google-chrome
                 #codigo para la instalacion se mete a /tmp/software
-                if extrepo search goole_chrome; then
+                if extrepo search google_chrome; then
                     sudo extrepo enable google_chrome
                     echo "#google-chrome" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                     echo "sudo apt update; sudo apt install -y google-chrome-stable" >> /tmp/software
