@@ -224,13 +224,18 @@ do
 
             "15")#Joplin
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#Joplin" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash" >> /tmp/software
-                echo "" >> /tmp/software
+                if extrepo search joplin; then
+                    sudo extrepo enable joplin >/dev/null 2>&1
+                    echo "#joplin" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "sudo apt update; sudo apt install -y joplin" >> /tmp/software
+                    echo "" >> /tmp/software
 
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "/home/$(whoami)/.joplin/Joplin.AppImage" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "joplin" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo "❌ No se encontró el repositorio para joplin."; read p
+                fi
                 ;;
 
             "16")#Keepass2
