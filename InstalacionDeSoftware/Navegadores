@@ -132,16 +132,31 @@ do
             "6") #vivaldi
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#vivaldi" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo 'latest_version_url=$(curl -s https://vivaldi.com/download/ | grep -o 'https://downloads.vivaldi.com/stable/vivaldi-stable_[0-9\.]*-1_amd64.deb' | head -n 1)' >> /tmp/software
-                echo 'curl -O "$latest_version_url"' >> /tmp/software
-                echo "sudo gdebi vivaldi-stable*.deb -n" >> /tmp/software
-                echo "rm vivaldi-stable*.deb" >> /tmp/software
+                echo 'wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | gpg --dearmor | sudo dd of=/usr/share/keyrings/vivaldi-browser.gpg' >> /tmp/software
+                echo 'echo "deb [signed-by=/usr/share/keyrings/vivaldi-browser.gpg arch=$(dpkg --print-architecture)] https://repo.vivaldi.com/archive/deb/ stable main" | sudo dd of=/etc/apt/sources.list.d/vivaldi-archive.list' >> /tmp/software
+                echo "sudo apt update; sudo apt install vivaldi-stable" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
                 echo "vivaldi-stable" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
+
+
+
+
+                #codigo para la instalacion se mete a /tmp/software
+                #echo "#vivaldi" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                #echo 'latest_version_url=$(curl -s https://vivaldi.com/download/ | grep -o 'https://downloads.vivaldi.com/stable/vivaldi-stable_[0-9\.]*-1_amd64.deb' | head -n 1)' >> /tmp/software
+                #echo 'curl -O "$latest_version_url"' >> /tmp/software
+                #echo "sudo gdebi vivaldi-stable*.deb -n" >> /tmp/software
+                #echo "rm vivaldi-stable*.deb" >> /tmp/software
+                #echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                #echo "vivaldi-stable" >> /tmp/ComprobarSoftware
+                #echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                #;;
 
             "90") #Ayuda
                 clear
