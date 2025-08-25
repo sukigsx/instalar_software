@@ -112,55 +112,6 @@ echo '} | column -t -s $'\''\t'\''' >> /tmp/comprobacion
 echo '' >> /tmp/comprobacion
 echo 'echo ""' >> /tmp/comprobacion
 echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#echo 'for programa in $(cat /tmp/ComprobarSoftware); do' >> /tmp/comprobacion
-#echo '    if which "$programa" &>/dev/null; then' >> /tmp/comprobacion
-#echo '        echo "$programa [ OK ]."' >> /tmp/comprobacion
-#echo '    elif systemctl list-units --type=service | grep -q "$programa"; then' >> /tmp/comprobacion
-#echo '        echo "$programa (Servicio) [ OK ]."' >> /tmp/comprobacion
-#echo '    elif flatpak list --columns=application | grep -qx "$programa"; then' >> /tmp/comprobacion
-#echo '        echo "$programa (Flatpak) [ OK ]."' >> /tmp/comprobacion
-#echo '    elif snap list | awk "{print \$1}" | grep -qx "$programa"; then' >> /tmp/comprobacion
-#echo '        echo "$programa (Snap) [ OK ]."' >> /tmp/comprobacion
-#echo '    else' >> /tmp/comprobacion
-#echo '        echo "$programa [ NO INSTALADO ]."' >> /tmp/comprobacion
-#echo '    fi' >> /tmp/comprobacion
-#echo 'done' >> /tmp/comprobacion
-#echo 'echo ""' >> /tmp/comprobacion
-#echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
-
-
-
-
-#echo 'echo -e "\n -Comprobacion de software instalado -\n"; sleep 2' >> /tmp/comprobacion
-#echo 'for programa in $(cat /tmp/ComprobarSoftware); do' >> /tmp/comprobacion
-#echo '    if which "$programa" &>/dev/null; then' >> /tmp/comprobacion
-#echo '        echo "$programa [ OK ]."' >> /tmp/comprobacion
-#echo '    elif systemctl list-units --type=service | grep -q "$programa"; then' >> /tmp/comprobacion
-#echo '        echo "$programa (Servicio) [ OK ]."' >> /tmp/comprobacion
-#echo '    else' >> /tmp/comprobacion
-#echo '        echo "$programa [ NO INSTALADO ]."' >> /tmp/comprobacion
-#echo '    fi' >> /tmp/comprobacion
-#echo 'done' >> /tmp/comprobacion
-#echo 'echo ""' >> /tmp/comprobacion
-#echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
 }
 
 crear_ficheros_instalacion
@@ -317,6 +268,23 @@ do
                 echo ""
                 konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/software
                 konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/comprobacion
+
+                #borramos los repositorios duplicados
+                # Carpeta que quieres analizar
+                CARPETA="/etc/apt/sources.list.d/"
+
+                # Recorre todos los archivos de la carpeta
+                for archivo in "$CARPETA"/*; do
+                    # Verifica si es un archivo
+                    if [ -f "$archivo" ]; then
+                        # Comprueba si el nombre no contiene "extrepo"
+                        if [[ "$(basename "$archivo")" != *extrepo* ]]; then
+                            echo "Borrando: $archivo"
+                            sudo rm -r "$archivo"
+                        fi
+                    fi
+                done
+
 
                 read -p " Deseas terner una copia del fichero del software que has instalado ? (s/n) -> " sn
                 if [ $sn = "s" ] || [ $sn = "S" ] 2>/dev/null; then
