@@ -96,7 +96,7 @@ do
                 echo "#Typora" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                 echo "sudo mkdir -p /etc/apt/keyrings" >> /tmp/software
                 echo 'curl -fsSL https://downloads.typora.io/typora.gpg | sudo tee /etc/apt/keyrings/typora.gpg > /dev/null' >> /tmp/software
-                echo 'echo "deb [signed-by=/etc/apt/keyrings/typora.gpg] https://downloads.typora.io/linux ./" | sudo tee /etc/apt/sources.list.d/typora.list' >> /tmp/software
+                echo 'echo "deb [signed-by=/etc/apt/keyrings/typora.gpg] https://downloads.typora.io/linux ./" | sudo tee /etc/apt/sources.list.d/extrepo_typora.list' >> /tmp/software
                 echo "sudo apt update; sudo apt install -y typora" >> /tmp/software
                 echo "" >> /tmp/software
 
