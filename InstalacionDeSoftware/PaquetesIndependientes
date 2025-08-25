@@ -92,7 +92,7 @@ do
     echo -e " Paquetes independientes      Descripcion."
     echo ""
     echo -e "${azul}  1)${borra_colores} Busqueda Libre           Se abre el navegador en www.google.es para que busuqes manualmente tus paquetes deb."
-    echo -e "${azul}  2)${borra_colores} Franz                    Control de varias cuentas a la vez como google, telegram,etc."
+    echo -e "${azul}  2)${borra_colores} libre                    opcion libre"
     echo -e "${azul}  3)${borra_colores} Debreate                 Construccion de paquetes deb."
     echo -e "${azul}  4)${borra_colores} Genymotion               Emulador de Android en la nube y para PC con integraciones para marcos de prueba. (al seleccionar se instala automatico)"
     echo -e "${azul}  5)${borra_colores} VirtualBox               Sostware gratuito para crear maquinas virtuales."
