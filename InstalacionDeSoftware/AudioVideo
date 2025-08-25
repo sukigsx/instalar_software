@@ -73,15 +73,18 @@ do
 
             "2")#spotify
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#spotify" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo 'curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg' >> /tmp/software
-                echo 'echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list' >> /tmp/software
-                echo "sudo apt update; sudo apt install -y spotify-client" >> /tmp/software
-                echo "" >> /tmp/software
+                if extrepo search spotify; then
+                    sudo extrepo enable spotify >/dev/null 2>&1
+                    echo "#spotify" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "sudo apt update; sudo apt install -y spotify" >> /tmp/software
+                    echo "" >> /tmp/software
 
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "spotify" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "spotify" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo "❌ No se encontró el repositorio para spotify."; read p
+                fi
                 ;;
 
             "3")#digukam
