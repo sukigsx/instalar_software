@@ -62,6 +62,7 @@ do
     echo -e "${azul} 15)${borra_colores} Joplin                            Software multiplataforma para tomar notas."
     echo -e "${azul} 16)${borra_colores} Keepass2                          Gestor de contraseñas."
     echo -e "${azul} 17)${borra_colores} Github Desktop                    Gestor grafico de Github."
+    echo -e "${azul} 18)${borra_colores} Teamviwer                         Conexion remota."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -253,13 +254,30 @@ do
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#github-desktop" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                 echo "wget -qO - https://mirror.mwt.me/shiftkey-desktop/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/mwt-desktop.gpg > /dev/null" >> /tmp/software
-                echo "sudo sh -c 'echo \"deb [arch=amd64 signed-by=/usr/share/keyrings/mwt-desktop.gpg] https://mirror.mwt.me/shiftkey-desktop/deb/ any main\" > /etc/apt/sources.list.d/mwt-desktop.list'" >> /tmp/software
+                echo "sudo sh -c 'echo \"deb [arch=amd64 signed-by=/usr/share/keyrings/mwt-desktop.gpg] https://mirror.mwt.me/shiftkey-desktop/deb/ any main\" > /etc/apt/sources.list.d/extrepo-github-desktop.list'" >> /tmp/software
                 echo "sudo apt update; sudo apt install -y github-desktop" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
                 echo "github-desktop" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "18")#teamviwer
+                 #codigo para la instalacion se mete a /tmp/software
+                if extrepo search teamviewer_default; then
+                    sudo extrepo enable teamviewer_default >/dev/null 2>&1
+                    echo "#teamviewer" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "sudo apt update; sudo apt install -y teamviewer" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "teamviewer" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo "❌ No se encontró el repositorio para teamviewer."; read p
+                fi
+                ;;
                 ;;
 
             "90") #Ayuda
