@@ -76,7 +76,7 @@ do
                 if extrepo search spotify; then
                     sudo extrepo enable spotify >/dev/null 2>&1
                     echo "#spotify" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "sudo apt update; sudo apt install -y spotify" >> /tmp/software
+                    echo "sudo apt update; sudo apt install -y spotify-client" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
