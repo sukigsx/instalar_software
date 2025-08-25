@@ -48,7 +48,7 @@ do
     echo -e ""
     echo -e "${azul}  1)${borra_colores} Gufw                      Cortafuefos para linux."
     echo -e "${azul}  2)${borra_colores} ClamTK                    Sostware gratuito de antivirus con una interfaz gráfica de usuario (GUI)."
-    echo -e "${azul}  3)${borra_colores} Wireguird                 Un cliente de interfaz gráfica de usuario GTK de Linux para Wireguard vpn."
+    echo -e "${azul}  3)${borra_colores} wireguard                 Un cliente de VPN y tambien su entorno grafico."
     echo -e "${azul}  4)${borra_colores} Tailscale                 Un cliente para configurar la conexion a vpn por tailscale."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
@@ -81,26 +81,33 @@ do
 
             "3")#Wireguird
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#Wireguird" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "#Wireguard" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                 echo "wget -P /tmp/ wget https://github.com/UnnoTed/wireguird/releases/download/v1.1.0/wireguird_amd64.deb" >> /tmp/software
                 echo "sudo gdebi -n /tmp/wireguird_amd64.deb" >> /tmp/software
                 echo "rm /tmp/wireguird_amd64.deb" >> /tmp/software
+                echo "sudo apt update; sudo apt install -y wireguard" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
                 echo "wireguird" >> /tmp/ComprobarSoftware
+                echo "wireguard" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
-            "4")#Wireguird
+            "4")#Tailscale
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#Tailscale" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "curl -fsSL https://tailscale.com/install.sh | sh" >> /tmp/software
-                echo "" >> /tmp/software
+                if extrepo search tailscale; then
+                    sudo extrepo enable tailscale >/dev/null 2>&1
+                    echo "#tailscale" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "sudo apt update; sudo apt install -y tailscale" >> /tmp/software
+                    echo "" >> /tmp/software
 
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "tailscale" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "tailscale" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo "❌ No se encontró el repositorio para tailscale."; read p
+                fi
                 ;;
 
             "90") #Ayuda
