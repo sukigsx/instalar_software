@@ -72,7 +72,7 @@ do
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
-            "2")#Skype
+            "2")#Franz
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#Franz" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
 
@@ -80,11 +80,11 @@ do
                 echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
                 echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
                 echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
-                echo "flatpak install flathub com.meetfranz.Franz" >> /tmp/software
+                echo "flatpak install flathub com.meetfranz.Franz -y" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "popo" >> /tmp/ComprobarSoftware
+                echo "org.freedesktop.Platform" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
