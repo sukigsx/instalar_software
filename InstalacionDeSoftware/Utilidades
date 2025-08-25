@@ -278,7 +278,6 @@ do
                     echo "❌ No se encontró el repositorio para teamviewer."; read p
                 fi
                 ;;
-                ;;
 
             "90") #Ayuda
                 clear
