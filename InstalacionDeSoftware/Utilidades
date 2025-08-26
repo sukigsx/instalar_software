@@ -47,7 +47,7 @@ do
     echo -e ""
     echo -e "${azul}  1)${borra_colores} Grub-customizer           Modifica el gestor de arranque."
     echo -e "${azul}  2)${borra_colores} Cairo-Dock                        Crear paneles y lanzadores, muy personalizados."
-    echo -e "${azul}  3)${borra_colores} Opcion vacia              "
+    echo -e "${azul}  3)${borra_colores} Opcion vacia                      Opcion para nuevos utilidades"
     echo -e "${azul}  4)${borra_colores} Tellico                           Crea tu base de datos de cd dvd libros etc."
     echo -e "${azul}  5)${borra_colores} KDE Connect                       Sincroniza tu movil con el pc."
     echo -e "${azul}  6)${borra_colores} Usuarios y Grupos                 Gestiona Usuarios y Grupos de modo grafico."
