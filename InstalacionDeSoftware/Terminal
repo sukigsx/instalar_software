@@ -90,7 +90,7 @@ do
             "3")#Screenfetch
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#screenfetch" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -f screenfetch" >> /tmp/software
+                echo "sudo apt install -y screenfetch" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
