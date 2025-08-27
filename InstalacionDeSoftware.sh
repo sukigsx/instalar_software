@@ -122,12 +122,11 @@ CONFIG_FILE="/etc/extrepo/config.yaml"
 
 # Verificar si el fichero existe
 if [[ -f "$CONFIG_FILE" ]]; then
-
-    # Usar sed para eliminar '#' solo si está al principio de la línea y seguida>
+    # Usar sed para asegurar que las líneas empiecen con "-"
     sudo sed -i -E \
-        -e 's/^#([[:space:]]*- main)/\1/' \
-        -e 's/^#([[:space:]]*- contrib)/\1/' \
-        -e 's/^#([[:space:]]*- non-free)/\1/' \
+        -e 's/^#?[[:space:]]*- main/- main/' \
+        -e 's/^#?[[:space:]]*- contrib/- contrib/' \
+        -e 's/^#?[[:space:]]*- non-free/- non-free/' \
         "$CONFIG_FILE"
 fi
 }
