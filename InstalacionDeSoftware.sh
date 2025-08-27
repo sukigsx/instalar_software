@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ruta_ejecucion=$(dirname "$(readlink -f "$0")")
-export version="1.7223 añadido navegadoress"
+export version="2.0 Actualizado a base debian13 y nuevo software."
 conexion="Sin comprobar"
 software="Sin comprobar"
 actualizado="No se ha podido comprobar la actualizacion del script"
@@ -116,6 +116,20 @@ contador="1" #ponemos la variable contador a 1
 echo -e " [${verde}ok${borra_colores}] $paquete."
 software="SI"
 done
+
+#configura el fichero de extrep para poder metes repositorios no oficales
+CONFIG_FILE="/etc/extrepo/config.yaml"
+
+# Verificar si el fichero existe
+if [[ -f "$CONFIG_FILE" ]]; then
+
+    # Usar sed para eliminar '#' solo si está al principio de la línea y seguida>
+    sudo sed -i -E \
+        -e 's/^#([[:space:]]*- main)/\1/' \
+        -e 's/^#([[:space:]]*- contrib)/\1/' \
+        -e 's/^#([[:space:]]*- non-free)/\1/' \
+        "$CONFIG_FILE"
+fi
 }
 
 
