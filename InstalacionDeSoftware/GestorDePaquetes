@@ -51,6 +51,7 @@ do
     echo -e "${azul}  3)${borra_colores} Snap                      Gestor de paquetes snap.(se añade a tu tienda de aplicaciones)"
     echo -e "${azul}  4)${borra_colores} Flatpak                   Gestor de paquetes Flatpak.(se añadade a tu tienda de aplicaciones)"
     echo -e "${azul}  5)${borra_colores} Appimage                  Gestor de paquetes Appimages."
+    echo -e "${azul}  6)${borra_colores} Homebrew                  Gestor de paquetes Homebrew.(se instala por ejecucion de script en sh)"
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -118,6 +119,17 @@ do
 
                 #linea con el nombre del programa instalado para la comprobacion
                 echo 'Tienda_AppImage.AppImage' >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+              "6")#Homebrew
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Homebrew" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"' >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo 'brew' >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
