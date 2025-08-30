@@ -50,6 +50,7 @@ do
     echo -e "${azul}  2)${borra_colores} ClamTK                    Sostware gratuito de antivirus con una interfaz gráfica de usuario (GUI)."
     echo -e "${azul}  3)${borra_colores} wireguard                 Un cliente de VPN y tambien su entorno grafico."
     echo -e "${azul}  4)${borra_colores} Tailscale                 Un cliente para configurar la conexion a vpn por tailscale."
+    echo -e "${azul}  5)${borra_colores} Trayscale                 GUI para tailscale, ej. (sudo tailscale set --operator=$USER)."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -108,6 +109,23 @@ do
                 else
                     echo "❌ No se encontró el repositorio para tailscale."; read p
                 fi
+                ;;
+
+            "5")#Trayscale
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Trayscale" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+
+                echo "sudo apt install flatpak -y" >> /tmp/software
+                echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
+                echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
+                echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
+                echo "flatpak install flathub dev.deedles.Trayscale -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                #echo "org.telegram.desktop" >> /tmp/ComprobarSoftware
+                echo "dev.deedles.Trayscale" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
             "90") #Ayuda
