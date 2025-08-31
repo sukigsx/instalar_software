@@ -126,7 +126,7 @@ do
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#Homebrew" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                 echo '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"' >> /tmp/software
-                echo 'echo '#Incluimos al path la ruta del gestor paquetes homebrew' >> ~/.bashrc' >> /tmp/software
+                echo 'echo "#Incluimos al path la ruta del gestor paquetes homebrew" >> ~/.bashrc' >> /tmp/software
                 echo 'echo '\''export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"'\'' >> ~/.bashrc && source ~/.bashrc' >> /tmp/software
                 echo "" >> /tmp/software
 
