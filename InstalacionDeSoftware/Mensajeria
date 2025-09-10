@@ -91,6 +91,7 @@ do
             "3")#Whatsapp
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#Whatsapp" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install snapd -y" >> /tmp/software
                 echo "sudo snap install whatsapp-app" >> /tmp/software
                 echo "" >> /tmp/software
 

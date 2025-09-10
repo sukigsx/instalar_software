@@ -47,7 +47,7 @@ do
     echo -e " Instalacion de software Audio-Video       Descripcion."
     echo -e ""
     echo -e "${azul}  1)${borra_colores} Vlc             Reproductor de todo."
-    echo -e "${azul}  2)${borra_colores} Spotify         Plataforma de musica, requiere snap."
+    echo -e "${azul}  2)${borra_colores} Spotify         Plataforma de musica."
     echo -e "${azul}  3)${borra_colores} Digikam         Organizador de imagenes y editor de etiquetas"
     echo -e "${azul}  4)${borra_colores} Simple scan     Software para tu scaner"
     echo -e "${azul}  5)${borra_colores} Handbrake       Editor de video."
