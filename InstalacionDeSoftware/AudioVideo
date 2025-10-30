@@ -54,6 +54,7 @@ do
     echo -e "${azul}  6)${borra_colores} Shotwell        Organizador de imágenes."
     echo -e "${azul}  7)${borra_colores} Skanlite        Software para tu escaner."
     echo -e "${azul}  8)${borra_colores} krita           Es un estudio de arte digital completo."
+    echo -e "${azul}  9)${borra_colores} freetube        Reproductor de videos de youtube Sin anuncios."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda           Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras           Salir (ctrl-c)"
@@ -152,6 +153,42 @@ do
                 echo "krita" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
+
+            "9")#freetube
+                echo "#freetube" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                cat << 'EOF' > /tmp/software
+# Obtener el último tag publicado
+echo "🔍 Buscando la última versión de FreeTube..."
+LATEST_TAG=$(curl -s https://api.github.com/repos/FreeTubeApp/FreeTube/tags | grep '"name":' | head -n 1 | cut -d '"' -f4)
+echo "📌 Último tag encontrado: $LATEST_TAG"
+
+# Obtener la URL del archivo .deb para amd64
+DEB_URL=$(curl -s https://api.github.com/repos/FreeTubeApp/FreeTube/releases/tags/$LATEST_TAG | grep browser_download_url | grep amd64.deb | cut -d '"' -f4)
+
+# Obtener el nombre del archivo .deb
+DEB_FILE=$(basename "$DEB_URL")
+
+echo "Descargando: $DEB_FILE"
+curl -L -O "$DEB_URL"
+
+# Instalar con gdebi (sin preguntar)
+echo "⚙️  Instalando con gdebi..."
+gdebi -n "$DEB_FILE"
+
+# Eliminar el archivo .deb si la instalación fue exitosa
+if [ $? -eq 0 ]; then
+    echo "Eliminando archivo temporal: $DEB_FILE"
+    rm -f "$DEB_FILE"
+    echo "FreeTube instalado correctamente."
+else
+    echo "La instalación falló. El archivo no será eliminado."
+fi
+EOF
+                echo "" >> /tmp/software
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "freetube" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;
 
             "90")#carga la ayuda
                 clear
