@@ -284,20 +284,14 @@ do
                 echo "#rustdesk" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                 cat << 'EOF' >> /tmp/software
 # Obtener el último release (no solo el tag)
-echo "🔍 Buscando la última versión de RustDesk..."
+echo "Buscando la última versión de RustDesk..."
 LATEST_RELEASE_API="https://api.github.com/repos/rustdesk/rustdesk/releases/latest"
 LATEST_TAG=$(curl -s "$LATEST_RELEASE_API" | grep '"tag_name":' | cut -d '"' -f4)
-
-echo "📌 Último tag encontrado: $LATEST_TAG"
+echo "Último tag encontrado: $LATEST_TAG"
 
 # Buscar la URL del archivo .deb que contenga '86_64' y termine en '.deb'
 DEB_URL=$(curl -s "$LATEST_RELEASE_API" | \
   grep browser_download_url | grep '86_64' | grep '.deb"' | cut -d '"' -f4)
-
-if [ -z "$DEB_URL" ]; then
-  echo "❌ No se encontró un archivo .deb (x64) en la versión $LATEST_TAG"
-  exit 1
-fi
 
 # Si hay varios .deb (por ejemplo 32 y 64 bits), tomamos el primero que coincida
 DEB_URL=$(echo "$DEB_URL" | head -n 1)
@@ -305,8 +299,21 @@ DEB_URL=$(echo "$DEB_URL" | head -n 1)
 # Obtener el nombre del archivo
 DEB_FILE=$(basename "$DEB_URL")
 
-echo "⬇  Descargando: $DEB_FILE"
+echo "Descargando: $DEB_FILE"
 curl -L -O "$DEB_URL"
+
+# Instalar con gdebi sin preguntar
+echo "⚙  Instalando con gdebi..."
+sudo gdebi -n "$DEB_FILE"
+
+# Eliminar el archivo si la instalación fue exitosa
+if [ $? -eq 0 ]; then
+  echo "Eliminando archivo temporal: $DEB_FILE"
+  rm -f "$DEB_FILE"
+  echo "RustDesk instalado correctamente."
+else
+  echo "La instalación falló. El archivo no será eliminado."
+fi
 EOF
                 echo "" >> /tmp/software
                 #linea con el nombre del programa instalado para la comprobacion
