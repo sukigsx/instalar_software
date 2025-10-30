@@ -63,6 +63,7 @@ do
     echo -e "${azul} 16)${borra_colores} Keepass2                          Gestor de contraseñas."
     echo -e "${azul} 17)${borra_colores} Github Desktop                    Gestor grafico de Github."
     echo -e "${azul} 18)${borra_colores} Teamviwer                         Conexion remota."
+    echo -e "${azul} 19)${borra_colores} RustDesk                          Conexion remota."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -277,6 +278,46 @@ do
                 else
                     echo "❌ No se encontró el repositorio para teamviewer."; read p
                 fi
+                ;;
+
+            "19")#rustdesk
+                echo "#rustdesk" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                cat << 'EOF' >> /tmp/software
+# Obtener el último release (no solo el tag)
+echo "🔍 Buscando la última versión de RustDesk..."
+LATEST_RELEASE_API="https://api.github.com/repos/rustdesk/rustdesk/releases/latest"
+LATEST_TAG=$(curl -s "$LATEST_RELEASE_API" | grep '"tag_name":' | cut -d '"' -f4)
+
+echo "📌 Último tag encontrado: $LATEST_TAG"
+
+# Buscar la URL del archivo .deb que contenga '86_64' y termine en '.deb'
+DEB_URL=$(curl -s "$LATEST_RELEASE_API" | \
+  grep browser_download_url | grep '86_64' | grep '.deb"' | cut -d '"' -f4)
+
+if [ -z "$DEB_URL" ]; then
+  echo "❌ No se encontró un archivo .deb (x64) en la versión $LATEST_TAG"
+  exit 1
+fi
+
+# Si hay varios .deb (por ejemplo 32 y 64 bits), tomamos el primero que coincida
+DEB_URL=$(echo "$DEB_URL" | head -n 1)
+
+# Obtener el nombre del archivo
+DEB_FILE=$(basename "$DEB_URL")
+
+echo "⬇  Descargando: $DEB_FILE"
+curl -L -O "$DEB_URL"
+EOF
+                echo "" >> /tmp/software
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "rustdesk" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "90")#carga la ayuda
+                clear
+                cat $ruta_ejecucion/AyudaInstalacionSoftware
+                read pause
                 ;;
 
             "90") #Ayuda
