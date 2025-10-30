@@ -188,7 +188,7 @@ EOF
                 #linea con el nombre del programa instalado para la comprobacion
                 echo "freetube" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;
+                ;;
 
             "90")#carga la ayuda
                 clear
