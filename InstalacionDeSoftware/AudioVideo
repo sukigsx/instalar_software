@@ -156,9 +156,9 @@ do
 
             "9")#freetube
                 echo "#freetube" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                cat << 'EOF' > /tmp/software
+                cat << 'EOF' >> /tmp/software
 # Obtener el último tag publicado
-echo "🔍 Buscando la última versión de FreeTube..."
+echo "Buscando la última versión de FreeTube..."
 LATEST_TAG=$(curl -s https://api.github.com/repos/FreeTubeApp/FreeTube/tags | grep '"name":' | head -n 1 | cut -d '"' -f4)
 echo "📌 Último tag encontrado: $LATEST_TAG"
 
