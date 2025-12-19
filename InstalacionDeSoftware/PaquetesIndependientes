@@ -160,6 +160,7 @@ do
             ;;
 
         "7")#HarmonyMusic
+            sudo apt install mpv
             $navegador https://github.com/anandnet/Harmony-Music &>/dev/null
             ;;
 
