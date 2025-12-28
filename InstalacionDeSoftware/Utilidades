@@ -65,6 +65,7 @@ do
     echo -e "${azul} 18)${borra_colores} Teamviwer                         Conexion remota."
     echo -e "${azul} 19)${borra_colores} RustDesk                          Conexion remota."
     echo -e "${azul} 20)${borra_colores} Stacer                            Monitorizar y optimizar tu sistema Linux."
+    echo -e "${azul} 21)${borra_colores} Hidamari                          Herramienta para poner videos o webs como fondo pantalla."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -331,6 +332,22 @@ EOF
                     #linea con el nombre del programa instalado para la comprobacion
                     echo "stacer" >> /tmp/ComprobarSoftware
                     echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+                "21")#Hidamari
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Hidamari" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+
+                echo "sudo apt install flatpak -y" >> /tmp/software
+                echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
+                echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
+                echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
+                echo "flatpak install flathub io.github.jeffshee.Hidamari -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "org.freedesktop.Hidamari" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
 
