@@ -346,7 +346,7 @@ EOF
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "org.freedesktop.Hidamari" >> /tmp/ComprobarSoftware
+                echo "io.github.jeffshee.Hidamari" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
