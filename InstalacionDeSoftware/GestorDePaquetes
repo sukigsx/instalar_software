@@ -52,6 +52,7 @@ do
     echo -e "${azul}  4)${borra_colores} Flatpak                   Gestor de paquetes Flatpak.(se añadade a tu tienda de aplicaciones)"
     echo -e "${azul}  5)${borra_colores} Appimage                  Gestor de paquetes Appimages."
     echo -e "${azul}  6)${borra_colores} Homebrew                  Gestor de paquetes Homebrew.(se instala por ejecucion de script en sh)"
+    echo -e "${azul}  7)${borra_colores} Nala                      Frontend moderno para apt, herramienta vitaminada."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -132,6 +133,17 @@ do
 
                 #linea con el nombre del programa instalado para la comprobacion
                 echo 'brew' >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+                "7")#nala
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Nala" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y nala" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "nala" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 

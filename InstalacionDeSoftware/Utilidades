@@ -65,7 +65,6 @@ do
     echo -e "${azul} 18)${borra_colores} Teamviwer                         Conexion remota."
     echo -e "${azul} 19)${borra_colores} RustDesk                          Conexion remota."
     echo -e "${azul} 20)${borra_colores} Stacer                            Monitorizar y optimizar tu sistema Linux."
-    echo -e "${azul} 21)${borra_colores} Pandoc                            Navaja suiza para la conversion de ficheros."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -334,16 +333,6 @@ EOF
                     echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
-                "21")#pandoc
-                    #monitorizar y optimizar tu sistema Linux
-                    echo "#pandoc" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "sudo apt install pandoc" >> /tmp/software
-                    echo "" >> /tmp/software
-
-                    #linea con el nombre del programa instalado para la comprobacion
-                    echo "pandoc" >> /tmp/ComprobarSoftware
-                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
 
             "90")#carga la ayuda
                 clear

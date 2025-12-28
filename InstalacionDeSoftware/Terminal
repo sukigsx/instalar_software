@@ -58,6 +58,10 @@ do
     echo -e "${azul} 11)${borra_colores} Yakuake                   Otra terminal."
     echo -e "${azul} 12)${borra_colores} Terminal gnome            Otra terminal."
     echo -e "${azul} 13)${borra_colores} Terminator                Otra terminal."
+    echo -e "${azul} 14)${borra_colores} Pandoc                    Navaja suiza para la conversion de ficheros."
+    echo -e "${azul} 15)${borra_colores} Duf                       Herramienta vitaminada del comando du para discos."
+    echo -e "${azul} 16)${borra_colores} Broot                     Explorador de archivos interactivo."
+    echo -e "${azul} 17)${borra_colores} Cava.                     Visualizador de sonido por barras en la terminal."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -208,6 +212,50 @@ do
 
                 #linea con el nombre del programa instalado para la comprobacion
                 echo "terminator" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "14")#pandoc
+                    #monitorizar y optimizar tu sistema Linux
+                    echo "#pandoc" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "sudo apt install -y pandoc" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "pandoc" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "15")#duf
+                    #monitorizar y optimizar tu sistema Linux
+                    echo "#duf" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "sudo apt install -y duf" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "duf" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "16")#broot
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#broot" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y broot" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "broot" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+            "17")#cava
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#cava" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y cava" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "cava" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
