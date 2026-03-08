@@ -142,9 +142,7 @@ else
     echo ""
     echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
     echo ""
-    sleep 3
-    clear
-    ctrl_c
+    exec exit
 fi
 
 
