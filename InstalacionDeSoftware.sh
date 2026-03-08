@@ -389,21 +389,3 @@ else
     fi
 fi
 
-clear
-menu_info
-
-
-
-
-#configura el fichero de extrep para poder metes repositorios no oficales
-#CONFIG_FILE="/etc/extrepo/config.yaml"
-#
-# Verificar si el fichero existe
-#if [[ -f "$CONFIG_FILE" ]]; then
-#    # Usar sed para asegurar que las líneas empiecen con "-"
-#    sudo sed -i -E \
-#        -e 's/^#?[[:space:]]*- main/- main/' \
-#        -e 's/^#?[[:space:]]*- contrib/- contrib/' \
-#        -e 's/^#?[[:space:]]*- non-free/- non-free/' \
-#        "$CONFIG_FILE"
-#fi
