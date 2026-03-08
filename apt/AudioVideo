@@ -39,7 +39,7 @@ echo ""
 echo -e " ${verde} - INSTALACION AUDIO VIDEO -${borra_colores}"
 echo ""
 }
-echo "apt"
+echo "apt"; read p
 while :
 do
     clear
