@@ -37,6 +37,7 @@ nombre_carpeta_repositorio="instalar_software" #poner el nombre de la carpeta cu
         [jq]="jq"
         [sed]="sed"
         [wget]="wget"
+        [figlet]="figlet"
         [xdg-user-dir]="xdg-user-dirs" #este es para que pueda pillar la ruta del escritorio
     )
 
