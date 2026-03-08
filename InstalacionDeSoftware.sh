@@ -359,6 +359,11 @@ if [ $conexion = "SI" ]; then
             export software="SI"
             export conexion="NO"
             export actualizado="No hay conexion, No se puede instalar nada."
+            echo ""
+            echo -e "${rojo} No hay conexion, No se puede instalar nada.${borra_colores}"
+            echo ""
+            echo -e "${azul }GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+            echo ""
             exit
             #bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
         else
@@ -372,6 +377,11 @@ else
         export software="SI"
         export conexion="NO"
         export actualizado="No hay conexion, No se puede instalar nada."
+        echo ""
+        echo -e "${rojo} No hay conexion, No se puede instalar nada.${borra_colores}"
+        echo ""
+        echo -e "${azul }GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+        echo ""
         exit
         #bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
     else
