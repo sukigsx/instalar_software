@@ -282,6 +282,40 @@ terminal_bash() {
     fi
 }
 
+actualizar(){
+clear
+menu_info
+echo -e "${azul} Se recomienda:${borra_colores}"
+echo -e "${amarillo}   Actualizar el sistema${borra_colores}"
+echo -e "${amarillo}   Instalar extrepo para nuevos repositorios${borra_colores}"
+echo -e ""
+read -p " Quieres hacerlo (S/n): " sn
+if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
+    sudo apt update
+    sudo apt -y upgrade
+    sudo $instalar extrepo
+    #configura el fichero de extrep para poder metes repositorios no oficales
+    CONFIG_FILE="/etc/extrepo/config.yaml"
+
+    #Verificar si el fichero existe
+    if [[ -f "$CONFIG_FILE" ]]; then
+        # Usar sed para asegurar que las líneas empiecen con "-"
+        sudo sed -i -E \
+        -e 's/^#?[[:space:]]*- main/- main/' \
+        -e 's/^#?[[:space:]]*- contrib/- contrib/' \
+        -e 's/^#?[[:space:]]*- non-free/- non-free/' \
+        "$CONFIG_FILE"
+    fi
+else
+    echo ""
+    echo -e "${rojo} No es posible continuar.·{borra_colores}"
+    echo -e "${amarillo} Puede ocasionar fallos en la instalacion de paquetes.${borra_colores}"
+    echo ""
+    echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+    echo ""
+    exec exit
+fi
+}
 #logica de arranque
 #variables de resultado $conexion $software $actualizado
 #funciones actualizar_script, conexion, software_necesario
@@ -304,6 +338,7 @@ clear
 menu_info
 check_root
 conexion
+actualizar
 if [ $conexion = "SI" ]; then
     actualizar_script
     if [ $actualizado = "SI" ]; then
