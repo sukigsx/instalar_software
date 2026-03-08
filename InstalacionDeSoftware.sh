@@ -359,7 +359,7 @@ if [ $conexion = "SI" ]; then
             export software="SI"
             export conexion="NO"
             export actualizado="No hay conexion, No se puede instalar nada."
-            ctrl_c
+            exit
             #bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
         else
             echo ""
@@ -372,7 +372,7 @@ else
         export software="SI"
         export conexion="NO"
         export actualizado="No hay conexion, No se puede instalar nada."
-        ctrl_c
+        exit
         #bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
     else
         echo ""
