@@ -362,7 +362,7 @@ if [ $conexion = "SI" ]; then
             echo ""
             echo -e "${rojo} No hay conexion, No se puede instalar nada.${borra_colores}"
             echo ""
-            echo -e "${azul }GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+            echo -e "${azul}GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
             echo ""
             exit
             #bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
@@ -380,7 +380,7 @@ else
         echo ""
         echo -e "${rojo} No hay conexion, No se puede instalar nada.${borra_colores}"
         echo ""
-        echo -e "${azul }GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+        echo -e "${azul}GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
         echo ""
         exit
         #bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
