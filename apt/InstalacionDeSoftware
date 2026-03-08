@@ -112,9 +112,11 @@ echo 'echo ""' >> /tmp/comprobacion
 echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
 }
 
-echo -e " Se recomienda:"
-echo -e "   Actualizar el sistema"
-echo -e "   Instalar extrepo para nuevos repositorios"
+clear
+menu_info
+echo -e "${azul} Se recomienda:${borra_colores}"
+echo -e "${amarillo}   Actualizar el sistema${borra_colores}"
+echo -e "${amarillo}   Instalar extrepo para nuevos repositorios${borra_colores}"
 echo -e ""
 read -p " Quieres hacerlo: " sn
 if [ $sn = "s" ]; then

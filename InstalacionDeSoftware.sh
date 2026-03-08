@@ -302,8 +302,8 @@ terminal_bash() {
 
 clear
 menu_info
-conexion
 check_root
+conexion
 if [ $conexion = "SI" ]; then
     actualizar_script
     if [ $actualizado = "SI" ]; then
