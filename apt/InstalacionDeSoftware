@@ -137,6 +137,12 @@ if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
     fi
 else
     echo ""
+    echo -e "${rojo} No es posible continuar.·{borra_colores}"
+    echo -e "${amarillo} Puede ocasionar fallos en la instalacion de paquetes.${borra_colores}"
+    echo ""
+    echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+    echo ""
+    exit
 fi
 
 
@@ -297,8 +303,11 @@ do
                 echo ""
                 echo -e "${verde} INSTALANDO.....${borra_colores}"
                 echo ""
-                konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/software
-                konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/comprobacion
+                #konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/software
+                #konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/comprobacion
+                bash /tmp/software
+                bash /tmp/comprobacion
+
 
                 #borramos los repositorios duplicados
                 # Carpeta que quieres analizar
