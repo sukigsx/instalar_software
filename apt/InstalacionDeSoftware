@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# PAUQETERIA APT
+
 ruta_ejecucion=$(dirname "$(readlink -f "$0")")
 ruta_escritorio=$(xdg-user-dir DESKTOP)
 
@@ -58,10 +60,7 @@ fi
 }
 
 
-#Elimina el fichero /tmp/software donde mete la informacion de los paquetes a instalar.
-rm /tmp/software 2>/dev/null
-rm /tmp/ComprobarSoftware 2>/dev/null
-rm /tmp/comprobacion 2>/dev/null
+
 
 crear_ficheros_instalacion(){
 #crea el fichero de instalacion de software
@@ -112,6 +111,38 @@ echo '' >> /tmp/comprobacion
 echo 'echo ""' >> /tmp/comprobacion
 echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
 }
+
+echo -e " Se recomienda:"
+echo -e "   Actualizar el sistema"
+echo -e "   Instalar extrepo para nuevos repositorios"
+echo -e ""
+read -p " Quieres hacerlo: " sn
+if [ $sn = "s" ]; then
+    echo "aa"
+    sudo apt update
+    sudo apt -y upgrade
+    sudo $instalar extrepo
+    #configura el fichero de extrep para poder metes repositorios no oficales
+    CONFIG_FILE="/etc/extrepo/config.yaml"
+
+    #Verificar si el fichero existe
+    if [[ -f "$CONFIG_FILE" ]]; then
+        # Usar sed para asegurar que las líneas empiecen con "-"
+        sudo sed -i -E \
+        -e 's/^#?[[:space:]]*- main/- main/' \
+        -e 's/^#?[[:space:]]*- contrib/- contrib/' \
+        -e 's/^#?[[:space:]]*- non-free/- non-free/' \
+        "$CONFIG_FILE"
+    fi
+else
+    echo "nooo"
+fi
+read p
+
+#Elimina el fichero /tmp/software donde mete la informacion de los paquetes a instalar.
+rm /tmp/software 2>/dev/null
+rm /tmp/ComprobarSoftware 2>/dev/null
+rm /tmp/comprobacion 2>/dev/null
 
 crear_ficheros_instalacion
 while :

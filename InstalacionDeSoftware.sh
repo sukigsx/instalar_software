@@ -7,7 +7,7 @@ export NombreScript="Instalacion de software"
 export DescripcionDelScript="Software de instalacion de paquetes, para diversos sistemas Linux"
 export Correo="scripts@mbbsistemas.es"
 export Web="https://repositorio.mbbsistemas.es"
-export version="2. Actualizado a base debian13 y nuevo software añadido."
+export version="2.0 Actualizado a base debian13 y nuevo software añadido."
 conexion="Sin comprobar"
 software="Sin comprobar"
 actualizado="No se ha podido comprobar la actualizacion del script"
@@ -303,6 +303,7 @@ terminal_bash() {
 clear
 menu_info
 conexion
+check_root
 if [ $conexion = "SI" ]; then
     actualizar_script
     if [ $actualizado = "SI" ]; then
