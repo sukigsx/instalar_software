@@ -118,9 +118,8 @@ echo -e "${azul} Se recomienda:${borra_colores}"
 echo -e "${amarillo}   Actualizar el sistema${borra_colores}"
 echo -e "${amarillo}   Instalar extrepo para nuevos repositorios${borra_colores}"
 echo -e ""
-read -p " Quieres hacerlo: " sn
-if [ $sn = "s" ]; then
-    echo "aa"
+read -p " Quieres hacerlo (S/n): " sn
+if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
     sudo apt update
     sudo apt -y upgrade
     sudo $instalar extrepo
@@ -137,9 +136,9 @@ if [ $sn = "s" ]; then
         "$CONFIG_FILE"
     fi
 else
-    echo "nooo"
+    echo ""
 fi
-read p
+
 
 #Elimina el fichero /tmp/software donde mete la informacion de los paquetes a instalar.
 rm /tmp/software 2>/dev/null
