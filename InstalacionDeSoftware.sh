@@ -227,43 +227,36 @@ if command -v apt >/dev/null 2>&1; then
     echo -e "${verde} Sistema de paquetería detectado: APT (Debian, Ubuntu, Mint, etc.)${borra_colores}"
     instalar="sudo apt install -y "
     paqueteria="apt"
-    sistema="apt"
 
 elif command -v dnf >/dev/null 2>&1; then
     echo -e "${cerde} Sistema de paquetería detectado: DNF (Fedora, RHEL, Rocky, AlmaLinux)${borra_colores}"
     instalar="sudo dnf install -y "
     paqueteria="dnf"
-    sistema="dnf"
 
 elif command -v yum >/dev/null 2>&1; then
     echo -e "${verde}Sistema de paquetería detectado: YUM (CentOS, RHEL antiguos)${borra_colores}"
     instalar="sudo yum install -y "
     paqueteria="yum"
-    sistemas="yum"
 
 elif command -v pacman >/dev/null 2>&1; then
     echo -e "${verde} Sistema de paquetería detectado: Pacman (Arch Linux, Manjaro)${borra_colores}"
     instalar="sudo pacman -S --noconfirm "
     paqueteria="pacman"
-    sistema="pacman"
 
 elif command -v zypper >/dev/null 2>&1; then
     echo -e "${verde} Sistema de paquetería detectado: Zypper (openSUSE)${borra_colores}"
     instalar="sudo zypper install -y "
     paqueteria="zypper"
-    sistema="zypper"
 
 elif command -v apk >/dev/null 2>&1; then
     echo -e "${verde}Sistema de paquetería detectado: APK (Alpine Linux)${borra_colores}"
     instalar="sudo apk add --no-interactive "
     paqueteria="apk"
-    sistema="apk"
 
 elif command -v emerge >/dev/null 2>&1; then
     echo -e "${verde}Sistema de paquetería detectado: Portage (Gentoo)${borra_colores}"
     instalar="sudo emerge -av "
     paqueteria="emerge"
-    sistema="emerge"
 
 else
     echo -e "${amarillo} No se pudo detectar un sistema de paquetería conocido.${borra_colores}"
@@ -319,7 +312,7 @@ if [ $conexion = "SI" ]; then
             export software="SI"
             export conexion="SI"
             export actualizado="SI"
-            bash $ruta_ejecucion/InstalacionDeSoftware/InstalacionDeSoftware
+            bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
         else
             echo ""
         fi
@@ -330,7 +323,7 @@ if [ $conexion = "SI" ]; then
             export software="SI"
             export conexion="NO"
             export actualizado="No se ha podido comprobar la actualizacion del script"
-            bash $ruta_ejecucion/InstalacionDeSoftware/InstalacionDeSoftware
+            bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
         else
             echo ""
         fi
@@ -341,7 +334,7 @@ else
         export software="SI"
         export conexion="NO"
         export actualizado="No se ha podido comprobar la actualizacion del script"
-        bash $ruta_ejecucion/$sistema/InstalacionDeSoftware
+        bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
     else
         echo ""
     fi
