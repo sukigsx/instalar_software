@@ -1,4 +1,8 @@
 #!/bin/bash
+
+echo "apk"
+read p
+
 ruta_ejecucion=$(dirname "$(readlink -f "$0")")
 ruta_escritorio=$(xdg-user-dir DESKTOP)
 
