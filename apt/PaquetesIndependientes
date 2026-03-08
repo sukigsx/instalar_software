@@ -98,7 +98,7 @@ do
     echo -e "${azul}  5)${borra_colores} VirtualBox               Sostware gratuito para crear maquinas virtuales."
     echo -e "${azul}  6)${borra_colores} Script de Sukigsx        Instalador de scripts de Sukigsx. (al seleccionar se instala automatico)"
     echo -e "${azul}  7)${borra_colores} HarmonyMusic             Reproductor de musica en linea libre de anuncios."
-    echo -e "${azul}  8)${borra_colores} Libre                    opcion libre."
+    echo -e "${azul}  8)${borra_colores} Freetube                 Reproductor de videos de Youtube sin anuncios."
     echo -e ""
     echo -e "${azul} 60)${borra_colores} Borrar los paquetes descargados."
     echo -e "${azul} 70)${borra_colores} Instalar los paquetes descargados."
