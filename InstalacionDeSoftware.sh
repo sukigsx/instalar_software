@@ -27,12 +27,12 @@ nombre_carpeta_repositorio="instalar_software" #poner el nombre de la carpeta cu
 # Asociamos comandos con el paquete que los contiene [comando a comprobar]="paquete a instalar"
     declare -A requeridos
     requeridos=(
-        [git]="git"#
-        [nano]="nano"#
-        [diff]="diff"#
+        [git]="git"
+        [nano]="nano"
+        [diff]="diff"
         [sudo]="sudo"
-        [ping]="ping"#
-        [curl]="curl"#
+        [ping]="ping"
+        [curl]="curl"
         [grep]="grep"
         [jq]="jq"
         [sed]="sed"
