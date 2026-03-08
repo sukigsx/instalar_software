@@ -225,42 +225,42 @@ echo ""
 
 if command -v apt >/dev/null 2>&1; then
     echo -e "${verde} Sistema de paquetería detectado: APT (Debian, Ubuntu, Mint, etc.)${borra_colores}"
-    instalar="sudo apt install -y "
-    paqueteria="apt"
+    export instalar="sudo apt install -y "
+    export paqueteria="apt"
 
 elif command -v dnf >/dev/null 2>&1; then
     echo -e "${cerde} Sistema de paquetería detectado: DNF (Fedora, RHEL, Rocky, AlmaLinux)${borra_colores}"
-    instalar="sudo dnf install -y "
-    paqueteria="dnf"
+    export instalar="sudo dnf install -y "
+    export paqueteria="dnf"
 
 elif command -v yum >/dev/null 2>&1; then
     echo -e "${verde}Sistema de paquetería detectado: YUM (CentOS, RHEL antiguos)${borra_colores}"
-    instalar="sudo yum install -y "
-    paqueteria="yum"
+    export instalar="sudo yum install -y "
+    export paqueteria="yum"
 
 elif command -v pacman >/dev/null 2>&1; then
     echo -e "${verde} Sistema de paquetería detectado: Pacman (Arch Linux, Manjaro)${borra_colores}"
-    instalar="sudo pacman -S --noconfirm "
-    paqueteria="pacman"
+    export instalar="sudo pacman -S --noconfirm "
+    export paqueteria="pacman"
 
 elif command -v zypper >/dev/null 2>&1; then
     echo -e "${verde} Sistema de paquetería detectado: Zypper (openSUSE)${borra_colores}"
-    instalar="sudo zypper install -y "
-    paqueteria="zypper"
+    export instalar="sudo zypper install -y "
+    export paqueteria="zypper"
 
 elif command -v apk >/dev/null 2>&1; then
     echo -e "${verde}Sistema de paquetería detectado: APK (Alpine Linux)${borra_colores}"
-    instalar="sudo apk add --no-interactive "
-    paqueteria="apk"
+    export instalar="sudo apk add --no-interactive "
+    export paqueteria="apk"
 
 elif command -v emerge >/dev/null 2>&1; then
     echo -e "${verde}Sistema de paquetería detectado: Portage (Gentoo)${borra_colores}"
-    instalar="sudo emerge -av "
-    paqueteria="emerge"
+    export instalar="sudo emerge -av "
+    export paqueteria="emerge"
 
 else
     echo -e "${amarillo} No se pudo detectar un sistema de paquetería conocido.${borra_colores}"
-    paqueteria="${rojo}Desconocido${borra_colores}"
+    export paqueteria="${rojo}Desconocido${borra_colores}"
 fi
 sleep 2
 }
