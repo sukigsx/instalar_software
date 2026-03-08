@@ -338,7 +338,6 @@ clear
 menu_info
 check_root
 conexion
-actualizar
 if [ $conexion = "SI" ]; then
     actualizar_script
     if [ $actualizado = "SI" ]; then
@@ -348,6 +347,7 @@ if [ $conexion = "SI" ]; then
             export software="SI"
             export conexion="SI"
             export actualizado="SI"
+            actualizar
             bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
         else
             echo ""
@@ -358,19 +358,22 @@ if [ $conexion = "SI" ]; then
         if [ $software = "SI" ]; then
             export software="SI"
             export conexion="NO"
-            export actualizado="No se ha podido comprobar la actualizacion del script"
-            bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
+            export actualizado="No hay conexion, No se puede instalar nada."
+            ctrl_c
+            #bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
         else
             echo ""
         fi
     fi
 else
+    terminal_bash
     software_necesario
     if [ $software = "SI" ]; then
         export software="SI"
         export conexion="NO"
-        export actualizado="No se ha podido comprobar la actualizacion del script"
-        bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
+        export actualizado="No hay conexion, No se puede instalar nada."
+        ctrl_c
+        #bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
     else
         echo ""
     fi
