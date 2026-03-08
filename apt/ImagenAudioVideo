@@ -39,12 +39,12 @@ echo ""
 echo -e " ${verde} - INSTALACION AUDIO VIDEO -${borra_colores}"
 echo ""
 }
-echo "apt"; read p
+
 while :
 do
     clear
     menu_info
-    echo -e " Instalacion de software Audio-Video       Descripcion."
+    echo -e " Instalacion de software Imagen-Audio-Video       Descripcion."
     echo -e ""
     echo -e "${azul}   1)${borra_colores} Vlc             Reproductor de todo."
     echo -e "${azul}   2)${borra_colores} Spotify         Plataforma de musica."

@@ -126,7 +126,7 @@ do
     echo -e " Categorias principales         Descripcion."
     echo -e ""
     echo -e "${azul}  1)${borra_colores} NAVEGADORES                Los principales navegadores para internet."
-    echo -e "${azul}  2)${borra_colores} AUDIO - VIDEO              Software relacionado el el Audio y el Video."
+    echo -e "${azul}  2)${borra_colores} Imagen-AUDIO - VIDEO       Software relacionado el el Audio y el Video."
     echo -e "${azul}  3)${borra_colores} ENTORNOS GRAFICOS LINUX    Los principales entornos graficos para linux basados en debian."
     echo -e "${azul}  4)${borra_colores} UTILIDADES                 Cantidad de utilidades"
     echo -e "${azul}  5)${borra_colores} OFIMATICA                  Software dedicado a la ofimatica"
@@ -156,7 +156,7 @@ do
             ;;
 
         "2") #audio -video
-            bash $ruta_ejecucion/AudioVideo
+            bash $ruta_ejecucion/ImagenAudioVideo
             ;;
 
         "3") #Entorno graficos linux
