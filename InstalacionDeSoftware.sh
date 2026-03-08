@@ -284,8 +284,8 @@ terminal_bash() {
 }
 
 actualizar(){
-clear
-menu_info
+#clear
+#menu_info
 echo -e "${azul} Se recomienda:${borra_colores}"
 echo -e "${amarillo}   Actualizar el sistema${borra_colores}"
 echo -e "${amarillo}   Instalar extrepo para nuevos repositorios${borra_colores}"
