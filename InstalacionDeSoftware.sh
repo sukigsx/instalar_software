@@ -3,8 +3,8 @@
 # con export son las variables necesarias para exportar al los siguientes script
 #variables para el menu_info
 
-export NombreScript="Ejecutar_scripts"
-export DescripcionDelScript="Control interactivo de tus scripts"
+export NombreScript="Instalacion de software"
+export DescripcionDelScript="Software de instalacion de paquetes, para diversos sistemas Linux"
 export Correo="scripts@mbbsistemas.es"
 export Web="https://repositorio.mbbsistemas.es"
 export version="2. Actualizado a base debian13 y nuevo software añadido."
