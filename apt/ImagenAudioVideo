@@ -156,14 +156,19 @@ do
                 ;;
 
             "9")#freetube
-                echo ""
-                echo -e "${verde} Para instalar Freetube:${borra_colores}"
-                echo ""
-                echo -e "   Utiliza la opcion:"
-                echo ""
-                echo -e "       13 del menu principal, PAQUETES INDEPENDIENTES"
-                echo ""
-                read -p " Pulsa una tecla para continuar" pause
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#Hidamari" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+
+                echo "sudo apt install flatpak -y" >> /tmp/software
+                echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
+                echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
+                echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
+                echo "flatpak install flathub io.freetubeapp.FreeTube -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "io.freetubeapp.FreeTube" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
             "10")#harmonymusic
