@@ -159,7 +159,7 @@ else
     else
         echo ""
         echo -e "${amarillo} No se encuentra${borra_colores} YAY${amarillo} instalado en tu sistema${borra_colores}"
-        echo -e "${amarillo} No se puede continuar. Hace falta${borra_colores} Yay${amarillo} para instalar software${borra_colores}"
+        echo -e "${amarillo} No se puede continuar. Hace falta${borra_colores} YAY${amarillo} para instalar software${borra_colores}"
         echo ""
         echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
         echo ""
