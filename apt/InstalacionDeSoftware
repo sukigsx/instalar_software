@@ -137,13 +137,16 @@ if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
         "$CONFIG_FILE"
     fi
 else
-    echo ""
-    echo -e "${rojo} No es posible continuar.${borra_colores} PUEDES TENER PROBLEMAS SI NO INSTALAS"
-    echo -e "${amarillo} Puede ocasionar fallos en la instalacion de paquetes.${borra_colores}"
-    echo ""
-    echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
-    echo ""
-    real p
+    if ! command -v extrepo >/dev/null 2>&1; then
+        echo ""
+        echo -e "${rojo} No es posible continuar.${borra_colores}"
+        echo -e "${amarillo} Puede ocasionar fallos en la instalacion de paquetes${borra_colores}"
+        echo -e "${amarillo} sino esta instalado extrepo.${borra_colores}"
+        echo ""
+        echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+        echo ""
+        exit
+    fi
 fi
 }
 
