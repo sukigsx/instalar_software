@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo "pacman"
-read p
-
 ruta_ejecucion=$(dirname "$(readlink -f "$0")")
 ruta_escritorio=$(xdg-user-dir DESKTOP)
 
@@ -142,7 +139,11 @@ if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
         else
             echo ""
             echo -e "${amarillo} No se encuentra${borra_colores} YAY${amarillo} instalado en tu sistema${borra_colores}"
-            ctrl_c
+            echo -e "${amarillo} No se puede continuar.${borra_colores}"
+            echo ""
+            echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+            echo ""
+            exit
         fi
     fi
 else
