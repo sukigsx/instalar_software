@@ -118,6 +118,45 @@ echo 'echo ""' >> /tmp/comprobacion
 echo 'read -p " Pulsa una tecla para continuar." pause' >> /tmp/comprobacion
 }
 
+actualizar(){
+clear
+menu_info
+echo -e "${azul} Se recomienda:${borra_colores}"
+echo -e "${amarillo}   Actualizar el sistema${borra_colores}"
+echo -e "${amarillo}   Instalar YAY para instalar software${borra_colores}"
+echo -e ""
+read -p " Quieres hacerlo (S/n): " sn
+if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
+    if command -v yay >/dev/null 2>&1; then
+        yay --noconfirm
+    else
+        sudo pacman -S --needed base-devel git
+        cd
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+        cd ..
+        sudo rm -r yay
+        if command -v yay >/dev/null 2>&1; then
+            yay --noconfirm
+        else
+            echo ""
+            echo -e "${amarillo} No se encuentra${borra_colores} YAY${amarillo} instalado en tu sistema${borra_colores}"
+            ctrl_c
+        fi
+    fi
+else
+    echo ""
+    echo -e "${rojo} Es recomendado actualizar tu sistema.${borra_colores}"
+    echo -e "${rojoo} Puede ocasionar fallos en la instalacion de paquetes.${borra_colores}"
+    echo ""
+    echo -e "${amarillo} Pulsa una tecla para continuar o (ctrl + c para salir)${borra_colores}"
+    echo ""
+    read p
+fi
+}
+
+actualizar
 crear_ficheros_instalacion
 while :
 do
