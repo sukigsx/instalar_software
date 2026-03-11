@@ -140,28 +140,32 @@ if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
         else
             echo ""
             echo -e "${amarillo} No se encuentra${borra_colores} YAY${amarillo} instalado en tu sistema${borra_colores}"
-            echo -e "${amarillo} No se puede continuar.${borra_colores}"
+            echo -e "${amarillo} No se puede continuar. Hace falta${borra_colores} Yay${amarillo} para instalar software${borra_colores}"
             echo ""
             echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
-            echo ""; read p
+            echo ""
             exit
         fi
     fi
 else
     if command -v yay >/dev/null 2>&1; then
-        yay --noconfirm
+        echo ""
+        echo -e "${rojo} Es recomendado actualizar tu sistema.${borra_colores}"
+        echo -e "${rojoo} Puede ocasionar fallos en la instalacion de paquetes.${borra_colores}"
+        echo ""
+        echo -e "${amarillo} Pulsa una tecla para continuar o (ctrl + c para salir)${borra_colores}"
+        echo ""
+        read p
     else
         echo ""
         echo -e "${amarillo} No se encuentra${borra_colores} YAY${amarillo} instalado en tu sistema${borra_colores}"
-        ctrl_c
+        echo -e "${amarillo} No se puede continuar. Hace falta${borra_colores} Yay${amarillo} para instalar software${borra_colores}"
+        echo ""
+        echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+        echo ""
+        exit
     fi
-    echo ""
-    echo -e "${rojo} Es recomendado actualizar tu sistema.${borra_colores}"
-    echo -e "${rojoo} Puede ocasionar fallos en la instalacion de paquetes.${borra_colores}"
-    echo ""
-    echo -e "${amarillo} Pulsa una tecla para continuar o (ctrl + c para salir)${borra_colores}"
-    echo ""
-    read p
+
 fi
 }
 
