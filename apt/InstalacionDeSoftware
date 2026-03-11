@@ -118,11 +118,43 @@ menu_info
 echo -e "${azul} Se recomienda:${borra_colores}"
 echo -e "${amarillo}   Actualizar el sistema${borra_colores}"
 echo -e "${amarillo}   Instalar extrepo para nuevos repositorios${borra_colores}"
+echo -e "${amarillo}   Incluir repositorios de debian${borra_colores}"
 echo -e ""
 read -p " Quieres hacerlo (S/n): " sn
 if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
+    #añade los repositorios de debian
+    FILE="/etc/apt/sources.list"
+
+    add_repo () {
+    LINE="$1"
+    if ! grep -Fxq "$LINE" "$FILE"; then
+        echo "$LINE" | sudo tee -a "$FILE" > /dev/null
+        echo -e "${verde} Añadido:${borra_colores} $LINE${verde} OK"
+    else
+        echo -e "${amarillo} Ya existe:${borra_colores} $LINE"
+    fi
+    }
+
+    add_repo "deb https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
+    add_repo "deb https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
+    add_repo "deb http://deb.debian.org/debian/ bookworm main"
+    add_repo "deb http://deb.debian.org/debian/ bookworm-updates main"
+    add_repo "deb http://security.debian.org/debian-security bookworm-security main"
+    sleep 3
+
+    #actualiza el sistema
     sudo apt update
     sudo apt -y upgrade
+
+    #instala extrepo
     sudo $instalar extrepo
     #configura el fichero de extrep para poder metes repositorios no oficales
     CONFIG_FILE="/etc/extrepo/config.yaml"
@@ -136,7 +168,22 @@ if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
         -e 's/^#?[[:space:]]*- non-free/- non-free/' \
         "$CONFIG_FILE"
     fi
+
 else
+    add_repo "deb https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
+    add_repo "deb https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
+    add_repo "deb http://deb.debian.org/debian/ bookworm main"
+    add_repo "deb http://deb.debian.org/debian/ bookworm-updates main"
+    add_repo "deb http://security.debian.org/debian-security bookworm-security main"
+    sleep 3
     if ! command -v extrepo >/dev/null 2>&1; then
         echo ""
         echo -e "${rojo} No es posible continuar.${borra_colores}"
