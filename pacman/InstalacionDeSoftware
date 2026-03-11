@@ -143,7 +143,7 @@ if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
             echo -e "${amarillo} No se puede continuar.${borra_colores}"
             echo ""
             echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
-            echo ""
+            echo ""; read p
             exit
         fi
     fi
