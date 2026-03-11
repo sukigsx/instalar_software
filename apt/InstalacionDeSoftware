@@ -134,8 +134,8 @@ if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
         echo -e "${amarillo} Ya existe:${borra_colores} $LINE"
     fi
     }
-    echo -e "${azul} Comprobando repositorios${borra_colores}"
     echo ""
+    echo -e "${azul} Comprobando repositorios${borra_colores}"
     add_repo "deb https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
     add_repo "# deb-src https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
     add_repo "deb https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
@@ -183,8 +183,8 @@ else
         echo -e "${amarillo} Ya existe:${borra_colores} $LINE"
     fi
     }
-    echo -e "${azul} Comprobando repositorios${borra_colores}"
     echo ""
+    echo -e "${azul} Comprobando repositorios${borra_colores}"
     add_repo "deb https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
     add_repo "# deb-src https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
     add_repo "deb https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
