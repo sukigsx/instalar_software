@@ -154,6 +154,7 @@ if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
     #actualiza el sistema
     sudo apt update
     sudo apt -y upgrade
+    sudo apt install software-properties-common -y
 
     #instala extrepo
     sudo $instalar extrepo
@@ -198,6 +199,7 @@ else
     add_repo "deb http://deb.debian.org/debian/ bookworm main"
     add_repo "deb http://deb.debian.org/debian/ bookworm-updates main"
     add_repo "deb http://security.debian.org/debian-security bookworm-security main"
+    sudo apt install software-properties-common -y
     sleep 3
     if ! command -v extrepo >/dev/null 2>&1; then
         echo ""
