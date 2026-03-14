@@ -1,5 +1,12 @@
 #!/bin/bash
-ruta_descargas=$(xdg-user-dir DOWNLOAD)
+#ruta_descargas=$(xdg-user-dir DOWNLOAD)
+
+for d in "$HOME/Descargas" "$HOME/Downloads" "$HOME/download" "$HOME/descargas"; do
+    [ -d "$d" ] && echo "$d"
+done
+
+ruta_descargas=$d
+
 ruta_ejecucion=$(dirname "$(readlink -f "$0")")
 
 #colores
