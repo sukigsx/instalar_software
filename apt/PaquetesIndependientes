@@ -42,7 +42,7 @@ echo ""
 
 listado_paquetes_descargados(){
 if [ "$(ls -A $ruta_descargas/*.deb 2>/dev/null)" ]; then
-    listado_paquetes=$(ls -1 /home/sukigsx/Descargas/*.deb | xargs -n1 basename | sed 's/^/ - /')
+    listado_paquetes=$(ls -1 $ruta_descargas/*.deb | xargs -n1 basename | sed 's/^/ - /')
     existen_deb="si"
 else
     listado_paquetes=" No tienes paquetes para instalar."
