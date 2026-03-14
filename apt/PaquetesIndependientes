@@ -168,13 +168,13 @@ do
             ;;
 
         "6")#Script de Sukigsx
-            git clone https://github.com/sukigsx/ejecutar_scripts.git /tmp/ejecutar_scripts/ >/dev/null 2>&1
+            git clone https://github.com/sukigsx/ejecutar_scripts.git /tmp/ejecutar_scripts/ #>/dev/null 2>&1
             cd /tmp/ejecutar_scripts
             bash instalar.sh
             cd ..
-            sudo rm -r ejecutar_scripts
+            #sudo rm -r ejecutar_scripts
 
-            echo -e "${verde}\n Script de sukigsx, Instalado correctamente.\n\n Forma de jecucion::\n Abre una terminal y escribe (scripts)${borra_colores}"; sleep 2
+            echo -e "${verde}\n Script de sukigsx, Instalado correctamente.\n\n Forma de jecucion::\n Abre una terminal y escribe (scripts)${borra_colores}"; sleep 2; read p
             ;;
 
         "7")#HarmonyMusic
