@@ -65,7 +65,7 @@ do
                 echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
                 echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
                 echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
-                echo "flatpak install flathub org.telegram.desktop -y" >> /tmp/software
+                echo "sudo flatpak install flathub org.telegram.desktop -y" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
@@ -81,7 +81,7 @@ do
                 echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
                 echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
                 echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
-                echo "flatpak install flathub com.meetfranz.Franz -y" >> /tmp/software
+                echo "sudo flatpak install flathub com.meetfranz.Franz -y" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
