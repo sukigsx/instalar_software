@@ -1,9 +1,21 @@
 #!/bin/bash
 #ruta_descargas=$(xdg-user-dir DOWNLOAD)
 
-for ruta_descargas in "$HOME/Descargas" "$HOME/Downloads" "$HOME/download" "$HOME/descargas"; do
-    [ -d "$ruta_descargas" ] && echo "$ruta_descargas"
-done
+if [ -d $HOME/Descargas ]; then
+    ruta_descargas="$HOME/Descargas"
+fi
+
+if [ -d $HOME/Downloads ]; then
+    ruta_descargas="$HOME/Downloads"
+fi
+
+if [ -d $HOME/download ]; then
+    ruta_descargas="$HOME/download"
+fi
+
+if [ -d $HOME/descargas ]; then
+    ruta_descargas="$HOME/descargas"
+fi
 
 echo $ruta_descargas
 read p
