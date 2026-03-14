@@ -86,7 +86,7 @@ do
                 echo "#Wireguard" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                 echo "wget -P /tmp/ wget https://github.com/UnnoTed/wireguird/releases/download/v1.1.0/wireguird_amd64.deb" >> /tmp/software
                 #echo "sudo gdebi -n /tmp/wireguird_amd64.deb" >> /tmp/software
-                echo "sudo apt install /tmp/wireguard_amd64.deb" >> /tmp/software
+                echo "sudo apt install /tmp/wireguird_amd64.deb" >> /tmp/software
                 echo "rm /tmp/wireguird_amd64.deb" >> /tmp/software
                 echo "sudo apt update; sudo apt install -y wireguard" >> /tmp/software
                 echo "" >> /tmp/software
