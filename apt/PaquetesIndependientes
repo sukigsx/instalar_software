@@ -1,11 +1,9 @@
 #!/bin/bash
 #ruta_descargas=$(xdg-user-dir DOWNLOAD)
 
-for d in "$HOME/Descargas" "$HOME/Downloads" "$HOME/download" "$HOME/descargas"; do
-    [ -d "$d" ] && echo "$d"
+for ruta_descargas in "$HOME/Descargas" "$HOME/Downloads" "$HOME/download" "$HOME/descargas"; do
+    [ -d "$ruta_descargas" ] && echo "$ruta_descargas"
 done
-
-ruta_descargas=$d
 
 ruta_ejecucion=$(dirname "$(readlink -f "$0")")
 
@@ -23,10 +21,10 @@ trap ctrl_c INT
 function ctrl_c()
 {
 clear
-figlet -c Gracias por
-figlet -c utilizar mi
-figlet -c script
-#wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+echo ""
+echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+echo ""
+sleep 1
 exit
 }
 
