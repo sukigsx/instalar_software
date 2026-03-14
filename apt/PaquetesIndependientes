@@ -6,7 +6,7 @@ for ruta_descargas in "$HOME/Descargas" "$HOME/Downloads" "$HOME/download" "$HOM
 done
 
 echo $ruta_descargas
-read -p
+read p
 
 ruta_ejecucion=$(dirname "$(readlink -f "$0")")
 
