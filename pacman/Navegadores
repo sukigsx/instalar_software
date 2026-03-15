@@ -59,19 +59,33 @@ do
 
         case $opcion in
             "1") #google-chrome
-                #codigo para la instalacion se mete a /tmp/software
-                if extrepo search google_chrome; then
-                    sudo extrepo enable google_chrome >/dev/null 2>&1
-                    echo "#google-chrome" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "sudo apt update; sudo apt install -y google-chrome-stable" >> /tmp/software
+                nombre_paquete"google-chromeeee"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
-                    echo "google-chrome" >> /tmp/ComprobarSoftware
+                    echo "$nombre_paquete" >> /tmp/ComprobarSoftware
                     echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 else
-                    echo "❌ No se encontró el repositorio para google_chrome."; read p
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 2
                 fi
+
+
+
+
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#google-chrome" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt update; sudo apt install -y google-chrome-stable" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "google-chrome" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
             "2") #chromium
