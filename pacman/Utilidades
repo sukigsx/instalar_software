@@ -15,24 +15,25 @@ trap ctrl_c INT
 function ctrl_c()
 {
 clear
-figlet -c Gracias por
-figlet -c utilizar mi
-figlet -c script
-#wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+echo ""
+echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+echo ""
+sleep 1
 exit
 }
 
 menu_info(){
 #muestra el menu de sukigsx
 echo ""
-echo -e "${rosa}            _    _                  ${azul}   Nombre del script${borra_colores} (Instalacion de software)"
-echo -e "${rosa}  ___ _   _| | _(_) __ _ _____  __  ${azul}   Descripcion${borra_colores} (Software de instalacion basado en Debian)"
+echo -e "${rosa}            _    _                  ${azul}   Nombre del script${borra_colores} $NombreScript"
+echo -e "${rosa}  ___ _   _| | _(_) __ _ _____  __  ${azul}   Descripcion${borra_colores} $DescripcionDelScript"
 echo -e "${rosa} / __| | | | |/ / |/ _\ / __\ \/ /  ${azul}   Version            =${borra_colores} $version"
 echo -e "${rosa} \__ \ |_| |   <| | (_| \__ \>  <   ${azul}   Conexion Internet  =${borra_colores} $conexion"
 echo -e "${rosa} |___/\__,_|_|\_\_|\__, |___/_/\_\  ${azul}   Software necesario =${borra_colores} $software"
 echo -e "${rosa}                  |___/             ${azul}   Actualizado        =${borra_colores} $actualizado"
+echo -e "${rosa}                                    ${azul}   Sistema paqueteria =${borra_colores} $paqueteria"
 echo -e ""
-echo -e "${azul} Contacto:${borra_colores} (Correo scripts@mbbsistemas.com) (Web https://repositorio.mbbsistemas.es)${borra_colores}"
+echo -e "${azul} Contacto:${borra_colores} ( Correo${rosa} $Correo${borra_colores} ) ( Web${rosa} $Web${borra_colores} )${borra_colores}"
 echo ""
 echo -e " ${verde} - INSTALACION PAQUETES DE UTILIDADES -${borra_colores}"
 echo ""
@@ -45,7 +46,7 @@ do
     menu_info
     echo -e " Navegadores disponibles       Descripcion."
     echo -e ""
-    echo -e "${azul}  1)${borra_colores} Grub-customizer           Modifica el gestor de arranque."
+    echo -e "${azul}  1)${borra_colores} Grub-customizer                   Modifica el gestor de arranque."
     echo -e "${azul}  2)${borra_colores} Cairo-Dock                        Crear paneles y lanzadores, muy personalizados."
     echo -e "${azul}  3)${borra_colores} Opcion vacia                      Opcion para nuevos utilidades"
     echo -e "${azul}  4)${borra_colores} Tellico                           Crea tu base de datos de cd dvd libros etc."
@@ -283,50 +284,25 @@ do
                 ;;
 
             "19")#rustdesk
+                #codigo para la instalacion se mete a /tmp/software
                 echo "#rustdesk" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                cat << 'EOF' >> /tmp/software
-# Obtener el último release (no solo el tag)
-echo "Buscando la última versión de RustDesk..."
-LATEST_RELEASE_API="https://api.github.com/repos/rustdesk/rustdesk/releases/latest"
-LATEST_TAG=$(curl -s "$LATEST_RELEASE_API" | grep '"tag_name":' | cut -d '"' -f4)
-echo "Último tag encontrado: $LATEST_TAG"
 
-# Buscar la URL del archivo .deb que contenga '86_64' y termine en '.deb'
-DEB_URL=$(curl -s "$LATEST_RELEASE_API" | \
-  grep browser_download_url | grep '86_64' | grep '.deb"' | cut -d '"' -f4)
-
-# Si hay varios .deb (por ejemplo 32 y 64 bits), tomamos el primero que coincida
-DEB_URL=$(echo "$DEB_URL" | head -n 1)
-
-# Obtener el nombre del archivo
-DEB_FILE=$(basename "$DEB_URL")
-
-echo "Descargando: $DEB_FILE"
-curl -L -O "$DEB_URL"
-
-# Instalar con gdebi sin preguntar
-echo "⚙  Instalando con gdebi..."
-sudo gdebi -n "$DEB_FILE"
-
-# Eliminar el archivo si la instalación fue exitosa
-if [ $? -eq 0 ]; then
-  echo "Eliminando archivo temporal: $DEB_FILE"
-  rm -f "$DEB_FILE"
-  echo "RustDesk instalado correctamente."
-else
-  echo "La instalación falló. El archivo no será eliminado."
-fi
-EOF
+                echo "sudo apt install flatpak -y" >> /tmp/software
+                echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
+                echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
+                echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
+                echo "sudo flatpak install flathub com.rustdesk.RustDesk -y" >> /tmp/software
                 echo "" >> /tmp/software
+
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "rustdesk" >> /tmp/ComprobarSoftware
+                echo "com.rustdesk.RustDesk" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
                 "20")#Stacer
                     #monitorizar y optimizar tu sistema Linux
                     echo "#stacer" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "sudo apt install stacer" >> /tmp/software
+                    echo "sudo apt install -y stacer" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
@@ -342,7 +318,7 @@ EOF
                 echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
                 echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
                 echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
-                echo "flatpak install flathub io.github.jeffshee.Hidamari -y" >> /tmp/software
+                echo "sudo flatpak install flathub io.github.jeffshee.Hidamari -y" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion

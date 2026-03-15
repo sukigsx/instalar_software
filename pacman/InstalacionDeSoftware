@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# PAUQETERIA APT
+
 ruta_ejecucion=$(dirname "$(readlink -f "$0")")
 ruta_escritorio=$(xdg-user-dir DESKTOP)
 
@@ -25,7 +27,7 @@ exit
 }
 
 menu_info(){
-#muestra el menu de sukigsx
+# muestra el menu de sukigsx
 echo ""
 echo -e "${rosa}            _    _                  ${azul}   Nombre del script${borra_colores} $NombreScript"
 echo -e "${rosa}  ___ _   _| | _(_) __ _ _____  __  ${azul}   Descripcion${borra_colores} $DescripcionDelScript"
@@ -37,10 +39,7 @@ echo -e "${rosa}                                    ${azul}   Sistema paqueteria
 echo -e ""
 echo -e "${azul} Contacto:${borra_colores} ( Correo${rosa} $Correo${borra_colores} ) ( Web${rosa} $Web${borra_colores} )${borra_colores}"
 echo ""
-echo -e " ${verde} - INSTALACION DE SOFTWARE -${borra_colores}"
-echo ""
 }
-
 
 CrearInstalarSoftware(){
 #pregunta si quiero guardar la instalacion
@@ -61,10 +60,7 @@ fi
 }
 
 
-#Elimina el fichero /tmp/software donde mete la informacion de los paquetes a instalar.
-rm /tmp/software 2>/dev/null
-rm /tmp/ComprobarSoftware 2>/dev/null
-rm /tmp/comprobacion 2>/dev/null
+
 
 crear_ficheros_instalacion(){
 #crea el fichero de instalacion de software
@@ -121,55 +117,109 @@ clear
 menu_info
 echo -e "${azul} Se recomienda:${borra_colores}"
 echo -e "${amarillo}   Actualizar el sistema${borra_colores}"
-echo -e "${amarillo}   Instalar YAY para instalar software${borra_colores}"
+echo -e "${amarillo}   Instalar extrepo para nuevos repositorios${borra_colores}"
+echo -e "${amarillo}   Incluir repositorios de debian${borra_colores}"
 echo -e ""
 read -p " Quieres hacerlo (S/n): " sn
 if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
-    if command -v yay >/dev/null 2>&1; then
-        yay --noconfirm
+    #añade los repositorios de debian
+    FILE="/etc/apt/sources.list"
+
+    add_repo () {
+    LINE="$1"
+    if ! grep -Fxq "$LINE" "$FILE"; then
+        echo "$LINE" | sudo tee -a "$FILE" > /dev/null
+        echo -e "${verde} Añadido:${borra_colores} $LINE${verde} OK"
     else
-        sudo pacman -Syu --noconfirm --needed base-devel git
-        cd
-        git clone https://aur.archlinux.org/yay.git
-        cd yay
-        makepkg -si
-        cd ..
-        sudo rm -r yay
-        if command -v yay >/dev/null 2>&1; then
-            yay --noconfirm
-        else
-            echo ""
-            echo -e "${amarillo} No se encuentra${borra_colores} YAY${amarillo} instalado en tu sistema${borra_colores}"
-            echo -e "${amarillo} No se puede continuar. Hace falta${borra_colores} Yay${amarillo} para instalar software${borra_colores}"
-            echo ""
-            echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
-            echo ""
-            exit
-        fi
+        echo -e "${amarillo} Ya existe:${borra_colores} $LINE"
     fi
+    }
+    echo ""
+    echo -e "${azul} Comprobando repositorios${borra_colores}"
+    add_repo "deb https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
+    add_repo "deb https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
+    add_repo "deb http://deb.debian.org/debian/ bookworm main"
+    add_repo "deb http://deb.debian.org/debian/ bookworm-updates main"
+    add_repo "deb http://security.debian.org/debian-security bookworm-security main"
+    sleep 3
+
+    #actualiza el sistema
+    sudo apt update
+    sudo apt -y upgrade
+    sudo apt install software-properties-common -y
+
+    #instala extrepo
+    sudo $instalar extrepo
+    #configura el fichero de extrep para poder metes repositorios no oficales
+    CONFIG_FILE="/etc/extrepo/config.yaml"
+
+    #Verificar si el fichero existe
+    if [[ -f "$CONFIG_FILE" ]]; then
+        # Usar sed para asegurar que las líneas empiecen con "-"
+        sudo sed -i -E \
+        -e 's/^#?[[:space:]]*- main/- main/' \
+        -e 's/^#?[[:space:]]*- contrib/- contrib/' \
+        -e 's/^#?[[:space:]]*- non-free/- non-free/' \
+        "$CONFIG_FILE"
+    fi
+
 else
-    if command -v yay >/dev/null 2>&1; then
-        echo ""
-        echo -e "${rojo} Es recomendado actualizar tu sistema.${borra_colores}"
-        echo -e "${rojoo} Puede ocasionar fallos en la instalacion de paquetes.${borra_colores}"
-        echo ""
-        echo -e "${amarillo} Pulsa una tecla para continuar o (ctrl + c para salir)${borra_colores}"
-        echo ""
-        read p
+    #añade los repositorios de debian
+    FILE="/etc/apt/sources.list"
+
+    add_repo () {
+    LINE="$1"
+    if ! grep -Fxq "$LINE" "$FILE"; then
+        echo "$LINE" | sudo tee -a "$FILE" > /dev/null
+        echo -e "${verde} Añadido:${borra_colores} $LINE${verde} OK"
     else
+        echo -e "${amarillo} Ya existe:${borra_colores} $LINE"
+    fi
+    }
+    echo ""
+    echo -e "${azul} Comprobando repositorios${borra_colores}"
+    add_repo "deb https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
+    add_repo "deb https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
+    add_repo "deb https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
+    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
+    add_repo "deb http://deb.debian.org/debian/ bookworm main"
+    add_repo "deb http://deb.debian.org/debian/ bookworm-updates main"
+    add_repo "deb http://security.debian.org/debian-security bookworm-security main"
+    sudo apt install software-properties-common -y
+    sleep 3
+    if ! command -v extrepo >/dev/null 2>&1; then
         echo ""
-        echo -e "${amarillo} No se encuentra${borra_colores} YAY${amarillo} instalado en tu sistema${borra_colores}"
-        echo -e "${amarillo} No se puede continuar. Hace falta${borra_colores} YAY${amarillo} para instalar software${borra_colores}"
+        echo -e "${rojo} No es posible continuar.${borra_colores}"
+        echo -e "${amarillo} Puede ocasionar fallos en la instalacion de paquetes${borra_colores}"
+        echo -e "${amarillo} sino esta instalado extrepo.${borra_colores}"
         echo ""
         echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
         echo ""
         exit
     fi
-
 fi
 }
 
+
 actualizar
+#Elimina el fichero /tmp/software donde mete la informacion de los paquetes a instalar.
+rm /tmp/software 2>/dev/null
+rm /tmp/ComprobarSoftware 2>/dev/null
+rm /tmp/comprobacion 2>/dev/null
 crear_ficheros_instalacion
 while :
 do
@@ -178,7 +228,7 @@ do
     echo -e " Categorias principales         Descripcion."
     echo -e ""
     echo -e "${azul}  1)${borra_colores} NAVEGADORES                Los principales navegadores para internet."
-    echo -e "${azul}  2)${borra_colores} AUDIO - VIDEO              Software relacionado el el Audio y el Video."
+    echo -e "${azul}  2)${borra_colores} IMAGEN-AUDIO-VIDEO         Software relacionado el el Audio y el Video."
     echo -e "${azul}  3)${borra_colores} ENTORNOS GRAFICOS LINUX    Los principales entornos graficos para linux basados en debian."
     echo -e "${azul}  4)${borra_colores} UTILIDADES                 Cantidad de utilidades"
     echo -e "${azul}  5)${borra_colores} OFIMATICA                  Software dedicado a la ofimatica"
@@ -208,7 +258,7 @@ do
             ;;
 
         "2") #audio -video
-            bash $ruta_ejecucion/AudioVideo
+            bash $ruta_ejecucion/ImagenAudioVideo
             ;;
 
         "3") #Entorno graficos linux
@@ -322,8 +372,11 @@ do
                 echo ""
                 echo -e "${verde} INSTALANDO.....${borra_colores}"
                 echo ""
+                #konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/software
+                #konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/comprobacion
                 bash /tmp/software
                 bash /tmp/comprobacion
+
 
                 #borramos los repositorios duplicados
                 # Carpeta que quieres analizar
