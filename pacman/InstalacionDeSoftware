@@ -322,8 +322,8 @@ do
                 echo ""
                 echo -e "${verde} INSTALANDO.....${borra_colores}"
                 echo ""
-                konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/software
-                konsole --qwindowgeometry 800x600+1000+0 2>/dev/null -e bash /tmp/comprobacion
+                bash /tmp/software
+                bash /tmp/comprobacion
 
                 #borramos los repositorios duplicados
                 # Carpeta que quieres analizar
