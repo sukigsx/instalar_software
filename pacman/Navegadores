@@ -59,7 +59,7 @@ do
 
         case $opcion in
             "1") #google-chrome
-                nombre_paquete"google-chromeeee"
+                nombre_paquete="google-chromeeee"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
