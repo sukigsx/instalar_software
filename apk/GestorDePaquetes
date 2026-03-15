@@ -16,10 +16,10 @@ trap ctrl_c INT
 function ctrl_c()
 {
 clear
-figlet -c Gracias por
-figlet -c utilizar mi
-figlet -c script
-#wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+echo ""
+echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+echo ""
+sleep 1
 exit
 }
 
