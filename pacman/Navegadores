@@ -97,59 +97,79 @@ do
                 ;;
 
             "3") #firefox
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#firefox" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y firefox-esr" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "firefox" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "4") #opera
-                #codigo para la instalacion se mete a /tmp/software
-                if extrepo search opera; then
-                    sudo extrepo enable opera_stable >/dev/null 2>&1
-                    echo "#opera" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "sudo apt update; sudo apt install -y opera-stable" >> /tmp/software
+                nombre_paquete="firefox"
+                nombre_paquete_comprobar="firefox"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
-                    echo "opera" >> /tmp/ComprobarSoftware
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
                     echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 else
-                    echo "❌ No se encontró el repositorio para opera."; read p
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "4") #opera
+                nombre_paquete="opera"
+                nombre_paquete_comprobar="opera"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
                 fi
                 ;;
 
             "5") #brave
-                #codigo para la instalacion se mete a /tmp/software
-                if extrepo search brave_release; then
-                    sudo extrepo enable brave_release >/dev/null 2>&1
-                    echo "#brave-browser" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "sudo apt update; sudo apt install -y brave-browser" >> /tmp/software
+                nombre_paquete="brave"
+                nombre_paquete_comprobar="brave"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
-                    echo "brave-browser" >> /tmp/ComprobarSoftware
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
                     echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 else
-                    echo "❌ No se encontró el repositorio para brave."; read p
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
                 fi
                 ;;
 
             "6") #vivaldi
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#vivaldi" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo 'wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | gpg --dearmor | sudo dd of=/usr/share/keyrings/vivaldi-browser.gpg' >> /tmp/software
-                echo 'echo "deb [signed-by=/usr/share/keyrings/vivaldi-browser.gpg arch=$(dpkg --print-architecture)] https://repo.vivaldi.com/archive/deb/ stable main" | sudo dd of=/etc/apt/sources.list.d/extrepo_vivaldi_archive.list' >> /tmp/software
-                echo "sudo apt update; sudo apt install vivaldi-stable" >> /tmp/software
-                echo "" >> /tmp/software
+                nombre_paquete="vivaldi"
+                nombre_paquete_comprobar="vivaldi"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
 
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "vivaldi-stable" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
                 ;;
 
 
