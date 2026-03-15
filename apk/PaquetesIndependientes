@@ -141,7 +141,8 @@ do
             echo "read pause" >> /tmp/geny
 
             #konsole -geometry 800x500+0+0 -e bash /tmp/geny
-            konsole -e bash /tmp/geny
+            #konsole -e bash /tmp/geny
+            bash /tmp/geny
             rm /tmp/geny >/dev/null 2>&1
             ;;
 
