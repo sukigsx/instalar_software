@@ -74,18 +74,6 @@ do
                     echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
                     echo ""; sleep 2
                 fi
-
-
-
-
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#google-chrome" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt update; sudo apt install -y google-chrome-stable" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "google-chrome" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
             "2") #chromium
