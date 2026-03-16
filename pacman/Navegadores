@@ -135,7 +135,7 @@ do
                 ;;
 
             "5") #brave
-                nombre_paquete="brave"
+                nombre_paquete="brave-bin"
                 nombre_paquete_comprobar="brave"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
