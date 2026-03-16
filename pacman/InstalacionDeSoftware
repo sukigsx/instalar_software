@@ -117,100 +117,51 @@ clear
 menu_info
 echo -e "${azul} Se recomienda:${borra_colores}"
 echo -e "${amarillo}   Actualizar el sistema${borra_colores}"
-echo -e "${amarillo}   Instalar extrepo para nuevos repositorios${borra_colores}"
-echo -e "${amarillo}   Incluir repositorios de debian${borra_colores}"
+echo -e "${amarillo}   Instalar YAY para instalar software${borra_colores}"
 echo -e ""
 read -p " Quieres hacerlo (S/n): " sn
 if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
-    #añade los repositorios de debian
-    FILE="/etc/apt/sources.list"
-
-    add_repo () {
-    LINE="$1"
-    if ! grep -Fxq "$LINE" "$FILE"; then
-        echo "$LINE" | sudo tee -a "$FILE" > /dev/null
-        echo -e "${verde} Añadido:${borra_colores} $LINE${verde} OK"
+    if command -v yay >/dev/null 2>&1; then
+        yay --noconfirm
     else
-        echo -e "${amarillo} Ya existe:${borra_colores} $LINE"
+        sudo pacman -Syu --noconfirm --needed base-devel git
+        cd
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+        cd ..
+        sudo rm -r yay
+        if command -v yay >/dev/null 2>&1; then
+            yay --noconfirm
+        else
+            echo ""
+            echo -e "${amarillo} No se encuentra${borra_colores} YAY${amarillo} instalado en tu sistema${borra_colores}"
+            echo -e "${amarillo} No se puede continuar. Hace falta${borra_colores} Yay${amarillo} para instalar software${borra_colores}"
+            echo ""
+            echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
+            echo ""
+            exit
+        fi
     fi
-    }
-    echo ""
-    echo -e "${azul} Comprobando repositorios${borra_colores}"
-    add_repo "deb https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
-    add_repo "# deb-src https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
-    add_repo "deb https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
-    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
-    add_repo "deb https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
-    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
-    add_repo "deb https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
-    add_repo "# deb-src https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
-    add_repo "deb https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
-    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
-    add_repo "deb http://deb.debian.org/debian/ bookworm main"
-    add_repo "deb http://deb.debian.org/debian/ bookworm-updates main"
-    add_repo "deb http://security.debian.org/debian-security bookworm-security main"
-    sleep 3
-
-    #actualiza el sistema
-    sudo apt update
-    sudo apt -y upgrade
-    sudo apt install software-properties-common -y
-
-    #instala extrepo
-    sudo $instalar extrepo
-    #configura el fichero de extrep para poder metes repositorios no oficales
-    CONFIG_FILE="/etc/extrepo/config.yaml"
-
-    #Verificar si el fichero existe
-    if [[ -f "$CONFIG_FILE" ]]; then
-        # Usar sed para asegurar que las líneas empiecen con "-"
-        sudo sed -i -E \
-        -e 's/^#?[[:space:]]*- main/- main/' \
-        -e 's/^#?[[:space:]]*- contrib/- contrib/' \
-        -e 's/^#?[[:space:]]*- non-free/- non-free/' \
-        "$CONFIG_FILE"
-    fi
-
 else
-    #añade los repositorios de debian
-    FILE="/etc/apt/sources.list"
-
-    add_repo () {
-    LINE="$1"
-    if ! grep -Fxq "$LINE" "$FILE"; then
-        echo "$LINE" | sudo tee -a "$FILE" > /dev/null
-        echo -e "${verde} Añadido:${borra_colores} $LINE${verde} OK"
-    else
-        echo -e "${amarillo} Ya existe:${borra_colores} $LINE"
-    fi
-    }
-    echo ""
-    echo -e "${azul} Comprobando repositorios${borra_colores}"
-    add_repo "deb https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
-    add_repo "# deb-src https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
-    add_repo "deb https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
-    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
-    add_repo "deb https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
-    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware"
-    add_repo "deb https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
-    add_repo "# deb-src https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware"
-    add_repo "deb https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
-    add_repo "# deb-src https://ftp.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware"
-    add_repo "deb http://deb.debian.org/debian/ bookworm main"
-    add_repo "deb http://deb.debian.org/debian/ bookworm-updates main"
-    add_repo "deb http://security.debian.org/debian-security bookworm-security main"
-    sudo apt install software-properties-common -y
-    sleep 3
-    if ! command -v extrepo >/dev/null 2>&1; then
+    if command -v yay >/dev/null 2>&1; then
         echo ""
-        echo -e "${rojo} No es posible continuar.${borra_colores}"
-        echo -e "${amarillo} Puede ocasionar fallos en la instalacion de paquetes${borra_colores}"
-        echo -e "${amarillo} sino esta instalado extrepo.${borra_colores}"
+        echo -e "${rojo} Es recomendado actualizar tu sistema.${borra_colores}"
+        echo -e "${rojoo} Puede ocasionar fallos en la instalacion de paquetes.${borra_colores}"
+        echo ""
+        echo -e "${amarillo} Pulsa una tecla para continuar o (ctrl + c para salir)${borra_colores}"
+        echo ""
+        read p
+    else
+        echo ""
+        echo -e "${amarillo} No se encuentra${borra_colores} YAY${amarillo} instalado en tu sistema${borra_colores}"
+        echo -e "${amarillo} No se puede continuar. Hace falta${borra_colores} YAY${amarillo} para instalar software${borra_colores}"
         echo ""
         echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
         echo ""
         exit
     fi
+
 fi
 }
 
