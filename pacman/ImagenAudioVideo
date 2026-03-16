@@ -179,7 +179,7 @@ do
                 ;;
 
             "7")#Skanlite
-                nombre_paquete="scanlite"
+                nombre_paquete="skanlite"
                 nombre_paquete_comprobar="skanlite"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
