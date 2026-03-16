@@ -142,7 +142,7 @@ do
             "5")#Handbrake
                 #codigo para la instalacion se mete a /tmp/software
                 nombre_paquete="handbrake"
-                nombre_paquete_comprobar="handbrake"
+                nombre_paquete_comprobar="ghb"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
