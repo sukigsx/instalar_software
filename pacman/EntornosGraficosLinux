@@ -61,7 +61,7 @@ do
         case $opcion in
             "1")#gnome
                 nombre_paquete="gnome"
-                nombre_paquete_comprobar="gnome"
+                nombre_paquete_comprobar="gnome-shell"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
@@ -80,7 +80,7 @@ do
 
             "2")#plasma
                 nombre_paquete="plasma"
-                nombre_paquete_comprobar="plasma"
+                nombre_paquete_comprobar="plasmashell"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
@@ -118,7 +118,7 @@ do
 
             "4")#xfce4
                 nombre_paquete="xfce4"
-                nombre_paquete_comprobar="xfce4"
+                nombre_paquete_comprobar="xfce4-session"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
@@ -137,7 +137,7 @@ do
 
             "5")#mate
                 nombre_paquete="mate"
-                nombre_paquete_comprobar="mate"
+                nombre_paquete_comprobar="mate-session"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
@@ -156,7 +156,7 @@ do
 
             "6")#lxde
                 nombre_paquete="lxde"
-                nombre_paquete_comprobar="lxde"
+                nombre_paquete_comprobar="startlxde"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
