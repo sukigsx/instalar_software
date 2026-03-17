@@ -15,10 +15,8 @@ trap ctrl_c INT
 function ctrl_c()
 {
 clear
-echo ""
-echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
-echo ""
-sleep 1
+#echo ""
+#echo -e "${azul} GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
 exit
 }
 menu_info(){
