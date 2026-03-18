@@ -114,7 +114,6 @@ do
                  echo -e "${amarillo} Opcion vacia.${borra_colores}"
                  sleep 2
                  ;;
-                ;;
 
             "4")#Tellico
                 nombre_paquete="tellico"
