@@ -44,7 +44,7 @@ do
     echo -e ""
     echo -e "${azul}  1)${borra_colores} Grub-customizer                   Modifica el gestor de arranque."
     echo -e "${azul}  2)${borra_colores} Cairo-Dock                        Crear paneles y lanzadores, muy personalizados."
-    echo -e "${azul}  3)${borra_colores} Opcion vacia                      Opcion para nuevos utilidades"
+    echo -e "${azul}  3)${borra_colores} Opcion vacia                      Opcion para nuevas utilidades"
     echo -e "${azul}  4)${borra_colores} Tellico                           Crea tu base de datos de cd dvd libros etc."
     echo -e "${azul}  5)${borra_colores} KDE Connect                       Sincroniza tu movil con el pc."
     echo -e "${azul}  6)${borra_colores} Usuarios y Grupos                 Gestiona Usuarios y Grupos de modo grafico."
@@ -55,9 +55,9 @@ do
     echo -e "${azul} 11)${borra_colores} Systemback (<debian13)            Utilidades para gestionar el sistema."
     echo -e "${azul} 12)${borra_colores} Deja-dup                          Copia de seguridad de tus ficheros o sistema."
     echo -e "${azul} 13)${borra_colores} Transmision                       Gestor de descargas torrent."
-    echo -e "${azul} 14)${borra_colores} Software-propietario (<debian13)  Gestionar ppa y drives en modo grafico"
+    echo -e "${azul} 14)${borra_colores} Opcion vacia                      Opcion para nuevas utilidades"
     echo -e "${azul} 15)${borra_colores} Joplin                            Software multiplataforma para tomar notas."
-    echo -e "${azul} 16)${borra_colores} Keepass2                          Gestor de contraseñas."
+    echo -e "${azul} 16)${borra_colores} Keepass                           Gestor de contraseñas."
     echo -e "${azul} 17)${borra_colores} Github Desktop                    Gestor grafico de Github."
     echo -e "${azul} 18)${borra_colores} Teamviwer                         Conexion remota."
     echo -e "${azul} 19)${borra_colores} RustDesk                          Conexion remota."
@@ -72,254 +72,377 @@ do
 
     case $opcion in
             "1")#Grub-customizer
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#grub-customizer" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo add-apt-repository -y deb http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse" >> /tmp/software
-                echo "sudo apt install grub-customizer -y" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "grub-customizer" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "2")#Cairo-Dock
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Cairo-dock" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install cairo-dock -y" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "cairo-dock" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "3")#opcion vacia
-                ;;
-
-            "4")#Tellico
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Tellico" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install tellico -y" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "tellico" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "5")#KDE Connect
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#KDE Connect" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install kdeconnect -y" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "kdeconnect-cli" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "6")#Usuarios y Grupos
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Usuarios y grupos" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y gnome-system-tools" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "users-admin" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "7")#Gnome-online-accouns
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Gnome-online-accouns" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y gnome-online-accounts" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "gnome-control-center" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "8")#Kio gdrive
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Kio gdrive" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install kio-gdrive kaccounts-providers -y" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "kioclient5" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "9")#Ocamlfuse
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Ocamlfuse" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo add-apt-repository -y ppa:alessandro-strada/ppa" >> /tmp/software
-                echo "sudo apt update" >> /tmp/software
-                echo "sudo apt install -y google-drive-ocamlfuse" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "google-drive-ocamlfuse" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "10")#Nemo
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Nemo" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y nemo" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "nemo" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "11")#Systemback
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Systemback" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 382003C2C8B7B4AB813E915B14E4942973C62A1B" >> /tmp/software
-                echo "sudo add-apt-repository -y deb http://ppa.launchpad.net/nemh/systemback/ubuntu xenial main" >> /tmp/software
-                echo "sudo apt update" >> /tmp/software
-                echo "sudo apt install -y systemback" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "systemback" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "12")#Deja-dup
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Deja-dup" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y deja-dup" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "deja-dup" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "13")#Transmision
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Transmission" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install transmission -y" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "transmission-gtk" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "14")#Software-propietario
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Software-propietario" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y software-properties-gtk software-properties-qt" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "software-properties-gtk" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "15")#Joplin
-                #codigo para la instalacion se mete a /tmp/software
-                if extrepo search joplin; then
-                    sudo extrepo enable joplin >/dev/null 2>&1
-                    echo "#joplin" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "sudo apt update; sudo apt install -y joplin" >> /tmp/software
+                nombre_paquete="Grub-customizer"
+                nombre_paquete_comprobar="Grub-customizer"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
-                    echo "joplin" >> /tmp/ComprobarSoftware
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
                     echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 else
-                    echo "❌ No se encontró el repositorio para joplin."; read p
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
                 fi
                 ;;
 
-            "16")#Keepass2
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Keepass2" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y keepass2" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "keepass2" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "17")#GithubDesktop
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#github-desktop" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "wget -qO - https://mirror.mwt.me/shiftkey-desktop/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/mwt-desktop.gpg > /dev/null" >> /tmp/software
-                echo "sudo sh -c 'echo \"deb [arch=amd64 signed-by=/usr/share/keyrings/mwt-desktop.gpg] https://mirror.mwt.me/shiftkey-desktop/deb/ any main\" > /etc/apt/sources.list.d/extrepo-github-desktop.list'" >> /tmp/software
-                echo "sudo apt update; sudo apt install -y github-desktop" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "github-desktop" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-            "18")#teamviwer
-                 #codigo para la instalacion se mete a /tmp/software
-                if extrepo search teamviewer_default; then
-                    sudo extrepo enable teamviewer_default >/dev/null 2>&1
-                    echo "#teamviewer" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "sudo apt update; sudo apt install -y teamviewer" >> /tmp/software
+            "2")#Cairo-Dock
+                nombre_paquete="cairo-dock"
+                nombre_paquete_comprobar="cairo-dock"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
-                    echo "teamviewer" >> /tmp/ComprobarSoftware
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
                     echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 else
-                    echo "❌ No se encontró el repositorio para teamviewer."; read p
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "3")#opcion vacia
+                echo ""
+                 echo -e "${amarillo} Opcion vacia.${borra_colores}"
+                 sleep 2
+                 ;;
+                ;;
+
+            "4")#Tellico
+                nombre_paquete="tellico"
+                nombre_paquete_comprobar="tellico"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "5")#KDE Connect
+                nombre_paquete="kdeconnect"
+                nombre_paquete_comprobar="kdeconnect"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "6")#Usuarios y Grupos
+                nombre_paquete="gnome-system-tools"
+                nombre_paquete_comprobar="gnome-system-tools"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "7")#Gnome-online-accouns
+                nombre_paquete="gnome-online-accounts"
+                nombre_paquete_comprobar="gnome-online-accounts"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "8")#Kio gdrive
+                nombre_paquete="kio-gdrive"
+                nombre_paquete_comprobar="kioclient5"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete kaccounts-providers" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "9")#Ocamlfuse
+               nombre_paquete="google-drive-ocamlfuse"
+                nombre_paquete_comprobar="google-drive-ocamlfuse"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "10")#Nemo
+               nombre_paquete="nemo"
+                nombre_paquete_comprobar="nemo"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "11")#Systemback
+                nombre_paquete="Systemback"
+                nombre_paquete_comprobar="Systemback"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "12")#Deja-dup
+                nombre_paquete="deja-dup"
+                nombre_paquete_comprobar="deja-dup"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "13")#Transmision
+                nombre_paquete="transmission-qt"
+                nombre_paquete_comprobar="transmission-qt"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete transmission-gtk" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "14")#Software-propietario
+                 echo ""
+                 echo -e "${amarillo} Opcion vacia.${borra_colores}"
+                 sleep 2
+                 ;;
+
+            "15")#Joplin
+                nombre_paquete="joplin"
+                nombre_paquete_comprobar="joplin"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "16")#Keepass
+                nombre_paquete="keepass"
+                nombre_paquete_comprobar="keepass"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "17")#GithubDesktop
+                nombre_paquete="github-desktop"
+                nombre_paquete_comprobar="github-desktop"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
+                ;;
+
+            "18")#teamviewer
+                nombre_paquete="teamviewer"
+                nombre_paquete_comprobar="teamviewer"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
                 fi
                 ;;
 
             "19")#rustdesk
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#rustdesk" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-
-                echo "sudo apt install flatpak -y" >> /tmp/software
-                echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
-                echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
-                echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
-                echo "sudo flatpak install flathub com.rustdesk.RustDesk -y" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "com.rustdesk.RustDesk" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
-
-                "20")#Stacer
-                    #monitorizar y optimizar tu sistema Linux
-                    echo "#stacer" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "sudo apt install -y stacer" >> /tmp/software
+                nombre_paquete="rustdesk"
+                nombre_paquete_comprobar="rustdesk"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
-                    echo "stacer" >> /tmp/ComprobarSoftware
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
                     echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
                 ;;
 
+                "20")#Stacer
+                    nombre_paquete="Stacer"
+                    nombre_paquete_comprobar="Stacer"
+                    if yay -Si "$nombre_paquete" &>/dev/null; then
+                        #codigo para la instalacion se mete a /tmp/software
+                        echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                        echo "" >> /tmp/software
+
+                        #linea con el nombre del programa instalado para la comprobacion
+                        echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                        echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                    else
+                        echo ""
+                        echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                        echo ""; sleep 4
+                    fi
+                    ;;
+
                 "21")#Hidamari
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Hidamari" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                nombre_paquete="hidamari"
+                nombre_paquete_comprobar="hidamari"
+                if yay -Si "$nombre_paquete" &>/dev/null; then
+                    #codigo para la instalacion se mete a /tmp/software
+                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "" >> /tmp/software
 
-                echo "sudo apt install flatpak -y" >> /tmp/software
-                echo "sudo apt install gnome-software-plugin-flatpak -y" >> /tmp/software
-                echo "sudo apt install plasma-discover-backend-flatpak -y" >> /tmp/software
-                echo "sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo" >> /tmp/software
-                echo "sudo flatpak install flathub io.github.jeffshee.Hidamari -y" >> /tmp/software
-                echo "" >> /tmp/software
-
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "io.github.jeffshee.Hidamari" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                else
+                    echo ""
+                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
+                    echo ""; sleep 4
+                fi
                 ;;
 
 
