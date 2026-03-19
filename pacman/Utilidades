@@ -47,10 +47,10 @@ do
     echo -e "${azul}  3)${borra_colores} Opcion vacia                      Opcion para nuevas utilidades"
     echo -e "${azul}  4)${borra_colores} Tellico                           Crea tu base de datos de cd dvd libros etc."
     echo -e "${azul}  5)${borra_colores} KDE Connect                       Sincroniza tu movil con el pc."
-    echo -e "${azul}  6)${borra_colores} Usuarios y Grupos                 Gestiona Usuarios y Grupos de modo grafico."
-    echo -e "${azul}  7)${borra_colores} Gnome-online-accouns              Para poder sincronizar cuentas de google (drive)."
+    echo -e "${azul}  6)${borra_colores} Opcion vacia                      Opcion para nuevas utilidades"
+    echo -e "${azul}  7)${borra_colores} Opcion vacia                      Opcion para nuevas utilidades"
     echo -e "${azul}  8)${borra_colores} Kio gdrive                        Para poder sincronizar cuentas de google (drive) solo entornos KDE Plasma."
-    echo -e "${azul}  9)${borra_colores} Ocamlfuse                         Otro para poder sincronizar cuentas de google (drive)."
+    echo -e "${azul}  9)${borra_colores} Opcion vacia                      Opcion para nuevas utilidades"
     echo -e "${azul} 10)${borra_colores} Nemo                              Explorador de ficheos."
     echo -e "${azul} 11)${borra_colores} Systemback                        Utilidades para gestionar el sistema."
     echo -e "${azul} 12)${borra_colores} Deja-dup                          Copia de seguridad de tus ficheros o sistema."
@@ -73,7 +73,7 @@ do
     case $opcion in
             "1")#Grub-customizer
                 nombre_paquete="Grub-customizer"
-                nombre_paquete_comprobar="Grub-customizer"
+                nombre_paquete_comprobar="grub-customizer"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
@@ -136,7 +136,7 @@ do
 
             "5")#KDE Connect
                 nombre_paquete="kdeconnect"
-                nombre_paquete_comprobar="kdeconnect"
+                nombre_paquete_comprobar="kdeconnect-app"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
@@ -154,42 +154,16 @@ do
                 ;;
 
             "6")#Usuarios y Grupos
-                nombre_paquete="gnome-system-tools"
-                nombre_paquete_comprobar="gnome-system-tools"
-                if yay -Si "$nombre_paquete" &>/dev/null; then
-                    #codigo para la instalacion se mete a /tmp/software
-                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
-                    echo "" >> /tmp/software
-
-                    #linea con el nombre del programa instalado para la comprobacion
-                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
-                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                else
-                    echo ""
-                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
-                    echo ""; sleep 4
-                fi
-                ;;
+                echo ""
+                 echo -e "${amarillo} Opcion vacia.${borra_colores}"
+                 sleep 2
+                 ;;
 
             "7")#Gnome-online-accouns
-                nombre_paquete="gnome-online-accounts"
-                nombre_paquete_comprobar="gnome-online-accounts"
-                if yay -Si "$nombre_paquete" &>/dev/null; then
-                    #codigo para la instalacion se mete a /tmp/software
-                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
-                    echo "" >> /tmp/software
-
-                    #linea con el nombre del programa instalado para la comprobacion
-                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
-                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                else
-                    echo ""
-                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
-                    echo ""; sleep 4
-                fi
-                ;;
+                echo ""
+                 echo -e "${amarillo} Opcion vacia.${borra_colores}"
+                 sleep 2
+                 ;;
 
             "8")#Kio gdrive
                 nombre_paquete="kio-gdrive"
@@ -211,23 +185,10 @@ do
                 ;;
 
             "9")#Ocamlfuse
-               nombre_paquete="google-drive-ocamlfuse"
-                nombre_paquete_comprobar="google-drive-ocamlfuse"
-                if yay -Si "$nombre_paquete" &>/dev/null; then
-                    #codigo para la instalacion se mete a /tmp/software
-                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
-                    echo "" >> /tmp/software
-
-                    #linea con el nombre del programa instalado para la comprobacion
-                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
-                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                else
-                    echo ""
-                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
-                    echo ""; sleep 4
-                fi
-                ;;
+                echo ""
+                 echo -e "${amarillo} Opcion vacia.${borra_colores}"
+                 sleep 2
+                 ;;
 
             "10")#Nemo
                nombre_paquete="nemo"
