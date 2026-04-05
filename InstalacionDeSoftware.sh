@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+#VARIABLES PRINCIPALES
 # con export son las variables necesarias para exportar al los siguientes script
 #variables para el menu_info
 
@@ -7,10 +8,10 @@ export NombreScript="Instalacion de software"
 export DescripcionDelScript="Software de instalacion de paquetes para diversos sistemas Linux"
 export Correo="scripts@mbbsistemas.es"
 export Web="https://repositorio.mbbsistemas.es"
-export version="2.daadd Actualizado a base debian13 y nuevo software añadido."
+export version="1.0"
 conexion="Sin comprobar"
 software="Sin comprobar"
-actualizado="No se ha podido comprobar la actualizacion del script"
+actualizado="Sin comprobar"
 paqueteria="No detectada"
 
 # VARIABLE QUE RECOJEN LAS RUTAS
@@ -22,24 +23,23 @@ NombreScriptActualizar="InstalacionDeSoftware.sh" #contiene el nombre del script
 DireccionGithub="https://github.com/sukigsx/instalar_software.git" #contiene la direccion de github para actualizar el script
 nombre_carpeta_repositorio="instalar_software" #poner el nombre de la carpeta cuando se clona el repo para poder eliminarla
 
-# paquetes que haran falta en debian which extrepo gdebi konsole fzf
 #VARIABLES DE SOFTWARE NECESARIO
 # Asociamos comandos con el paquete que los contiene [comando a comprobar]="paquete a instalar"
     declare -A requeridos
     requeridos=(
+        #requeridos para poder actualizar
         [git]="git"
-        [nano]="nano"
         [diff]="diff"
         [sudo]="sudo"
         [ping]="ping"
-        [curl]="curl"
-        [grep]="grep"
-        [jq]="jq"
-        [sed]="sed"
-        [wget]="wget"
-        [xdg-user-dir]="xdg-user-dirs" #este es para que pueda pillar la ruta del escritorio
-    )
+        [xdg-user-dir]="xdg-user-dirs"
 
+        #requeridos para el script en si
+
+    )
+###########################
+## FUNCIONES PRINCIPALES ##
+###########################
 #colores
 rojo="\e[0;31m\033[1m" #rojo
 verde="\e[;32m\033[1m"
@@ -76,45 +76,56 @@ echo -e "${azul} Contacto:${borra_colores} ( Correo${rosa} $Correo${borra_colore
 echo ""
 }
 
-actualizar_script(){
-    # actualizar el script
-    #para que esta funcion funcione necesita:
-    #   conexion a internet
-    #   la paleta de colores
-    #   software: git diff
+#comprobar si hay actualizaciones y que lo marque en el menu_info y tambien pregunta si quieres actualizar
+comprobar_actualizaciones(){
 
     git clone $DireccionGithub /tmp/comprobar >/dev/null 2>&1
-
     diff $ruta_ejecucion/$NombreScriptActualizar /tmp/comprobar/$NombreScriptActualizar >/dev/null 2>&1
-
 
     if [ $? = 0 ]
     then
         #esta actualizado, solo lo comprueba
-        echo ""
-        echo -e "${verde} El script${borra_colores} $0 ${verde}esta actualizado.${borra_colores}"
-        echo ""
+        actualizado="SI"
         chmod -R +w /tmp/comprobar
         rm -R /tmp/comprobar
-        actualizado="SI"
-        sleep 2
     else
         #hay que actualizar, comprueba y actualiza
         echo ""
-        echo -e "${amarillo} EL script${borra_colores} $0 ${amarillo}NO esta actualizado.${borra_colores}"
-        echo -e "${verde} Se procede a su actualizacion automatica.${borra_colores}"
-        sleep 3
-        cp -r /tmp/comprobar/* $ruta_ejecucion
+        echo -e "${amarillo} Existe una actualizacion del script${borra_colores}"
+        read -p " Quieres actualizar ? (S/n): " sino
+        if [[ $sino == [sS] ]]; then
+            actualizar_script
+        else
+            actualizado="NO"
+        fi
         chmod -R +w /tmp/comprobar
         rm -R /tmp/comprobar
-        echo ""
-        echo -e "${verde} El script se ha actualizado.${amarillo} Es necesario cargarlo de nuevo.${borra_colores}"
-        echo ""
-        sleep 2
-        exit
     fi
 }
 
+#funcion para actualizar el script
+actualizar_script(){
+    git clone $DireccionGithub /tmp/comprobar >/dev/null 2>&1
+
+    cp -r /tmp/comprobar/* $ruta_ejecucion
+    chmod -R +w /tmp/comprobar
+    rm -R /tmp/comprobar
+    echo ""
+    echo -e "${amarillo} Sera necesario ejecutarlo de nuevo.${borra_colores}"
+
+    printf " Actualizando... "
+    for i in {1..20}; do
+        printf "#"
+        sleep 0.1
+    done
+    printf " [ \e[32mOK\e[0m ]\n"
+
+    echo ""
+    sleep 1
+    exit
+}
+
+#funcion para comprobar el software necesario
 software_necesario(){
 #funcion software necesario
 #para que funcione necesita:
@@ -125,8 +136,6 @@ paqueteria
 echo ""
 echo -e "${azul} Comprobando el software necesario.${borra_colores}"
 echo ""
-#which git diff ping figlet xdotool wmctrl nano fzf
-#########software="which git diff ping figlet nano gdebi curl konsole" #ponemos el foftware a instalar separado por espacion dentro de las comillas ( soft1 soft2 soft3 etc )
 for comando in "${!requeridos[@]}"; do
         command -v $comando &>/dev/null
         sino=$?
@@ -146,6 +155,7 @@ for comando in "${!requeridos[@]}"; do
                 echo ""
                 echo -e " ${rojo}No se puede ejecutar el script sin todo el software necesario.${borra_colores}"
                 echo ""
+                read -p " Pulsa una tecla para continuar" pulsa
                 exit 1
             else
                 echo -e "${amarillo} Se necesita instalar ${borra_colores}$comando${amarillo} para la ejecucion del script${borra_colores}"
@@ -163,26 +173,6 @@ for comando in "${!requeridos[@]}"; do
     echo ""
     echo -e "${azul} Todo el software ${verde}OK${borra_colores}"
     software="SI"
-    sleep 2
-}
-
-conexion(){
-#funcion de comprobar conexion a internet
-#para que funciones necesita:
-#   conexion ainternet
-#   la paleta de colores
-#   software: ping
-
-if ping -c1 google.com &>/dev/null
-then
-    conexion="SI"
-    echo ""
-    echo -e " Conexion a internet = ${verde}SI${borra_colores}"
-else
-    conexion="NO"
-    echo ""
-    echo -e " Conexion a internet = ${rojo}NO${borra_colores}"
-fi
 }
 
 # Función que comprueba si se ejecuta como root
@@ -191,7 +181,7 @@ check_root() {
     #menu_info
   if [ "$EUID" -ne 0 ]; then
     #echo ""
-    echo -e "${amarillo} Se necesita privilegios de root ingresa la contraseña.${borra_colores}"
+    #echo -e "${amarillo} Se necesita privilegios de root ingresa la contraseña.${borra_colores}"
 
     # Pedir contraseña para sudo
     #echo -e ""
@@ -220,50 +210,52 @@ check_root() {
 
 #funcion de detectar sistema de paquetado para instalar
 paqueteria(){
+echo ""
 echo -e "${azul} Detectando sistema de paquetería...${borra_colores}"
 echo ""
 
 if command -v apt >/dev/null 2>&1; then
     echo -e "${verde} Sistema de paquetería detectado: APT (Debian, Ubuntu, Mint, etc.)${borra_colores}"
-    export instalar="sudo apt install -y "
-    export paqueteria="apt"
+    instalar="sudo apt install -y "
+    paqueteria="apt"
 
 elif command -v dnf >/dev/null 2>&1; then
     echo -e "${cerde} Sistema de paquetería detectado: DNF (Fedora, RHEL, Rocky, AlmaLinux)${borra_colores}"
-    export instalar="sudo dnf install -y "
-    export paqueteria="dnf"
+    instalar="sudo dnf install -y "
+    paqueteria="dnf"
 
 elif command -v yum >/dev/null 2>&1; then
     echo -e "${verde}Sistema de paquetería detectado: YUM (CentOS, RHEL antiguos)${borra_colores}"
-    export instalar="sudo yum install -y "
-    export paqueteria="yum"
+    instalar="sudo yum install -y "
+    paqueteria="yum"
 
 elif command -v pacman >/dev/null 2>&1; then
     echo -e "${verde} Sistema de paquetería detectado: Pacman (Arch Linux, Manjaro)${borra_colores}"
-    export instalar="sudo pacman -S --noconfirm "
-    export paqueteria="pacman"
+    instalar="sudo pacman -S --noconfirm "
+    paqueteria="pacman"
 
 elif command -v zypper >/dev/null 2>&1; then
     echo -e "${verde} Sistema de paquetería detectado: Zypper (openSUSE)${borra_colores}"
-    export instalar="sudo zypper install -y "
-    export paqueteria="zypper"
+    instalar="sudo zypper install -y "
+    paqueteria="zypper"
 
 elif command -v apk >/dev/null 2>&1; then
     echo -e "${verde}Sistema de paquetería detectado: APK (Alpine Linux)${borra_colores}"
-    export instalar="sudo apk add --no-interactive "
-    export paqueteria="apk"
+    instalar="sudo apk add --no-interactive "
+    paqueteria="apk"
 
 elif command -v emerge >/dev/null 2>&1; then
     echo -e "${verde}Sistema de paquetería detectado: Portage (Gentoo)${borra_colores}"
-    export instalar="sudo emerge -av "
-    export paqueteria="emerge"
+    instalar="sudo emerge -av "
+    paqueteria="emerge"
 
 else
     echo -e "${amarillo} No se pudo detectar un sistema de paquetería conocido.${borra_colores}"
-    export paqueteria="${rojo}Desconocido${borra_colores}"
+    paqueteria="${rojo}Desconocido${borra_colores}"
 fi
-sleep 2
+#sleep 2
 }
+
 
 #comprobar si se ejecuta en una terminal bash
 terminal_bash() {
@@ -282,31 +274,31 @@ terminal_bash() {
     fi
 }
 
+conexion(){
+#funcion de comprobar conexion a internet
+#para que funciones necesita:
+#   conexion ainternet
+#   la paleta de colores
+#   software: ping
 
-#logica de arranque
-#variables de resultado $conexion $software $actualizado
-#funciones actualizar_script, conexion, software_necesario
+if ping -c1 -W1 8.8.8.8 &>/dev/null
+then
+    conexion="SI"
+    echo ""
+    echo -e " Conexion a internet = ${verde}SI${borra_colores}"
+else
+    conexion="NO"
+    echo ""
+    echo -e " Conexion a internet = ${rojo}NO${borra_colores}"
+fi
+}
 
-#logica para ejecutar o no ejecutar
-#comprobado conexcion
-#    si=actualizar_script
-#        si=software_necesario
-#            si=ejecuta, poner variables a sii todo
-#            no=Ya sale el solo desde la funcion
-#        no=software_necesario
-#            si=ejecuta, variables software="SI", conexion="SI", actualizado="No se ha podiso comprobar actualizacion de script"
-#            no=Ya sale solo desde la funcion
-#
-#    no=software_necesario
-#        si=ejecuta, variables software="SI", conexion="NO", actualizado="No se ha podiso comprobar actualizacion de script"
-#        no=Ya sale solo desde la funcion
-
+#logica de inicio
 clear
 menu_info
-check_root
 conexion
 if [ $conexion = "SI" ]; then
-    actualizar_script
+    comprobar_actualizaciones
     if [ $actualizado = "SI" ]; then
         terminal_bash
         software_necesario
@@ -316,42 +308,28 @@ if [ $conexion = "SI" ]; then
             export actualizado="SI"
             bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
         else
-            echo ""
+            ctrl_c
         fi
     else
         terminal_bash
         software_necesario
         if [ $software = "SI" ]; then
             export software="SI"
-            export conexion="NO"
-            export actualizado="No hay conexion, No se puede instalar nada."
-            echo ""
-            echo -e "${rojo} No hay conexion, No se puede instalar nada.${borra_colores}"
-            echo ""
-            echo -e "${azul}GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
-            echo ""
-            exit
-            #bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
+            export conexion="SI"
+            export actualizado="NO"
+            bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
         else
-            echo ""
+            ctrl_c
         fi
     fi
 else
-    terminal_bash
     software_necesario
     if [ $software = "SI" ]; then
         export software="SI"
         export conexion="NO"
-        export actualizado="No hay conexion, No se puede instalar nada."
-        echo ""
-        echo -e "${rojo} No hay conexion, No se puede instalar nada.${borra_colores}"
-        echo ""
-        echo -e "${azul}GRACIAS POR UTILIZAR MI SCRIPT${borra_colores}"
-        echo ""
-        exit
-        #bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
+        export actualizado="No se ha podido comprobar la actualizacion del script"
+        bash $ruta_ejecucion/$paqueteria/InstalacionDeSoftware
     else
-        echo ""
+        ctrl_c
     fi
 fi
-
