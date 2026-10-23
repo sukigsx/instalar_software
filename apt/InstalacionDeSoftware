@@ -136,7 +136,7 @@ if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
     }
     echo ""
     echo -e "${azul} Comprobando repositorios${borra_colores}"
-    echo "# Lista de repositorios incluidos con InstalacionDesoftware" > /etc/apt/sources.list
+    sudo sh -c 'echo "# Lista de repositorios incluidos con InstalacionDesoftware" >> /etc/apt/sources.list'
     add_repo "deb https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
     add_repo "# deb-src https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
     add_repo "deb https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
@@ -150,7 +150,7 @@ if [ "$sn" = "s" ] || [ "$sn" = "S" ]; then
     add_repo "deb http://deb.debian.org/debian/ bookworm main"
     add_repo "deb http://deb.debian.org/debian/ bookworm-updates main"
     add_repo "deb http://security.debian.org/debian-security bookworm-security main"
-    echo "# FIN de repositorios incluidos con InstalacionDesoftware" > /etc/apt/sources.list
+    sudo sh -c 'echo "# FIN de la lista de repositorios incluidos con InstalacionDesoftware" >> /etc/apt/sources.list'
     sleep 3
 
     #actualiza el sistema
@@ -188,6 +188,7 @@ else
     }
     echo ""
     echo -e "${azul} Comprobando repositorios${borra_colores}"
+    sudo sh -c 'echo "# Lista de repositorios incluidos con InstalacionDesoftware" >> /etc/apt/sources.list'
     add_repo "deb https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
     add_repo "# deb-src https://ftp.debian.org/debian/ trixie contrib main non-free non-free-firmware"
     add_repo "deb https://ftp.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware"
@@ -201,6 +202,7 @@ else
     add_repo "deb http://deb.debian.org/debian/ bookworm main"
     add_repo "deb http://deb.debian.org/debian/ bookworm-updates main"
     add_repo "deb http://security.debian.org/debian-security bookworm-security main"
+    sudo sh -c 'echo "# FIN de la lista de repositorios incluidos con InstalacionDesoftware" >> /etc/apt/sources.list'
     sudo apt install software-properties-common -y
     sleep 3
     if ! command -v extrepo >/dev/null 2>&1; then
