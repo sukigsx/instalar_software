@@ -232,25 +232,25 @@ paqueteria(){
 
     if command -v apt >/dev/null 2>&1; then
         echo -e "${verde} Sistema de paquetería detectado: APT (Debian, Ubuntu, Mint, etc.)${borra_colores}"
-        instalar="sudo apt install -y"
-        paqueteria="apt"
+        export instalar="sudo apt install -y"
+        export paqueteria="apt"
         idx_distro=1
 
     elif command -v dnf >/dev/null 2>&1; then
         echo -e "${verde} Sistema de paquetería detectado: DNF (Fedora, RHEL, Rocky, AlmaLinux)${borra_colores}"
-        instalar="sudo dnf install -y"
-        paqueteria="dnf"
+        export instalar="sudo dnf install -y"
+        export paqueteria="dnf"
         idx_distro=2
 
     elif command -v pacman >/dev/null 2>&1; then
         echo -e "${verde} Sistema de paquetería detectado: PACMAN (Arch Linux, Manjaro)${borra_colores}"
-        instalar="sudo pacman -S --noconfirm"
-        paqueteria="pacman"
+        export instalar="sudo pacman -S --noconfirm"
+        export paqueteria="pacman"
         idx_distro=3
 
     else
         echo -e "${rojo} Sistema de paquetería no soportado automáticamente.${borra_colores}"
-        paqueteria="No detectada"
+        export paqueteria="No detectada"
         exit 1
     fi
 }
