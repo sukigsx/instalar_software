@@ -106,6 +106,7 @@ do
                     #echo "sudo apt update; sudo apt install -y opera-stable" >> /tmp/software
                     echo 'echo "opera-stable opera-stable/add-deb-source boolean true" | sudo debconf-set-selections &> /dev/null' >> /tmp/software
                     echo 'sudo DEBIAN_FRONTEND=noninteractive apt install -y opera-stable' >> /tmp/software
+                    echo 'sudo debconf-communicate opera-stable <<< "PURGE"' >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
