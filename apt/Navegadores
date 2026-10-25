@@ -104,7 +104,8 @@ do
                     sudo extrepo enable opera_stable >/dev/null 2>&1
                     echo "#opera" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                     #echo "sudo apt update; sudo apt install -y opera-stable" >> /tmp/software
-                    echo 'echo opera-stable opera-stable/add-deb-source boolean true" | sudo debconf-set-selections &> /dev/null sudo DEBIAN_FRONTEND=noninteractive apt install -y opera-stable' >> /tmp/software
+                    echo 'echo "opera-stable opera-stable/add-deb-source boolean true" | sudo debconf-set-selections &> /dev/null' >> /tmp/software
+                    echo 'sudo DEBIAN_FRONTEND=noninteractive apt install -y opera-stable &> /dev/null' >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
