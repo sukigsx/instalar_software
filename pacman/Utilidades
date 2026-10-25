@@ -355,8 +355,8 @@ do
                 ;;
 
                 "20")#Stacer
-                    nombre_paquete="Stacer"
-                    nombre_paquete_comprobar="Stacer"
+                    nombre_paquete="stacer"
+                    nombre_paquete_comprobar="stacer"
                     if yay -Si "$nombre_paquete" &>/dev/null; then
                         #codigo para la instalacion se mete a /tmp/software
                         echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
