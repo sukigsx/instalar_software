@@ -72,7 +72,7 @@ do
 
     case $opcion in
             "1")#Grub-customizer
-                nombre_paquete="Grub-customizer"
+                nombre_paquete="grub-customizer"
                 nombre_paquete_comprobar="grub-customizer"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
