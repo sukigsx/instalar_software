@@ -99,6 +99,9 @@ do
                 ;;
 
             "3")#opcion vacia
+                echo ""
+                echo -e "${amarillo} Opcion vacia${borracolores}"
+                echo ""; sleep 1
                 ;;
 
             "4")#Tellico
