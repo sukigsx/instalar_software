@@ -109,11 +109,7 @@ do
             "5")#OnlyOffcee
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#OnlyOffice" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "mkdir -p -m 700 ~/.gnupg" >> /tmp/software
-                echo "curl -fsSL https://onlyoffice.com | gpg --no-default-keyring --keyring gnupg-ring:/tmp/onlyoffice.gpg --import &>/dev/null" >> /tmp/software
-                echo "sudo mv /tmp/onlyoffice.gpg /usr/share/keyrings/onlyoffice.gpg" >> /tmp/software
-                echo "rm -rf ~/.gnupg" >> /tmp/software
-                echo 'echo "deb [signed-by=/usr/share/keyrings/onlyoffice.gpg] https://onlyoffice.com squeeze main" | sudo tee /etc/apt/sources.list.d/onlyoffice.list &>/dev/null' >> /tmp/software
+                sudo extrepo enable onlyoffice >/dev/null 2>&1
                 echo "sudo apt update &>/dev/null" >> /tmp/software
                 echo "sudo apt install -y onlyoffice-desktopeditors" >> /tmp/software
 
