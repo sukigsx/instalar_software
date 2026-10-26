@@ -336,7 +336,7 @@ do
                 ;;
 
             "19")#rustdesk
-                nombre_paquete="rustdesk"
+                nombre_paquete="rustdesk-bin"
                 nombre_paquete_comprobar="rustdesk"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
