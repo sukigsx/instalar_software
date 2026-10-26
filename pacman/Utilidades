@@ -297,8 +297,8 @@ do
                 fi
                 ;;
 
-            "17")#GithubDesktop
-                nombre_paquete="github-desktop"
+            "17")#Github-Desktop-bin
+                nombre_paquete="github-desktop-bin"
                 nombre_paquete_comprobar="github-desktop"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
