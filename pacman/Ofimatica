@@ -45,6 +45,7 @@ do
     echo -e "${azul}  2)${borra_colores} Calligra Office           Paquete ofimatico, alternativa a Microfost Office."
     echo -e "${azul}  3)${borra_colores} ReText                    Un editor sencillo y potente para lenguajes de carcado."
     echo -e "${azul}  4)${borra_colores} Typora                    Un editor sencillo y potente para lenguajes de marcado."
+    echo -e "${azul}  5)${borra_colores} Typora                    Paquete ofimatico, alternativa a Microfost Office."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -104,6 +105,24 @@ do
                         "70") ##Atras, Instalar o ver el software seleccionado
                 exit
                 ;;
+            "4") #onlyoffice
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#onlyoffice-bin" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo mkdir -p /etc/apt/keyrings" >> /tmp/software
+                echo 'curl -fsSL https://downloads.typora.io/typora.gpg | sudo tee /etc/apt/keyrings/typora.gpg > /dev/null' >> /tmp/software
+                echo 'echo "deb [signed-by=/etc/apt/keyrings/typora.gpg] https://downloads.typora.io/linux ./" | sudo tee /etc/apt/sources.list.d/extrepo_typora.list' >> /tmp/software
+                echo "sudo apt update; sudo apt install -y typora" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "typora" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+                        "70") ##Atras, Instalar o ver el software seleccionado
+                exit
+                ;;
+
 
             "90") #Ayuda
                 clear
