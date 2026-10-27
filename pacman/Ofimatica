@@ -45,7 +45,7 @@ do
     echo -e "${azul}  2)${borra_colores} Calligra Office           Paquete ofimatico, alternativa a Microfost Office."
     echo -e "${azul}  3)${borra_colores} ReText                    Un editor sencillo y potente para lenguajes de carcado."
     echo -e "${azul}  4)${borra_colores} Typora                    Un editor sencillo y potente para lenguajes de marcado."
-    echo -e "${azul}  5)${borra_colores} Typora                    Paquete ofimatico, alternativa a Microfost Office."
+    echo -e "${azul}  5)${borra_colores} OnlyOffice                Paquete ofimatico, alternativa a Microfost Office."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -53,7 +53,7 @@ do
     read -p " Selcciona numero de categoria de software -> " opcion
         case $opcion in
             "1")#Libre Office
-                nombre_paquete="libreoffice"
+                nombre_paquete="libreoffice-fresh libreoffice-fresh-es"
                 nombre_paquete_comprobar="libreoffice"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
@@ -73,7 +73,7 @@ do
 
             "2")#Calligra
                 nombre_paquete="calligra"
-                nombre_paquete_comprobar="calligra"
+                nombre_paquete_comprobar="calligralauncher"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
@@ -131,7 +131,7 @@ do
 
             "5") #onlyoffice
                 nombre_paquete="onlyoffice-bin"
-                nombre_paquete_comprobar="onlyoffice"
+                nombre_paquete_comprobar="onlyoffice-desktopeditors"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
