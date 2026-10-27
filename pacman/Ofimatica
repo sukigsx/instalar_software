@@ -53,12 +53,12 @@ do
     read -p " Selcciona numero de categoria de software -> " opcion
         case $opcion in
             "1")#Libre Office
-                nombre_paquete="libreoffice-fresh libreoffice-fresh-es"
+                nombre_paquete="libreoffice-fresh"
                 nombre_paquete_comprobar="libreoffice"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "yay -S --noconfirm $nombre_paquete libreoffice-fresh-es" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
