@@ -116,7 +116,7 @@ do
 
             "4")# Appimage
                 #codigo para la instalacion se mete a /tmp/software
-                nombre_paquete="appimagelauncher"
+                nombre_paquete="appimagelauncher-bin"
                 nombre_paquete_comprobar="appimagelauncher"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
