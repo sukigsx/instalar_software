@@ -58,6 +58,29 @@ do
                 #codigo para la instalacion se mete a /tmp/software
                 nombre_paquete="steam"
                 nombre_paquete_comprobar="steam"
+                
+                echo ""
+                echo -e "${amarillo} Habilitando repositorio multilib para poder instalar Steam${borra_colores}"; sleep 3
+                echo ""
+
+                # 1. Verificar si multilib ya está en pacman.conf
+                if grep -q "^\[multilib\]" /etc/pacman.conf; then
+                  echo -e " ${verde} El repositorio multilib ya parece estar activo en /etc/pacman.conf.${borra_colores}"
+                  echo ""
+                else
+                  echo -e "${amarillo} Activando el repositorio multilib...${borra_colores}"; sleep 1
+                  echo ""
+                  # Busca la línea #[multilib] comentada y la descomenta junto a su Include
+                  sudo sed -i '/^#\[multilib\]/,/^#Include = \/etc\/pacman.d\/mirrorlist/s/^#//' /etc/pacman.conf
+    
+                  echo -e "${verde} Repositorio multilib habilitado correctamente.${borra_colores}"; sleep 1
+                  echo ""
+                fi
+
+                # 2. Actualizar las bases de datos de pacman/yay
+                echo "[i] Sincronizando repositorios del sistema..."
+                yay -Syu --noconfirm
+
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
