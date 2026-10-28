@@ -77,35 +77,35 @@ do
 
             "2")#vacio
                 echo ""
-                echo -e "${amarillo} Opcion vacia${borracolores}"
+                echo -e "${amarillo} Opcion vacia${borra_colores}"
                 echo ""
                 sleep 2
                 ;;
 
             "3")##vacio
                 echo ""
-                echo -e "${amarillo} Opcion vacia${borracolores}"
+                echo -e "${amarillo} Opcion vacia${borra_colores}"
                 echo ""
                 sleep 2
                 ;;
 
             "4")##vacio
                 echo ""
-                echo -e "${amarillo} Opcion vacia${borracolores}"
+                echo -e "${amarillo} Opcion vacia${borra_colores}"
                 echo ""
                 sleep 2
                 ;;
 
             "5")##vacio
                 echo ""
-                echo -e "${amarillo} Opcion vacia${borracolores}"
+                echo -e "${amarillo} Opcion vacia${borra_colores}"
                 echo ""
                 sleep 2
                 ;;
 
             "1")##vacio
                 echo ""
-                echo -e "${amarillo} Opcion vacia${borracolores}"
+                echo -e "${amarillo} Opcion vacia${borra_colores}"
                 echo ""
                 sleep 2
                 ;;
