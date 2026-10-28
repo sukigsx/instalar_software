@@ -48,7 +48,7 @@ do
     echo -e ""
     echo -e "${azul}  1)${borra_colores} sshpass                   Para poder incluir el password en conexiones ssh."
     echo -e "${azul}  2)${borra_colores} Fastfetch                 Informacion del sistema."
-    echo -e "${azul}  3)${borra_colores} Screenfetch               Informacion del sistema."
+    echo -e "${azul}  3)${borra_colores} Inxi                      Reporte técnico ultra detallado del hardware."
     echo -e "${azul}  4)${borra_colores} Net-tools (<debian13)     Herramientas de red."
     echo -e "${azul}  5)${borra_colores} Nmap                      Herramienta de scaneo."
     echo -e "${azul}  6)${borra_colores} Cifs-utils                Nos servirán para montar en nuestro sistema de archivos Linux local (samba)."
@@ -92,14 +92,14 @@ do
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
-            "3")#Screenfetch
+            "3")#Inxi
                 #codigo para la instalacion se mete a /tmp/software
-                echo "#screenfetch" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y screenfetch" >> /tmp/software
+                echo "#inxi" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install -y inxi" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "screenfetch" >> /tmp/ComprobarSoftware
+                echo "inxi" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
