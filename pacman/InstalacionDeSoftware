@@ -190,7 +190,6 @@ do
     echo -e "${azul} 10)${borra_colores} JUEGOS                     Pues ya lo dice todo, juegos."
     echo -e "${azul} 11)${borra_colores} SEGURIDAD                  Software destinado a la seguridad de tu equipo."
     echo -e "${azul} 12)${borra_colores} MENSAJERIA                 Software de mensajeria en red."
-    echo -e "${azul} 13)${borra_colores} PAQUETES INDEPENDIENTES    Descarga e instala paquetes deb manualmente."
     echo ""
     echo -e "${azul} 60)${borra_colores} Ver el software marcado para instalar."
     echo -e "${azul} 70)${borra_colores} Instalar el software seleccionado"
@@ -250,10 +249,6 @@ do
 
         "12") #Mensajeria
             bash $ruta_ejecucion/Mensajeria
-            ;;
-
-        "13") #Paquetes independientes
-            bash $ruta_ejecucion/PaquetesIndependientes
             ;;
 
         "60") #ver el software para instalar
