@@ -78,7 +78,9 @@ do
                 fi
 
                 # 2. Actualizar las bases de datos de pacman/yay
-                echo "[i] Sincronizando repositorios del sistema..."
+                echo ""
+                echo -e "${verde} Sincronizando repositorios del sistema...${borra_colores}"; sleep 2
+                echo ""
                 yay -Syu --noconfirm
 
                 if yay -Si "$nombre_paquete" &>/dev/null; then
