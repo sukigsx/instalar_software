@@ -139,7 +139,7 @@ do
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "yay -S --noconfirm $nombre_paquete mate-extre" >> /tmp/software
+                    echo "yay -S --noconfirm $nombre_paquete mate-extra" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
