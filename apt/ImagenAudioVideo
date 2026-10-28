@@ -193,7 +193,7 @@ do
                 ;;
 
             "99")#salir
-                ctrl_c
+                exit
                 ;;
 
             *)#seleccion invalida
