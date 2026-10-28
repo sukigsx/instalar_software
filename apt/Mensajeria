@@ -108,7 +108,7 @@ do
                 ;;
 
             "99") #Salir
-                ctrl_c
+                exit
                 ;;
 
             *) #seleccion invalida
