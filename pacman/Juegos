@@ -87,7 +87,6 @@ do
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                     echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
-                    echo "flatpak remote-add --if-not-exists flathub https://flathub.org"  >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
