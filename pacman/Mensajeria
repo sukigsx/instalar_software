@@ -55,7 +55,7 @@ do
         case $opcion in
             "1")#Telegram
                 #codigo para la instalacion se mete a /tmp/software
-                nombre_paquete="telegram"
+                nombre_paquete="telegram-desktop"
                 nombre_paquete_comprobar="telegram"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
