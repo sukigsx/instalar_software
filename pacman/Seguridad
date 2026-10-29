@@ -97,7 +97,7 @@ do
 
             "3")#wireguard
                 #codigo para la instalacion se mete a /tmp/software
-                nombre_paquete="wireguard"
+                nombre_paquete="wireguard-tools"
                 nombre_paquete_comprobar="wireguard"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
