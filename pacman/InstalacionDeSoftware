@@ -102,7 +102,7 @@ fi
 
 LISTA_SERVICIOS=$(systemctl list-units --type=service --all 2>/dev/null | awk '{print $1}')
 
-clear # Limpiamos pantalla para la tabla final
+echo ""
 
 # Cabecera de la tabla fija
 printf "%-30s %-30s %-15s\n" "SOFTWARE" "MODO DE INSTALACION" "INSTALADO"
