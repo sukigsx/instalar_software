@@ -259,8 +259,8 @@ do
                  ;;
 
             "15")#Joplin
-                nombre_paquete="joplin-desktop"
-                nombre_paquete_comprobar="joplin-desktop"
+                nombre_paquete="joplin-bin"
+                nombre_paquete_comprobar="joplin"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
