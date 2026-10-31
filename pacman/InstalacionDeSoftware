@@ -59,10 +59,123 @@ else
 fi
 }
 
-
-
-
 crear_ficheros_instalacion(){
+    # Crea el fichero de comprobación de software optimizado, rápido y alineado
+
+    cat << 'EOF' > /tmp/comprobacion
+rojo="\e[0;31m\033[1m"
+verde="\e[0;32m\033[1m"
+azul="\e[0;34m\033[1m"
+amarillo="\e[0;33m\033[1m"
+rosa="\e[0;35m\033[1m"
+turquesa="\e[0;36m\033[1m"
+naranja="\e[0;33m\033[1m"
+borra_colores="\033[0m\e[0m"
+
+echo -e "\n -Comprobacion de software instalado -\n"; sleep 2
+
+echo -e "${azul}EXPLICACION:${borra_colores}"
+echo -e "${verde}SNAP${borra_colores} = Instalacion por paqueteria de Snap."
+echo -e "${verde}FLATPAK${borra_colores} = Instalacion por paqueteria de Flatpak."
+echo -e "${verde}REPOSITORIO${borra_colores} = Repositorios oficiales de tu distribucion."
+echo -e "${verde}SERVICIO${borra_colores} = Son servicios, como apache, ftp, openvpn, ssh, etc."
+echo -e "${verde}REPOSITORIO AÑADIDO${borra_colores} = Instalacion por repositorios del software."
+echo ""
+
+echo "Cargando bases de datos de software... (un momento)"
+
+# 1. OPTIMIZACIÓN: Cachear listados en memoria una sola vez
+LISTA_SNAP=""
+if command -v snap >/dev/null 2>&1; then
+    LISTA_SNAP=$(timeout 3 snap list 2>/dev/null | awk '{print $1}')
+fi
+
+LISTA_FLATPAK=""
+if command -v flatpak >/dev/null 2>&1; then
+    LISTA_FLATPAK=$(timeout 3 flatpak list --columns=application 2>/dev/null)
+fi
+
+LISTA_DPKG=""
+if command -v dpkg >/dev/null 2>&1; then
+    LISTA_DPKG=$(dpkg -l 2>/dev/null | awk '{print $2}')
+fi
+
+LISTA_SERVICIOS=$(systemctl list-units --type=service --all 2>/dev/null | awk '{print $1}')
+
+clear # Limpiamos pantalla para la tabla final
+
+# Cabecera de la tabla fija
+printf "%-30s %-30s %-15s\n" "SOFTWARE" "MODO DE INSTALACION" "INSTALADO"
+printf "%-30s %-30s %-15s\n" "--------" "-------------------" "-----------"
+
+# 2. Bucle óptimo que lee el fichero sin colgarse
+while IFS= read -r programa || [ -n "$programa" ]; do
+    programa=$(echo "$programa" | tr -d '\r' | xargs)
+    [ -z "$programa" ] && continue
+
+    modo=""
+    estado=""
+    color_modo=""
+    color_estado=""
+
+    # Comprobaciones en base a las variables cacheadas
+    if echo "$LISTA_SNAP" | grep -qx "$programa"; then
+        modo="(Por Snap)"
+        estado="[OK]"
+        color_modo="${azul}"
+        color_estado="${verde}"
+
+    elif echo "$LISTA_FLATPAK" | grep -qx "$programa"; then
+        modo="(Por Flatpak)"
+        estado="[OK]"
+        color_modo="${amarillo}"
+        color_estado="${verde}"
+
+    elif echo "$LISTA_DPKG" | grep -qx "$programa"; then
+        modo="(Por repositorio)"
+        estado="[OK]"
+        color_modo="${rosa}"
+        color_estado="${verde}"
+
+    elif echo "$LISTA_SERVICIOS" | grep -q "^$programa\.service"; then
+        modo="(Servicio)"
+        estado="[OK]"
+        color_modo="${turquesa}"
+        color_estado="${verde}"
+
+    elif command -v "$programa" >/dev/null 2>&1; then
+        modo="(Por repositorio añadido)"
+        estado="[OK]"
+        color_modo="${naranja}"
+        color_estado="${verde}"
+
+    else
+        modo="[No instalado]"
+        estado="[FALLO]"
+        color_modo="${rojo}"
+        color_estado="${rojo}"
+    fi
+
+    # 3. Alineación matemática limpia evitando bugs de color invisible
+    printf "%-30s" "$programa"
+    printf "%b%s%b" "$color_modo" "$modo" "$borra_colores"
+    
+    largo_modo=${#modo}
+    espacios_relleno=$((30 - largo_modo))
+    printf "%${espacios_relleno}s" ""
+    
+    printf "%b%s%b\n" "$color_estado" "$estado" "$borra_colores"
+
+done < /tmp/ComprobarSoftware
+
+echo ""
+read -p " Pulsa una tecla para continuar." pause
+EOF
+}
+
+
+
+crear_ficheros_instalacion_origina(){
 #crea el fichero de instalacion de software
 
 # Limpiamos el fichero antes de empezar
