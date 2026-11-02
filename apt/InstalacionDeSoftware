@@ -73,7 +73,7 @@ naranja="\e[0;33m\033[1m"
 borra_colores="\033[0m\e[0m"
 
 clear
-echo -e "\n ~{verde} Comprobacion de software instalado${borra_colores} \n"; sleep 2
+echo -e "\n ${verde} Comprobacion de software instalado${borra_colores} \n"; sleep 2
 
 echo -e "${azul}EXPLICACION:${borra_colores}"
 echo -e "${verde}SNAP${borra_colores} = Instalacion por paqueteria de Snap."
