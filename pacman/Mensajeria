@@ -100,7 +100,8 @@ do
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    #echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "yay -S --noconfirm $nombre_paquete --overwrite '/usr/lib/debug/.build-id/*'" >> /tmp/software
                     echo 'sudo ln -sf "/opt/WhatsApp Desktop/whatsapp-linux-desktop" /usr/bin/whatsapp' >> /tmp/software
                     echo "" >> /tmp/software
 
