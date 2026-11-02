@@ -45,7 +45,7 @@ do
     echo -e "${azul}  1)${borra_colores} sshpass                   Para poder incluir el password en conexiones ssh."
     echo -e "${azul}  2)${borra_colores} Fastfetch                 Informacion del sistema."
     echo -e "${azul}  3)${borra_colores} Inxi                      Reporte técnico ultra detallado del hardware."
-    echo -e "${azul}  4)${borra_colores} Net-tools (<debian13)     Herramientas de red."
+    echo -e "${azul}  4)${borra_colores} Net-tools (obsoleto)      Herramientas de red."
     echo -e "${azul}  5)${borra_colores} Nmap                      Herramienta de scaneo."
     echo -e "${azul}  6)${borra_colores} Cifs-utils                Nos servirán para montar en nuestro sistema de archivos Linux local (samba)."
     echo -e "${azul}  7)${borra_colores} Fping                     Nos permite enviar mensajes ICMP."
