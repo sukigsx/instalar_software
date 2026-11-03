@@ -68,7 +68,7 @@ do
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
 
                 # Comprobar si /usr/sbin está en el PATH
-                PATH="$PATH:/usr/sbin"
+                export PATH="$PATH:/usr/sbin"
                 ;;
 
             "2")#Apache
