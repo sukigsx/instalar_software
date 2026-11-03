@@ -64,8 +64,14 @@ do
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "ssh.service" >> /tmp/ComprobarSoftware
+                echo "sshd" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+
+                # Comprobar si /usr/sbin está en el PATH
+                if [[ ":$PATH:" != *":/usr/sbin:"* ]]; then
+                 # No está, por lo tanto lo añadimos
+                 PATH="/usr/sbin:$PATH"
+                fi
                 ;;
 
             "2")#Apache
@@ -75,8 +81,14 @@ do
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "apache2.service" >> /tmp/ComprobarSoftware
+                echo "apache2" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+
+                # Comprobar si /usr/sbin está en el PATH
+                if [[ ":$PATH:" != *":/usr/sbin:"* ]]; then
+                 # No está, por lo tanto lo añadimos
+                 PATH="/usr/sbin:$PATH"
+                fi
                 ;;
 
             "3")#Ftp
@@ -86,8 +98,14 @@ do
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "vsftpd.service" >> /tmp/ComprobarSoftware
+                echo "vsftpd" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+
+                # Comprobar si /usr/sbin está en el PATH
+                if [[ ":$PATH:" != *":/usr/sbin:"* ]]; then
+                 # No está, por lo tanto lo añadimos
+                 PATH="/usr/sbin:$PATH"
+                fi
                 ;;
 
             "4")#OpenVpn
@@ -97,8 +115,14 @@ do
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
-                echo "openvpn.service" >> /tmp/ComprobarSoftware
+                echo "openvpn" >> /tmp/ComprobarSoftware
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+
+                # Comprobar si /usr/sbin está en el PATH
+                if [[ ":$PATH:" != *":/usr/sbin:"* ]]; then
+                 # No está, por lo tanto lo añadimos
+                 PATH="/usr/sbin:$PATH"
+                fi
                 ;;
 
             "90") #Ayuda
