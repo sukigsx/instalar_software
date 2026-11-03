@@ -46,7 +46,7 @@ do
     menu_info
     echo -e " Navegadores disponibles       Descripcion."
     echo -e ""
-    echo -e "${azul}  1)${borra_colores} ssh                       Servidor ssh, conexion en remoto por terminal."
+    echo -e "${azul}  1)${borra_colores} openssh                   Servidor ssh, conexion en remoto por terminal."
     echo -e "${azul}  2)${borra_colores} Apache                    Servidor apache, Paginas web."
     echo -e "${azul}  3)${borra_colores} Ftp                       Servidor Ftp, Servicio para compartir ficheros."
     echo -e "${azul}  4)${borra_colores} OpenVpn                   Servidor OpenVpn, para tu red privada virtual VPN."
@@ -60,7 +60,7 @@ do
             "1")#ssh
                 #codigo para la instalacion se mete a /tmp/software
                 echo "#ssh" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                echo "sudo apt install -y ssh" >> /tmp/software
+                echo "sudo apt install -y openssh" >> /tmp/software
                 echo "" >> /tmp/software
 
                 #linea con el nombre del programa instalado para la comprobacion
