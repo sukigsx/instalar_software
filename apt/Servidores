@@ -68,10 +68,7 @@ do
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
 
                 # Comprobar si /usr/sbin está en el PATH
-                if [[ ":$PATH:" != *":/usr/sbin:"* ]]; then
-                 # No está, por lo tanto lo añadimos
-                 PATH="/usr/sbin:$PATH"
-                fi
+                PATH="/usr/sbin:$PATH"
                 ;;
 
             "2")#Apache
