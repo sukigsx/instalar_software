@@ -65,7 +65,7 @@ do
 
                 #linea con el nombre del programa instalado para la comprobacion
                 echo "sshd" >> /tmp/ComprobarSoftware
-                echo 'PATH="$PATH:/usr/sbin"' >> /tmp/ComprobarSoftware
+                echo 'PATH="$PATH:/usr/sbin"' >> /tmp/software
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
 
                 # Comprobar si /usr/sbin está en el PATH
