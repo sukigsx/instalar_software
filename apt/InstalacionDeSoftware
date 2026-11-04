@@ -72,6 +72,8 @@ turquesa="\e[0;36m\033[1m"
 naranja="\e[0;33m\033[1m"
 borra_colores="\033[0m\e[0m"
 
+export PATH="/usr/sbin:$PATH"
+
 clear
 echo -e "\n ${verde} Comprobacion de software instalado${borra_colores} \n"; sleep 2
 
