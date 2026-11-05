@@ -346,7 +346,7 @@ do
                     else
                         echo ""
                         echo -e "${amarillo} Proceso cancelado.${borra_colores}"; sleep 2
-                        break
+                        continue
                     fi
                     ;;
 
