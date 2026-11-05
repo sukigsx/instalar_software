@@ -36,7 +36,7 @@ echo -e "${rosa}                                    ${azul}   Sistema paqueteria
 echo -e ""
 echo -e "${azul} Contacto:${borra_colores} ( Correo${rosa} $Correo${borra_colores} ) ( Web${rosa} $Web${borra_colores} )${borra_colores}"
 echo ""
-echo -e " ${verde} - INSTALACION DE JUEGOS -${borra_colores}"
+echo -e " ${verde} - INSTALACION DE SOFTWARE EXCLUSIVO DE KDE-PLASMA -${borra_colores}"
 echo ""
 }
 
@@ -44,7 +44,7 @@ while :
 do
     clear
     menu_info
-    echo -e " Opciones disponibles disponibles       Descripcion."
+    echo -e "  Opciones disponibles          Descripcion."
     echo -e ""
     echo -e "${azul}  1)${borra_colores} Graficos                   Visores de imágenes, lectores de PDF y herramientas de escaneo."
     echo -e "${azul}  2)${borra_colores} Utilidades                 Herramientas de compresión, calculadoras y editores de texto."
@@ -64,17 +64,35 @@ do
     read -p " Selcciona numero de categoria de software -> " opcion
 
         case $opcion in
-            "1")#Steam
-                #codigo para la instalacion se mete a /tmp/software
-                echo "#Steam" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                #echo "sudo apt install -y steam-installer" >> /tmp/software
-                echo "sudo apt install -y snapd" >> /tmp/software
-                echo "sudo snap install steam" >> /tmp/software
-                echo "" >> /tmp/software
+            "1")#Graficos
+                # Esto te permite definir qué paquete instalar y qué comando usar para verificar si funciona
+                #nombre del paquete a instalar | nombre a comprobar
+                declare -A paquetes=(
+                ["dolphin"]="dolphin"
+                )
 
-                #linea con el nombre del programa instalado para la comprobacion
-                echo "steam" >> /tmp/ComprobarSoftware
-                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                # Recorremos la lista de paquetes
+                for nombre_paquete in "${!paquetes[@]}"; do
+                    nombre_paquete_comprobar="${paquetes[$nombre_paquete]}"
+
+                    # Comprobamos si el paquete existe en los repositorios o AUR
+                    if yay -Si "$nombre_paquete" &>/dev/null; then
+                        # Código para la instalación (se mete a /tmp/software)
+                        echo "#$nombre_paquete" >> /tmp/software
+                        echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                        echo "" >> /tmp/software
+
+                        # Línea con el nombre del programa para la comprobación posterior
+                        echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
+
+                        echo ""
+                        echo -e "${azul}Añadido ${verde}OK${borra_colores}: $nombre_paquete"
+                        sleep 1
+                    else
+                        echo -e "\n${amarillo}El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}\n"
+                        sleep 2
+                    fi
+                done
                 ;;
 
             "2")#Steam
