@@ -337,11 +337,11 @@ do
                         echo "" >> /tmp/software
 
                         #linea con el nombre del programa instalado para la comprobacion
-                        echo "#dolphin" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                        echo "#kfind" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                        echo "#kwrite" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                        echo "#konqueror" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                        echo "#plasma-discover" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo "#dolphin" >> /tmp/ComprobarSoftware
+                        echo "#kfind" >> /tmp/ComprobarSoftware
+                        echo "#kwrite" >> /tmp/ComprobarSoftware
+                        echo "#konqueror" >> /tmp/ComprobarSoftware
+                        echo "#plasma-discover" >> /tmp/ComprobarSoftware
                         echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                     else
                         echo ""
