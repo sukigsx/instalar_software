@@ -373,7 +373,7 @@ do
             bash $ruta_ejecucion/PaquetesIndependientes
             ;;
 
-        "13") #Paquetes independientes
+        "14") #Paquetes independientes
             bash $ruta_ejecucion/kde-plasma
             ;;
 
