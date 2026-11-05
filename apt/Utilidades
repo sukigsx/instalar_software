@@ -322,7 +322,7 @@ do
                 "21")#mega paquete kde plasma
                     clear
                     echo ""
-                    echo -e "${verde} Se va a instalar el siguiente software:${borra_colores}"
+                    echo -e "${verde} Se van a instalar los siguientes programas:${borra_colores}"
                     echo -e "${azul}    - Dolphin: El gestor de archivos.${borra_colores}"
                     echo -e "${azul}    - KFind: La herramienta de búsqueda de archivos.${borra_colores}"
                     echo -e "${azul}    - KWrite: El editor de texto básico (hermano menor de Kate).${borra_colores}"
@@ -332,7 +332,7 @@ do
                     read -p " Quieres continuar con la instalacion (S/n) " respuesta
                     if [ "$respuesta" = "S" ] || [ "$respuesta" = "s" ]; then
                         # Coloca aquí el código que quieres ejecutar si dice que sí
-                        echo "#kde-baseapps" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo "#mega paquete kde plasma" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                         echo "sudo apt install -y kde-baseapps" >> /tmp/software
                         echo "" >> /tmp/software
 
@@ -353,26 +353,63 @@ do
                 "22")#super mega paquete kde plasma
                     clear
                     echo ""
-                    echo -e "${verde} Se va a instalar el siguiente software:${borra_colores}"
-                    echo -e "${azul}    - Dolphin: El gestor de archivos.${borra_colores}"
-                    echo -e "${azul}    - KFind: La herramienta de búsqueda de archivos.${borra_colores}"
-                    echo -e "${azul}    - KWrite: El editor de texto básico (hermano menor de Kate).${borra_colores}"
-                    echo -e "${azul}    - Konqueror: El navegador web y visor de documentos clásico de KDE.${borra_colores}"
-                    echo -e "${azul}    - Plasma-discover: La tienda de software.${borra_colores}"
+                    echo -e "${verde} Se van a instalar los siguientes programas:${borra_colores}"
+
+                    echo -e "${azul} Multimedia y Diseño (kdemultimedia / kdegraphics)${borra_colores}"
+                    echo -e "${azul}     • Kdenlive:${borra_colores} El editor de video profesional no lineal."
+                    echo -e "${azul}     • Gwenview:${borra_colores} El visor de imágenes avanzado de KDE."
+                    echo -e "${azul}     • Spectacle:${borra_colores} La herramienta para tomar capturas de pantalla."
+                    echo -e "${azul}     • Okular:${borra_colores} El visor universal de documentos (PDF, EPUB, etc.)."
+                    echo -e "${azul}     • Krita:${borra_colores} El potente programa de pintura digital e ilustración."
+                    echo -e "${azul}     • Dragon Player / JuK:${borra_colores} Reproductores de video y música."
+                    echo ""
+                    echo -e "${azul} Productividad y Oficina (kdepim / kdeutils)"
+                    echo -e "${azul}     • KMail:${borra_colores} El cliente de correo electrónico avanzado."
+                    echo -e "${azul}     • KOrganizer:${borra_colores} Calendario y agenda personal."
+                    echo -e "${azul}     • Ark:${borra_colores} El archivador para comprimir y descomprimir archivos (ZIP, RAR, TAR)."
+                    echo -e "${azul}     • KCalc:${borra_colores} La calculadora científica de KDE."
+                    echo -e "${azul}     • Kontact:${borra_colores} La suite que unifica el correo, calendario y notas."
+                    echo -e "${azul} Internet y Redes (kdenetwork)${borra_colores}"
+                    echo ""
+                    echo -e "${azul}     • KDE Connect:${borra_colores} La herramienta para sincronizar por completo tu teléfono (Android/iOS) con la PC."
+                    echo -e "${azul}     • KGet${borra_colores}: Gestor de descargas avanzadas."
+                    echo -e "${azul}     • KTorrent:${borra_colores} Cliente oficial de intercambio BitTorrent."
+                    echo -e "${azul}     • KrDC / KrFB:${borra_colores} Clientes de escritorio remoto."
+                    echo ""
+                    echo -e "${azul} Educación, Desarrollo y Juegos (kdeedu / kdegames / kdesdk)${borra_colores}"
+                    echo -e "${azul}     • Kate:${borra_colores} El editor de texto avanzado para programadores."
+                    echo -e "${azul}     • Marble:${borra_colores} Un globo terráqueo virtual y mapas del mundo."
+                    echo -e "${azul}     • KStars:${borra_colores} Un planetario virtual para astronomía."
+                    echo -e "${azul}     • Kalgebra / KTouch:${borra_colores} Herramientas de matemáticas y mecanografía."
+                    echo -e "${azul}     • Colección de juegos de KDE:${borra_colores} Más de 20 juegos clásicos (KMahjongg, K Mines, KPat, etc.)."
                     echo ""
                     read -p " Quieres continuar con la instalacion (S/n) " respuesta
                     if [ "$respuesta" = "S" ] || [ "$respuesta" = "s" ]; then
                         # Coloca aquí el código que quieres ejecutar si dice que sí
-                        echo "#kde-baseapps" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo "#super mega paquete kde plasma" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                         echo "sudo apt install -y kdegraphics kdemultimedia kdenetwork kdeutils kdepim kdegames kdeedu kdeaccessibility kdesdk" >> /tmp/software
                         echo "" >> /tmp/software
 
                         #linea con el nombre del programa instalado para la comprobacion
-                        echo "dolphin" >> /tmp/ComprobarSoftware
-                        echo "kfind" >> /tmp/ComprobarSoftware
-                        echo "kwrite" >> /tmp/ComprobarSoftware
-                        echo "konqueror" >> /tmp/ComprobarSoftware
-                        echo "plasma-discover" >> /tmp/ComprobarSoftware
+                        echo "kdenlive" >> /tmp/ComprobarSoftware
+                        echo "gwenview" >> /tmp/ComprobarSoftware
+                        echo "spectacle" >> /tmp/ComprobarSoftware
+                        echo "okular" >> /tmp/ComprobarSoftware
+                        echo "krita" >> /tmp/ComprobarSoftware
+                        echo "gragon" >> /tmp/ComprobarSoftware
+                        echo "kmail" >> /tmp/ComprobarSoftware
+                        echo "korganizer" >> /tmp/ComprobarSoftware
+                        echo "ark" >> /tmp/ComprobarSoftware
+                        echo "kcalc" >> /tmp/ComprobarSoftware
+                        echo "kontact" >> /tmp/ComprobarSoftware
+                        echo "kdeconect-app" >> /tmp/ComprobarSoftware
+                        echo "kget" >> /tmp/ComprobarSoftware
+                        echo "ktorrent" >> /tmp/ComprobarSoftware
+                        echo "krdc" >> /tmp/ComprobarSoftware
+                        echo "kate" >> /tmp/ComprobarSoftware
+                        echo "marble" >> /tmp/ComprobarSoftware
+                        echo "kstars" >> /tmp/ComprobarSoftware
+                        echo "kalgebra" >> /tmp/ComprobarSoftware
                         echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                     else
                         echo ""
