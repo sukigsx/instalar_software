@@ -113,6 +113,7 @@ do
                 #nombre del paquete a instalar | nombre a comprobar
                 declare -A paquetes=(
                 ["dolphin"]="dolphin"
+                ["dolphin"]="dolphinn"
                 )
 
                 # Recorremos la lista de paquetes
@@ -130,7 +131,7 @@ do
                         echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
 
                         echo -e "${azul}Añadido ${verde}OK${borra_colores}: $nombre_paquete"
-                        sleep 0.5
+                        sleep 1
                     else
                         echo -e "\n${amarillo}El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}\n"
                         sleep 2
