@@ -321,7 +321,8 @@ do
 
                 "21")#mega paquete kde plasma
                     clear
-                    echo -e "${verde} Se han a instalar el siguiente software:${borra_colores}"
+                    echo ""
+                    echo -e "${verde} Se va a instalar el siguiente software:${borra_colores}"
                     echo -e "${azul}    - Dolphin: El gestor de archivos.${borra_colores}"
                     echo -e "${azul}    - KFind: La herramienta de búsqueda de archivos.${borra_colores}"
                     echo -e "${azul}    - KWrite: El editor de texto básico (hermano menor de Kate).${borra_colores}"
@@ -344,7 +345,7 @@ do
                         echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                     else
                         echo -e "${amarillo} Proceso cancelado.${borra_colores}"; sleep 2
-                        exit 1
+                        break
                     fi
                     ;;
 
