@@ -113,7 +113,6 @@ do
                 #nombre del paquete a instalar | nombre a comprobar
                 declare -A paquetes=(
                 ["dolphin"]="dolphin"
-                ["openssh"]="popo"
                 )
 
                 # Recorremos la lista de paquetes
