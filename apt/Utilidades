@@ -48,7 +48,7 @@ do
     echo -e ""
     echo -e "${azul}  1)${borra_colores} Grub-customizer                   Modifica el gestor de arranque."
     echo -e "${azul}  2)${borra_colores} Cairo-Dock                        Crear paneles y lanzadores, muy personalizados."
-    echo -e "${azul}  3)${borra_colores} Opcion vacia                      Opcion para nuevos utilidades"
+    echo -e "${azul}  3)${borra_colores} Dolphin                           Explorador de archivos"
     echo -e "${azul}  4)${borra_colores} Tellico                           Crea tu base de datos de cd dvd libros etc."
     echo -e "${azul}  5)${borra_colores} KDE Connect                       Sincroniza tu movil con el pc."
     echo -e "${azul}  6)${borra_colores} Usuarios y Grupos                 Gestiona Usuarios y Grupos de modo grafico."
@@ -97,10 +97,15 @@ do
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
-            "3")#opcion vacia
-                echo ""
-                echo -e "${amarillo} Opcion vacia${borra_colores}"
-                echo ""; sleep 1
+            "3")#Dolphin
+                #codigo para la instalacion se mete a /tmp/software
+                echo "#dolphin" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                echo "sudo apt install dolphin -y" >> /tmp/software
+                echo "" >> /tmp/software
+
+                #linea con el nombre del programa instalado para la comprobacion
+                echo "dolphin" >> /tmp/ComprobarSoftware
+                echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
             "4")#Tellico
