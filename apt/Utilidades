@@ -354,7 +354,7 @@ do
                     clear
                     echo ""
                     echo -e "${verde} Se van a instalar los siguientes programas:${borra_colores}"
-
+                    echo ""
                     echo -e "${azul} Multimedia y Diseño (kdemultimedia / kdegraphics)${borra_colores}"
                     echo -e "${azul}     • Kdenlive:${borra_colores} El editor de video profesional no lineal."
                     echo -e "${azul}     • Gwenview:${borra_colores} El visor de imágenes avanzado de KDE."
@@ -369,8 +369,8 @@ do
                     echo -e "${azul}     • Ark:${borra_colores} El archivador para comprimir y descomprimir archivos (ZIP, RAR, TAR)."
                     echo -e "${azul}     • KCalc:${borra_colores} La calculadora científica de KDE."
                     echo -e "${azul}     • Kontact:${borra_colores} La suite que unifica el correo, calendario y notas."
-                    echo -e "${azul} Internet y Redes (kdenetwork)${borra_colores}"
                     echo ""
+                    echo -e "${azul} Internet y Redes (kdenetwork)${borra_colores}"
                     echo -e "${azul}     • KDE Connect:${borra_colores} La herramienta para sincronizar por completo tu teléfono (Android/iOS) con la PC."
                     echo -e "${azul}     • KGet${borra_colores}: Gestor de descargas avanzadas."
                     echo -e "${azul}     • KTorrent:${borra_colores} Cliente oficial de intercambio BitTorrent."
@@ -387,7 +387,7 @@ do
                     if [ "$respuesta" = "S" ] || [ "$respuesta" = "s" ]; then
                         # Coloca aquí el código que quieres ejecutar si dice que sí
                         echo "#super mega paquete kde plasma" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                        echo "sudo apt install -y kdegraphics kdemultimedia kdenetwork kdeutils kdepim kdegames kdeedu kdeaccessibility kdesdk" >> /tmp/software
+                        echo "sudo apt install -y kdegraphics kdemultimedia kdenetwork kdeutils kdepim kdegames kdeedu kdeaccessibility kdesdk kdenlive krita ktorrent kstarts" >> /tmp/software
                         echo "" >> /tmp/software
 
                         #linea con el nombre del programa instalado para la comprobacion
@@ -396,13 +396,13 @@ do
                         echo "spectacle" >> /tmp/ComprobarSoftware
                         echo "okular" >> /tmp/ComprobarSoftware
                         echo "krita" >> /tmp/ComprobarSoftware
-                        echo "gragon" >> /tmp/ComprobarSoftware
+                        echo "dragon" >> /tmp/ComprobarSoftware
                         echo "kmail" >> /tmp/ComprobarSoftware
                         echo "korganizer" >> /tmp/ComprobarSoftware
                         echo "ark" >> /tmp/ComprobarSoftware
                         echo "kcalc" >> /tmp/ComprobarSoftware
                         echo "kontact" >> /tmp/ComprobarSoftware
-                        echo "kdeconect-app" >> /tmp/ComprobarSoftware
+                        echo "kdeconnect-app" >> /tmp/ComprobarSoftware
                         echo "kget" >> /tmp/ComprobarSoftware
                         echo "ktorrent" >> /tmp/ComprobarSoftware
                         echo "krdc" >> /tmp/ComprobarSoftware
