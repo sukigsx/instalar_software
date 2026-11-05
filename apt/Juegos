@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 ruta_ejecucion=$(dirname "$(readlink -f "$0")")
 
@@ -44,7 +44,7 @@ while :
 do
     clear
     menu_info
-    echo -e " Navegadores disponibles       Descripcion."
+    echo -e " Juegos disponibles       Descripcion."
     echo -e ""
     echo -e "${azul}  1)${borra_colores} Steam                     Plataforma de juegos."
     echo -e "${azul}  2)${borra_colores} Opcion vacia              Para posibles juegos"
