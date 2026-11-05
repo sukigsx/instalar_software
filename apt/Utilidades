@@ -344,6 +344,7 @@ do
                         echo "#plasma-discover" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                         echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                     else
+                        echo ""
                         echo -e "${amarillo} Proceso cancelado.${borra_colores}"; sleep 2
                         break
                     fi
