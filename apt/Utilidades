@@ -66,6 +66,8 @@ do
     echo -e "${azul} 18)${borra_colores} Teamviwer                         Conexion remota."
     echo -e "${azul} 19)${borra_colores} RustDesk                          Conexion remota."
     echo -e "${azul} 20)${borra_colores} Stacer                            Monitorizar y optimizar tu sistema Linux."
+    echo -e "${azul} 21)${borra_colores} Mega paquete KDE Plasm            Utilidades y herramientas principales de KDE"
+    echo -e "${azul} 22)${borra_colores} Super Mega Paquete KDE Plasma     Juegos, herramientas educativas, diseño, multimedia, oficina, etc."
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -307,6 +309,46 @@ do
                 ;;
 
                 "20")#Stacer
+                    #monitorizar y optimizar tu sistema Linux
+                    echo "#stacer" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "sudo apt install -y stacer" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "stacer" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+                "21")#mega paquete kde plasma
+                    clear
+                    echo -e "${verde} Se han a instalar el siguiente software:${borra_colores}"
+                    echo -e"${azul}    - Dolphin: El gestor de archivos.${borra_colores}"
+                    echo -e"${azul}    - KFind: La herramienta de búsqueda de archivos.${borra_colores}"
+                    echo -e"${azul}    - KWrite: El editor de texto básico (hermano menor de Kate).${borra_colores}"
+                    echo -e"${azul}    - Konqueror: El navegador web y visor de documentos clásico de KDE.${borra_colores}"
+                    echo -e"${azul}    - Plasma-discover: La tienda de software.${borra_colores}"
+                    echo ""
+                    read -p " Quieres continuar con la instalacion (S/n)" sn
+                    if [ "$respuesta" = "S" ] || [ "$respuesta" = "s" ]; then
+                        # Coloca aquí el código que quieres ejecutar si dice que sí
+                        echo "#kde-baseapps" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo "sudo apt install -y kde-baseapps" >> /tmp/software
+                        echo "" >> /tmp/software
+
+                        #linea con el nombre del programa instalado para la comprobacion
+                        echo "#dolphin" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo "#kfind" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo "#kwrite" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo "#konqueror" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo "#plasma-discover" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                    else
+                        echo -e "${amarillo} Proceso cancelado.${borra_colores}"; sleep 2
+                        exit 1
+                    fi
+                    ;;
+
+                "22")#super mega paquete kde plasma
                     #monitorizar y optimizar tu sistema Linux
                     echo "#stacer" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                     echo "sudo apt install -y stacer" >> /tmp/software
