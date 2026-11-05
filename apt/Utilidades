@@ -387,7 +387,7 @@ do
                     if [ "$respuesta" = "S" ] || [ "$respuesta" = "s" ]; then
                         # Coloca aquí el código que quieres ejecutar si dice que sí
                         echo "#super mega paquete kde plasma" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                        echo "sudo apt install -y kdegraphics kdemultimedia kdenetwork kdeutils kdepim kdegames kdeedu kdeaccessibility kdesdk kdenlive krita ktorrent kstarts" >> /tmp/software
+                        echo "sudo apt install -y kdegraphics kdemultimedia kdenetwork kdeutils kdepim kdegames kdeedu kdeaccessibility kdesdk kdenlive krita ktorrent kstars" >> /tmp/software
                         echo "" >> /tmp/software
 
                         #linea con el nombre del programa instalado para la comprobacion
