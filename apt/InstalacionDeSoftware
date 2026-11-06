@@ -307,7 +307,6 @@ do
     echo -e "${azul} 11)${borra_colores} SEGURIDAD                  Software destinado a la seguridad de tu equipo."
     echo -e "${azul} 12)${borra_colores} MENSAJERIA                 Software de mensajeria en red."
     echo -e "${azul} 13)${borra_colores} PAQUETES INDEPENDIENTES    Descarga e instala paquetes deb manualmente."
-    echo -e "${azul} 14)${borra_colores} KDE-PLASMA                 Software diseñado por KDE-PLASMA."
     echo ""
     echo -e "${azul} 60)${borra_colores} Ver el software marcado para instalar."
     echo -e "${azul} 70)${borra_colores} Instalar el software seleccionado"
@@ -371,10 +370,6 @@ do
 
         "13") #Paquetes independientes
             bash $ruta_ejecucion/PaquetesIndependientes
-            ;;
-
-        "14") #Paquetes independientes
-            bash $ruta_ejecucion/kde-plasma
             ;;
 
         "60") #ver el software para instalar
