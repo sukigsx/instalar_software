@@ -52,7 +52,7 @@ do
     echo -e "${azul}   7)${borra_colores} Skanlite        Software para tu escaner."
     echo -e "${azul}   8)${borra_colores} Krita           Es un estudio de arte digital completo."
     echo -e "${azul}   9)${borra_colores} Freetube        Reproductor de videos de youtube Sin anuncios."
-    echo -e "${azul}  10)${borra_colores} HarmonyMusic    Reproductor de musica online sin anuncion."
+    echo -e "${azul}  10)${borra_colores} opcion vacia    "
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda           Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras           Salir (ctrl-c)"
@@ -232,24 +232,8 @@ do
                 ;;
 
             "10")#harmonymusic
-                nombre_paquete="harmonymusic"
-                nombre_paquete_comprobar="harmonymusic"
-                if yay -Si "$nombre_paquete" &>/dev/null; then
-                    #codigo para la instalacion se mete a /tmp/software
-                    echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
-                    echo "" >> /tmp/software
-
-                    #linea con el nombre del programa instalado para la comprobacion
-                    echo "$nombre_paquete_comprobar" >> /tmp/ComprobarSoftware
-                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                else
-                    echo ""
-                    echo -e "${amarillo} El paquete ${borra_colores}$nombre_paquete${amarillo} NO existe en repositorios ni en AUR.${borra_colores}"
-                    echo ""; sleep 4
-                fi
+                echo -e "${amarillo} opcion vacia ${borra_colores}"; sleep 1
                 ;;
-
 
             "90")#carga la ayuda
                 clear

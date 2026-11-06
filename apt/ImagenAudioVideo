@@ -56,7 +56,7 @@ do
     echo -e "${azul}   7)${borra_colores} Skanlite        Software para tu escaner."
     echo -e "${azul}   8)${borra_colores} Krita           Es un estudio de arte digital completo."
     echo -e "${azul}   9)${borra_colores} Freetube        Reproductor de videos de youtube Sin anuncios."
-    echo -e "${azul}  10)${borra_colores} HarmonyMusic    Reproductor de musica online sin anuncion."
+    echo -e "${azul}  10)${borra_colores} opcion vacia    "
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda           Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras           Salir (ctrl-c)"
@@ -172,18 +172,10 @@ do
                 echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
                 ;;
 
-            "10")#harmonymusic
+            "10")#vacio
                 echo ""
-                echo -e "${verde} Para instalar este programa de musica:${borra_colores}"
-                echo ""
-                echo -e "   Dado que esta el github y se esta actualizando muy amenudo"
-                echo -e "   con nuevas versiones, es recomendado que lo instales de forma"
-                echo -e "   manual utilizando la opcion:"
-                echo ""
-                echo -e "       13 del menu principal, PAQUETES INDEPENDIENTES"
-                echo ""
-                read -p " Pulsa una tecla para continuar" pause
-                ;;
+                echo -e "${amarillo} opcion vacia${borra_colores}"; sleep 1
+                               ;;
 
 
             "90")#carga la ayuda
