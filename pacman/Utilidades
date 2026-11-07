@@ -189,6 +189,7 @@ do
                     echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
                     echo "sudo systemctl enable --now vmware-usbarbitrator.service" >> /tmp/software
                     echo "sudo systemctl enable --now vmware-networks.service" >> /tmp/software
+                    echo "sudo modprobe -a vmmon vmnet" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
