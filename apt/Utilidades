@@ -320,36 +320,31 @@ do
                 ;;
 
                 "21")#Vmware Wordstation pro
-                https://github.com/201853910/VMwareWorkstation/releases/download/25H2/VMware-Workstation-Full-25H2u1-25219725.x86_64.bundle
-                    #monitorizar y optimizar tu sistema Linux
-                    echo "#vmware" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo 'wget -P /tmp https://github.com/201853910/VMwareWorkstation/releases/download/25H2/VMware-Workstation-Full-25H2u1-25219725.x86_64.bundle'  >> /tmp/software
-                    echo "sudo apt install build-essential linux-headers-$(uname -r) dkms wget tar -y" >> /tmp/software
-                    echo "chmod +x /tmp/* 2> /dev/null" >> /tmp/software
-                    echo "sudo /tmp/VMware-Workstation-Full-25H2u1-25219725.x86_64.bundle --console --required --eulas-agreed" >> /tmp/software
-
-                    echo "" >> /tmp/software
-
-                    #linea con el nombre del programa instalado para la comprobacion
-                    echo "vmware" >> /tmp/ComprobarSoftware
-                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                ;;
+                    echo ""
+                    echo -e "${amarillo}VMware hay que instalarlo desde PaquetesIndependientes"
+                    echo -e "${verde}   Opcion 13 del menu principal${borra_colores}"
+                    sleep 2
+                    ;;
 
                 "22")#virtualbox
                     #codigo para la instalacion se mete a /tmp/software
-                if extrepo search virtualbox; then
-                    sudo extrepo enable virtualbox >/dev/null 2>&1
-                    echo "#virtualbox" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
-                    echo "sudo apt update; sudo apt install -y virtualbox" >> /tmp/software
-                    echo "" >> /tmp/software
+                    if extrepo search virtualbox; then
+                        sudo extrepo enable virtualbox >/dev/null 2>&1
+                        echo "#virtualbox" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                        echo "sudo apt update" >> /tmp/software
+                        echo 'sudo apt install -y $(apt-cache search ^virtualbox-[0-9] | sort -V | tail -n 1 | awk '{print $1}')' >> /tmp/software
+                        echo "sudo apt install -y virtualbox-guest-additions-iso" >> /tmp/software
+                        echo 'sudo apt install dkms linux-headers-$(uname -r) build-essential' >> /tmp/software
+                        echo 'sudo usermod -aG vboxusers $USER' >> /tmp/software
+                        echo "" >> /tmp/software
 
-                    #linea con el nombre del programa instalado para la comprobacion
-                    echo "virtualbox" >> /tmp/ComprobarSoftware
-                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
-                else
-                    echo "❌ No se encontró el repositorio para virtualbox."; read p
-                fi
-                ;;
+                        #linea con el nombre del programa instalado para la comprobacion
+                        echo "virtualbox" >> /tmp/ComprobarSoftware
+                        echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                    else
+                        echo "❌ No se encontró el repositorio para virtualbox."; read p
+                    fi
+                    ;;
 
             "90")#carga la ayuda
                 clear
