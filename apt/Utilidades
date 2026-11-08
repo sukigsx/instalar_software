@@ -66,6 +66,8 @@ do
     echo -e "${azul} 18)${borra_colores} Teamviwer                         Conexion remota."
     echo -e "${azul} 19)${borra_colores} RustDesk                          Conexion remota."
     echo -e "${azul} 20)${borra_colores} Stacer                            Monitorizar y optimizar tu sistema Linux."
+    echo -e "${azul} 21)${borra_colores} Vmware Wordstation pro            Gestion de maquinas virtuales"
+    echo -e "${azul} 22)${borra_colores} VirtualBox                        Gestion de maquinas virtuales"
     echo ""
     echo -e "${azul} 90)${borra_colores} Ayuda                     Carga la ayuda"
     echo -e "${azul} 99)${borra_colores} Atras                     Salir (ctrl-c)"
@@ -307,6 +309,33 @@ do
                 ;;
 
                 "20")#Stacer
+                    #monitorizar y optimizar tu sistema Linux
+                    echo "#stacer" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo "sudo apt install -y stacer" >> /tmp/software
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "stacer" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+                "21")#Vmware Wordstation pro
+                https://github.com/201853910/VMwareWorkstation/releases/download/25H2/VMware-Workstation-Full-25H2u1-25219725.x86_64.bundle
+                    #monitorizar y optimizar tu sistema Linux
+                    echo "#vmware" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
+                    echo 'wget -P /tmp https://github.com/201853910/VMwareWorkstation/releases/download/25H2/VMware-Workstation-Full-25H2u1-25219725.x86_64.bundle'  >> /tmp/software
+                    echo "sudo apt install build-essential linux-headers-$(uname -r) dkms wget tar -y" >> /tmp/software
+                    echo "chmod +x /tmp/* 2> /dev/null" >> /tmp/software
+                    echo "sudo /tmp/VMware-Workstation-Full-25H2u1-25219725.x86_64.bundle --console --required --eulas-agreed" >> /tmp/software
+
+                    echo "" >> /tmp/software
+
+                    #linea con el nombre del programa instalado para la comprobacion
+                    echo "vmware" >> /tmp/ComprobarSoftware
+                    echo ""; echo -e "${azul} Añadido ${verde}OK${borra_colores}"; sleep 1
+                ;;
+
+                "22")#virtualbox
                     #monitorizar y optimizar tu sistema Linux
                     echo "#stacer" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                     echo "sudo apt install -y stacer" >> /tmp/software
