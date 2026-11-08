@@ -179,13 +179,13 @@ do
 
             "6")#vmware
                 nombre_paquete="vmware-workstation"
-                nombre_paquete_comprobar="popo"
+                nombre_paquete_comprobar="vmware"
                 if yay -Si "$nombre_paquete" &>/dev/null; then
                     #codigo para la instalacion se mete a /tmp/software
                     echo "#$nombre_paquete" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                     echo "yay -Syu --noconfirm linux-headers base-devel git" >> /tmp/software
-                    echo "yay -S vmware-keymaps" >> /tmp/software
-                    echo "yay -S --cleanmenu --nodiffmenu vmware-workstation" >> /tmp/software
+                    echo "yay -S --noconfirm vmware-keymaps" >> /tmp/software
+                    echo "yay -S --noconfirm --cleanmenu --nodiffmenu vmware-workstation" >> /tmp/software
                     echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
                     echo "sudo systemctl enable --now vmware-usbarbitrator.service" >> /tmp/software
                     echo "sudo systemctl enable --now vmware-networks.service" >> /tmp/software
@@ -212,7 +212,7 @@ do
                     echo "yay -S --noconfirm virtualbox-host-modules-arch virtualbox-host-dkms" >> /tmp/software
                     echo "sudo modprobe vboxdrv" >> /tmp/software
                     echo 'sudo gpasswd -a $USER vboxusers' >> /tmp/software
-                    echo "yay -S --noconfirm $nombre_paquete" >> /tmp/software
+                    echo "yay -S --noconfirm virtualbox-ext-oracle virtualbox-guest-iso" >> /tmp/software
                     echo "" >> /tmp/software
 
                     #linea con el nombre del programa instalado para la comprobacion
