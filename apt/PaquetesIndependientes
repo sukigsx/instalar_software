@@ -178,16 +178,18 @@ do
             $navegador https://github.com/201853910/VMwareWorkstation/releases
             echo ""
             echo -e "${verde} Iniciando la instalacion de Vmware Wordstation pro${borra_colores}"
-            cd /home/$(whoami)/descargas
+            cd /home/$(whoami)/Descargas
             chmod +x *.bundle
             sudo ./VM*.bundle
             rm VM*.bundle
             if command -v vmware; then
                 echo ""
                 echo -e "${verde} Instalacion completada${borra_colores}"; sleep 1
+                rm /home/$(whoami)/Descargas/VM*.bundle >/dev/null 2>&1
             else
                 echo ""
                 echo -e "${rojo} La instalacion ha fallado${borra_colores}"; sleep 3
+                rm /home/$(whoami)/Descargas/VM*.bundle >/dev/null 2>&1
             fi
             ;;
 

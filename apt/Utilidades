@@ -332,14 +332,14 @@ do
                         sudo extrepo enable virtualbox >/dev/null 2>&1
                         echo "#virtualbox" >> /tmp/software #mete el nombre del programa para poder comprobar su instalacion
                         echo "sudo apt update" >> /tmp/software
-                        echo 'sudo apt install dkms linux-headers-$(uname -r) build-essential' >> /tmp/software
+                        echo 'sudo apt install -y dkms linux-headers-$(uname -r) build-essential' >> /tmp/software
                         echo "sudo apt install -y \$(apt-cache search ^virtualbox-[0-9] | sort -V | tail -n 1 | awk '{print \$1}')" >> /tmp/software
                         echo 'sudo usermod -aG vboxusers $USER' >> /tmp/software
 
-echo "VBOX_VER=\$(vboxmanage --version | cut -d'r' -f1)" >> /tmp/software
-echo "wget -q \"https://download.virtualbox.org/virtualbox/\${VBOX_VER}/Oracle_VirtualBox_Extension_Pack-\${VBOX_VER}.vbox-extpack\"" >> /tmp/software
-echo "echo \"y\" | sudo vboxmanage extpack install \"Oracle_VirtualBox_Extension_Pack-\${VBOX_VER}.vbox-extpack\"" >> /tmp/software
-echo "rm \"Oracle_VirtualBox_Extension_Pack-\${VBOX_VER}.vbox-extpack\"" >> /tmp/software
+                        echo "VBOX_VER=\$(vboxmanage --version | cut -d'r' -f1)" >> /tmp/software
+                        echo "wget -q \"https://download.virtualbox.org/virtualbox/\${VBOX_VER}/Oracle_VirtualBox_Extension_Pack-\${VBOX_VER}.vbox-extpack\"" >> /tmp/software
+                        echo "echo \"y\" | sudo vboxmanage extpack install \"Oracle_VirtualBox_Extension_Pack-\${VBOX_VER}.vbox-extpack\"" >> /tmp/software
+                        echo "rm \"Oracle_VirtualBox_Extension_Pack-\${VBOX_VER}.vbox-extpack\"" >> /tmp/software
 
 
                         #linea con el nombre del programa instalado para la comprobacion
