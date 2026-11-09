@@ -175,6 +175,7 @@ do
             echo ""
             echo -e "${amarillo} Asegurate de descargar el software en la carpeta (descargas) de tu usuario.${borra_colores}"
             echo " Pulsa una tecla para continuar"; read p
+            rm /home/$(whoami)/Descargas/VM*.bundle >/dev/null 2>&1
             $navegador https://github.com/201853910/VMwareWorkstation/releases
             echo ""
             echo -e "${verde} Iniciando la instalacion de Vmware Wordstation pro${borra_colores}"
